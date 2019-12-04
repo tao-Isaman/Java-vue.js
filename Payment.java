@@ -35,7 +35,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PAYMENT_SEQ")
     @Column(name = "PAYMENT_ID", unique = true, nullable = true)
     private @NonNull Long id;
-    // private @NonNull Long totalPrice;
+    // private @NonNull Long totalPrice1;
 
     @JsonIgnoreProperties("payment")
     //@JsonManagedReference
