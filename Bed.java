@@ -26,7 +26,7 @@ public class Bed {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BED_SEQ")
    
     @Column(name="Bed_ID",unique = true, nullable = true)
-    private @NonNull Long id;
+    private @NonNull Long id1;
     private @NonNull String type;
     private @NonNull Integer price;
 
