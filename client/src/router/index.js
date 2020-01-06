@@ -4,6 +4,7 @@ import PostPatient from '../components/PostPatient.vue';
 import login from '../components/login.vue';
 import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
+import ExaminationSystem from "../components/ExaminationSystem";
 
 Vue.use(Router);
 
@@ -25,6 +26,10 @@ export default new Router({
         {
             path: '/home/:id',
             component: home
+        },
+        {
+            path: '/examinationSystem/:id',
+            component: ExaminationSystem
         },
 
 
