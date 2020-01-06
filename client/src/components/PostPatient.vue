@@ -247,6 +247,7 @@
       }
       /* eslint-enable no-console */
       //update ui
+      //update controller
     },
     mounted() {
       this.getGender();
