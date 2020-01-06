@@ -105,6 +105,10 @@ export default {
       goApointment(){
           this.$router.push("/apointment/" + this.$route.params.id);
           window.location.reload()
+      },
+      goExaminationSystem(){
+          this.$router.push("/examinationSystem/" + this.$route.params.id);
+          window.location.reload()
       }
  
    
