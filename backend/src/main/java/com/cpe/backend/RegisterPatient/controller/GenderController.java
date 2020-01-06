@@ -17,7 +17,7 @@ import com.cpe.backend.RegisterPatient.repository.GenderRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class GenderController {
    
