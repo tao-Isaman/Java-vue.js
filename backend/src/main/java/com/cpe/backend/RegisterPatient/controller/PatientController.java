@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 
 import java.net.URLDecoder;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class PatientController {
     @Autowired
