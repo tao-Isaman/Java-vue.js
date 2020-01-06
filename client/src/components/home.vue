@@ -22,7 +22,7 @@
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/3.png" v-on:click="redirect_to_login" 
+                 <img class="btlinhome" src="../assets/3.png" 
                     style="width:500px;height:200px;"
                  />
                 </v-col>               
@@ -30,12 +30,12 @@
 
                <v-row justify="center">
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/4.png" v-on:click="redirect_to_login" 
+                 <img class="btlinhome" src="../assets/4.png" 
                     style="width:500px;height:200px;"
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/5.png" v-on:click="redirect_to_login" 
+                 <img class="btlinhome" src="../assets/5.png"  
                     style="width:500px;height:200px;"
                  />
                 </v-col>
