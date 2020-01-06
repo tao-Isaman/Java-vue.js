@@ -4,6 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.stream.Stream;
 import java.util.Date;
 
+import com.cpe.backend.Appointment.entity.Department;
+import com.cpe.backend.Appointment.entity.TypeCause;
+import com.cpe.backend.Appointment.entity.TypeGoing;
+import com.cpe.backend.Appointment.repository.DepartmentRepository;
+import com.cpe.backend.Appointment.repository.TypeCauseRepository;
+import com.cpe.backend.Appointment.repository.TypeGoingRepository;
 import com.cpe.backend.RegisterPatient.entity.Benefit;
 import com.cpe.backend.RegisterPatient.entity.Gender;
 import com.cpe.backend.RegisterPatient.entity.Patient;
@@ -29,8 +35,9 @@ public class BackendApplication {
 
 	@Bean
 	ApplicationRunner init(UserRepository userRepo,BenefitRepository repository,
-	GenderRepository genderRepository,ProvinceRepository provinceRepository
-	) {
+						   GenderRepository genderRepository,ProvinceRepository provinceRepository,
+						   TypeCauseRepository typeCauseRepository, DepartmentRepository departmentRepository,
+						   TypeGoingRepository typeGoingRepository) {
 		return args -> {
 			User user1 = new User();
 			user1.setId("1111");
@@ -97,7 +104,27 @@ public class BackendApplication {
 			benefit5.setBeneDescriptstion("รักษาได้บางโรคต้องเป็นนักศึกษามหาวิทยาลัยเทคโนโลยีสุรนารีเท่านั้น");
 			benefit5.setDicount(20);
 			repository.save(benefit5);
-			
+
+			Stream.of("ติดตามอาการ","นอนโรงพยาบาล").forEach(typecauseSelect ->{
+				TypeCause typeCause2 = new TypeCause();
+				typeCause2.setTypecauseSelect(typecauseSelect);
+				typeCauseRepository.save(typeCause2);
+			});
+
+			Stream.of("แผนกวิสัญญี","แผนกศัลยกรรม","แผนกกุมารเวชกรรม","แผนกเวชศาสตร์ฟื้นฟู","แผนกอายุรกรรม","แผนกจักษุ","แผนกหู คอ จมูก","แผนกเภสัชกรรม","แผนกจิตเวช","แผนกรังสีกรรม","แผนกผู้ป่วยใน").forEach(departmentlSelect ->{
+				Department department = new Department();
+				department.setDepartmentlSelect(departmentlSelect);
+				departmentRepository.save(department);
+			});
+
+			Stream.of("รถยนต์ส่วนบุคคล","รถโรงพยาบาล","รถจักรยานยนต์" , "เดิน").forEach(typegoingSelect ->{
+				TypeGoing typeGoing = new TypeGoing();
+				typeGoing.setTypegoingSelect(typegoingSelect);
+				typeGoingRepository.save(typeGoing);
+			});
+
+
+
 		};
 	}
 
