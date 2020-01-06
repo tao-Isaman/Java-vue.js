@@ -246,6 +246,7 @@
         this.getBenefit();
       }
       /* eslint-enable no-console */
+      //update ui
     },
     mounted() {
       this.getGender();
