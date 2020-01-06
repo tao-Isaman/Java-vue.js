@@ -20,6 +20,14 @@ import com.cpe.backend.RegisterPatient.repository.GenderRepository;
 import com.cpe.backend.RegisterPatient.repository.PatientRepository;
 import com.cpe.backend.RegisterPatient.repository.ProvinceRepository;
 import com.cpe.backend.RegisterPatient.repository.UserRepository;
+import com.cpe.backend.Examination.entity.Doctor;
+import com.cpe.backend.Examination.entity.Duration;
+import com.cpe.backend.Examination.entity.ExaminationSystem;
+import com.cpe.backend.Examination.entity.State;
+import com.cpe.backend.Examination.repository.DoctorRepository;
+import com.cpe.backend.Examination.repository.DurationRepository;
+import com.cpe.backend.Examination.repository.ExaminationRepository;
+import com.cpe.backend.Examination.repository.StateRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -37,6 +45,7 @@ public class BackendApplication {
 	ApplicationRunner init(UserRepository userRepo,BenefitRepository repository,
 						   GenderRepository genderRepository,ProvinceRepository provinceRepository,
 						   TypeCauseRepository typeCauseRepository, DepartmentRepository departmentRepository,
+						   StateRepository s,DoctorRepository dr,DurationRepository du,ExaminationRepository examinationRepository,
 						   TypeGoingRepository typeGoingRepository) {
 		return args -> {
 			User user1 = new User();
@@ -121,6 +130,22 @@ public class BackendApplication {
 				TypeGoing typeGoing = new TypeGoing();
 				typeGoing.setTypegoingSelect(typegoingSelect);
 				typeGoingRepository.save(typeGoing);
+			});
+			Stream.of("ดีขึ้น", "แย่ลง", "คงที่").forEach(name -> {
+				State state = new State();
+				state.setName(name);
+				s.save(state);
+			});
+
+			Stream.of("นพ. เอ", "นพ. บี", "พญ. ซี").forEach(name -> {
+				Doctor doctor = new Doctor();
+				doctor.setDname(name);
+				dr.save(doctor);
+			});
+			Stream.of("เช้า", "เที่ยง", "เย็น", "ดึก").forEach(name -> {
+				Duration duration = new Duration();
+				duration.setName(name);
+				du.save(duration);
 			});
 
 
