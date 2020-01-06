@@ -17,7 +17,7 @@
                  />                                
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/2.png" v-on:click="redirect_to_login" 
+                 <img class="btlinhome" src="../assets/2.png" v-on:click="goReserve"
                     style="width:500px;height:200px;"
                  />
                 </v-col>
@@ -108,6 +108,10 @@ export default {
       },
       goExaminationSystem(){
           this.$router.push("/examinationSystem/" + this.$route.params.id);
+          window.location.reload()
+      },
+      goReserve(){
+          this.$router.push("/reserve/" + this.$route.params.id);
           window.location.reload()
       }
  

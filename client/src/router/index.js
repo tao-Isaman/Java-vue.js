@@ -5,6 +5,7 @@ import login from '../components/login.vue';
 import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
+import Reserve  from '../components/Reserve.vue'
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ export default new Router({
         {
             path: '/examinationSystem/:id',
             component: ExaminationSystem
+        },
+        ,
+        {
+            path: '/reserve/:id',
+            component: Reserve
         },
 
 

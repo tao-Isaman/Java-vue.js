@@ -28,6 +28,12 @@ import com.cpe.backend.Examination.repository.DoctorRepository;
 import com.cpe.backend.Examination.repository.DurationRepository;
 import com.cpe.backend.Examination.repository.ExaminationRepository;
 import com.cpe.backend.Examination.repository.StateRepository;
+import com.cpe.backend.Bed.entity.Bed;
+import com.cpe.backend.Bed.entity.Nurse;
+import com.cpe.backend.Bed.entity.Reservation;
+import com.cpe.backend.Bed.repository.BedRepository;
+import com.cpe.backend.Bed.repository.NurseRepository;
+import com.cpe.backend.Bed.repository.ReservationRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -46,7 +52,8 @@ public class BackendApplication {
 						   GenderRepository genderRepository,ProvinceRepository provinceRepository,
 						   TypeCauseRepository typeCauseRepository, DepartmentRepository departmentRepository,
 						   StateRepository s,DoctorRepository dr,DurationRepository du,ExaminationRepository examinationRepository,
-						   TypeGoingRepository typeGoingRepository) {
+						   TypeGoingRepository typeGoingRepository,BedRepository bedRepository,NurseRepository nurseRepository,
+						   ReservationRepository reservationRepository) {
 		return args -> {
 			User user1 = new User();
 			user1.setId("1111");
@@ -147,6 +154,28 @@ public class BackendApplication {
 				duration.setName(name);
 				du.save(duration);
 			});
+			Stream.of("ชาย , ห้องเตียงรวม , 500", "ชาย , ห้องพิเศษ , 1000" , "หญิง , ห้องเตียงรวม , 500" , "หญิง , ห้องพิเศษ , 1000").forEach(type -> {
+				Bed bed = new Bed(); // สร้าง Object Customer
+				bed.setName(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				if (type == "ชาย , ห้องเตียงรวม , 500")
+					bed.setPrice(500);
+				else if (type == "ชาย , ห้องพิเศษ , 1000")
+					bed.setPrice(1000);
+				else if (type == "หญิง , ห้องเตียงรวม , 500")
+					bed.setPrice(500);
+				else if (type == "หญิง , ห้องพิเศษ , 1000")
+					bed.setPrice(1000);
+				bedRepository.save(bed); // บันทึก Objcet ชื่อ Customer
+			});
+
+
+
+			Stream.of("ศรัญญาภรณ์ สมานราษฎร์", "ปิย์รดา แก้วไพฑูรย์", "รุ่งนภาพร พลองพิมาย" , "นันทิกา พูนพิน").forEach(nu -> {
+				Nurse nurse = new Nurse(); // สร้าง Object Customer
+				nurse.setName(nu); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				nurseRepository.save(nurse); // บันทึก Objcet ชื่อ Customer
+			});
+
 
 
 
