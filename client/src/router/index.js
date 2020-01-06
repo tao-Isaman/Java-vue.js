@@ -32,7 +32,6 @@ export default new Router({
             path: '/examinationSystem/:id',
             component: ExaminationSystem
         },
-        ,
         {
             path: '/reserve/:id',
             component: Reserve

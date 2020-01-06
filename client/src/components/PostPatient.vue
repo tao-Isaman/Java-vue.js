@@ -246,6 +246,7 @@
         this.getBenefit();
       }
       /* eslint-enable no-console */
+      //update ui
     },
     mounted() {
       this.getGender();
@@ -264,7 +265,7 @@
     color: black;
   }
   .back {
-    background-image: linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url(../assets/g1.png);
+    background-image:  url(../assets/g1.png);
     background-size: cover;
     background-blend-mode: multiply;
   }
