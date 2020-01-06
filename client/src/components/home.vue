@@ -40,7 +40,7 @@
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/6.png" v-on:click="redirect_to_login" 
+                 <img class="btlinhome" src="../assets/6.png" v-on:click="goExaminationSystem"
                     style="width:500px;height:200px;"
                  />
                 </v-col>               
