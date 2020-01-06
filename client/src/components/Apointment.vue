@@ -14,7 +14,6 @@
                         <h1 class="font">ระบบนัดหมายผู้ป่วย</h1>
                     </v-flex>
                 </v-layout>
-
                 <v-row justify="center">
                     <v-col cols="4">
                         <v-form v-model="valid" ref="form">
