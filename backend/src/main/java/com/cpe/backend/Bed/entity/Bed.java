@@ -1,15 +1,11 @@
 package com.cpe.backend.Bed.entity;
 
 import lombok.*;
-
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +37,6 @@ public class Bed {
         this.price = price;
     }
     public String getName(){
-
         return type;
     }
 }
