@@ -34,6 +34,12 @@ import com.cpe.backend.Bed.entity.Reservation;
 import com.cpe.backend.Bed.repository.BedRepository;
 import com.cpe.backend.Bed.repository.NurseRepository;
 import com.cpe.backend.Bed.repository.ReservationRepository;
+import com.cpe.backend.Discharge.entity.DistributionType;
+import com.cpe.backend.Discharge.entity.Selfcare;
+import com.cpe.backend.Discharge.entity.Sensorium;
+import com.cpe.backend.Discharge.repository.DistributionTypeRepository;
+import com.cpe.backend.Discharge.repository.SelfcareRepository;
+import com.cpe.backend.Discharge.repository.SensoriumRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -53,7 +59,9 @@ public class BackendApplication {
 						   TypeCauseRepository typeCauseRepository, DepartmentRepository departmentRepository,
 						   StateRepository s,DoctorRepository dr,DurationRepository du,ExaminationRepository examinationRepository,
 						   TypeGoingRepository typeGoingRepository,BedRepository bedRepository,NurseRepository nurseRepository,
-						   ReservationRepository reservationRepository) {
+						   ReservationRepository reservationRepository, 
+						   SensoriumRepository sensoriumRepository,
+						   SelfcareRepository selfcareRepository,DistributionTypeRepository distributionTypeRepository, PatientRepository patientRepository) {
 		return args -> {
 			User user1 = new User();
 			user1.setId("1111");
@@ -175,7 +183,23 @@ public class BackendApplication {
 				nurse.setName(nu); // set ชื่อ (name) ให้ Object ชื่อ Customer
 				nurseRepository.save(nurse); // บันทึก Objcet ชื่อ Customer
 			});
+            Stream.of("รู้สึกตัว", "สับสน", "ไม่รู้สึกตัว").forEach(name -> {
+				Sensorium sensorium = new Sensorium(); // สร้าง Object Employee
+				sensorium.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Employee
+				sensoriumRepository.save(sensorium); // บันทึก Objcet ชื่อ Employee
+			});
 
+			Stream.of("ช่วยเหลือตนเองได้", "ช่วยเหลือตนเองได้บางส่วน", "ช่วยเหลือตนเองไม่ได้").forEach(name -> {
+				Selfcare selfcare = new Selfcare(); // สร้าง Object Customer
+				selfcare.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				selfcareRepository.save(selfcare); // บันทึก Objcet ชื่อ Customer
+			});
+
+			Stream.of("แพทย์อนุญาต", "หนีกลับ", "ถึงแก่กรรม", "ส่งต่อ").forEach(name -> {
+				DistributionType distributionType = new DistributionType(); // สร้าง Object Video
+				distributionType.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Video
+				distributionTypeRepository.save(distributionType); // บันทึก Objcet ชื่อ Video
+			});
 
 
 
