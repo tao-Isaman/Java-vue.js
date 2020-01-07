@@ -119,7 +119,7 @@ export default {
           this.$router.push("/discharge/" + this.$route.params.id);
           window.location.reload()
       }
- 
+ //Edit UI
    
   },
   mounted() {
