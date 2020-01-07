@@ -14,19 +14,26 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;;
+
 
 
 @Entity  
-@Data  
-@NoArgsConstructor  
+@Data
+@NoArgsConstructor
 @Table(name = "PATIENT")
-public class Patient {  //ผู้ป่วย
+public class Patient { // ผู้ป่วย
       
    
   
    
   @Id
   @Column(name = "NATIONAL_ID", unique = true, nullable = true)
+  @NotNull
+  @Min(1000000000000L)
+  @Digits(integer = 13 , fraction = 1)
   private  Long nationalID;  
 
 

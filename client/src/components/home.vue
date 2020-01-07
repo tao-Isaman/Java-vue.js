@@ -22,7 +22,7 @@
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/3.png" 
+                 <img class="btlinhome" src="../assets/3.png" v-on:click=" goDischarge"
                     style="width:500px;height:200px;"
                  />
                 </v-col>               
@@ -114,7 +114,12 @@ export default {
           this.$router.push("/reserve/" + this.$route.params.id);
           window.location.reload()
       }
- 
+      ,
+      goDischarge(){
+          this.$router.push("/discharge/" + this.$route.params.id);
+          window.location.reload()
+      }
+ //Edit UI 2
    
   },
   mounted() {

@@ -8,7 +8,7 @@
     raised
     shaped
   >
-  <v-container class = "back">
+  <v-container class = "back2">
       <v-layout text-center wrap>
       <v-flex mb-4>
         <br />
@@ -105,7 +105,7 @@ export default {
 };
 </script>
 <style>
-    .back {
+    .back2 {
   background-image: url(../assets/g1.png);
   background-size: cover;
 }
