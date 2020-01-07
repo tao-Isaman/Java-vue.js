@@ -6,6 +6,7 @@ import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
 import Reserve  from '../components/Reserve.vue'
+import Discharge  from '../components/Discharge.vue'
 
 Vue.use(Router);
 
@@ -36,7 +37,10 @@ export default new Router({
             path: '/reserve/:id',
             component: Reserve
         },
-
+        {
+            path: '/discharge/:id',
+            component: Discharge
+        }
 
     ]
 });
