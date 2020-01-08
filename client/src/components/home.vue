@@ -30,7 +30,7 @@
 
                <v-row justify="center">
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/4.png" 
+                 <img class="btlinhome" src="../assets/4.png" v-on:click="goDoctorOrder" 
                     style="width:500px;height:200px;"
                  />
                 </v-col>
@@ -118,7 +118,11 @@ export default {
       goDischarge(){
           this.$router.push("/discharge/" + this.$route.params.id);
           window.location.reload()
-      }
+      }, 
+      goDoctorOrder(){
+          this.$router.push("/DoctorOrder/" + this.$route.params.id);
+          window.location.reload()
+      },
  //Edit UI 2
    
   },

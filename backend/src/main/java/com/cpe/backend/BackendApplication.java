@@ -40,6 +40,14 @@ import com.cpe.backend.Discharge.entity.Sensorium;
 import com.cpe.backend.Discharge.repository.DistributionTypeRepository;
 import com.cpe.backend.Discharge.repository.SelfcareRepository;
 import com.cpe.backend.Discharge.repository.SensoriumRepository;
+import com.cpe.backend.Doctororder.entity.DoctorOrder;
+import com.cpe.backend.Doctororder.entity.MedicationType;
+import com.cpe.backend.Doctororder.entity.Medicine;
+import com.cpe.backend.Doctororder.entity.MedicineItem;
+import com.cpe.backend.Doctororder.repository.DoctorOrderRepository;
+import com.cpe.backend.Doctororder.repository.MedicationTypeRepository;
+import com.cpe.backend.Doctororder.repository.MedicineItemRepository;
+import com.cpe.backend.Doctororder.repository.MedicineRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -61,7 +69,9 @@ public class BackendApplication {
 						   TypeGoingRepository typeGoingRepository,BedRepository bedRepository,NurseRepository nurseRepository,
 						   ReservationRepository reservationRepository, 
 						   SensoriumRepository sensoriumRepository,
-						   SelfcareRepository selfcareRepository,DistributionTypeRepository distributionTypeRepository, PatientRepository patientRepository) {
+						   SelfcareRepository selfcareRepository,DistributionTypeRepository distributionTypeRepository, PatientRepository patientRepository ,
+						   MedicineRepository medicineRepository,MedicineItemRepository md,
+						   DoctorOrderRepository doctorOrderRepository,MedicationTypeRepository medicationTypeRepository) {
 		return args -> {
 			User user1 = new User();
 			user1.setId("1111");
@@ -200,7 +210,64 @@ public class BackendApplication {
 				distributionType.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Video
 				distributionTypeRepository.save(distributionType); // บันทึก Objcet ชื่อ Video
 			});
+			MedicationType medType1 = new MedicationType();
+			medType1.setTypeName("ก่อนอาหาร");
+			medicationTypeRepository.save(medType1);
 
+			MedicationType medType2 = new MedicationType();
+			medType2.setTypeName("ก่อนอาหาร 30 นาที");
+			medicationTypeRepository.save(medType2);
+
+
+			MedicationType medType3 = new MedicationType();
+			medType3.setTypeName("หลังอาหาร");
+			medicationTypeRepository.save(medType3);
+
+			MedicationType medType4 = new MedicationType();
+			medType4.setTypeName("หลังอาหารทันที");
+			medicationTypeRepository.save(medType4);
+
+			MedicationType medType5 = new MedicationType();
+			medType5.setTypeName("ทุกๆ 6 ชั่วโมง");
+			medicationTypeRepository.save(medType5);
+
+			MedicationType medType6 = new MedicationType();
+			medType6.setTypeName("ทุกๆ 4 ชั่วโมง");
+			medicationTypeRepository.save(medType6);
+
+			MedicationType medType7 = new MedicationType();
+			medType7.setTypeName("ทุกครั้งที่มีอาการ");
+			medicationTypeRepository.save(medType7);
+
+			Medicine medicine1 = new Medicine(); 
+			medicine1.setMname("Paracetamol 500 mg TAB"); // set ชื่อ (name) ให้ Object ชื่อ Medicine
+			medicine1.setPrice(20L);
+			medicineRepository.save(medicine1);
+
+			Medicine medicine2 = new Medicine(); 
+			medicine2.setMname("Mefenstar Forrte 500 mg TAB");
+			medicine2.setPrice(30L);
+			medicineRepository.save(medicine2);
+
+			Medicine medicine3 = new Medicine(); 
+			medicine3.setMname("ยาแก้แพ้"); // set ชื่อ (name) ให้ Object ชื่อ Medicine
+			medicine3.setPrice(40L);
+			medicineRepository.save(medicine3);
+
+			Medicine medicine4 = new Medicine(); 
+			medicine4.setMname("Dicloxacillin 250 mg CAP"); // set ชื่อ (name) ให้ Object ชื่อ Medicine
+			medicine4.setPrice(100L);
+			medicineRepository.save(medicine4);
+
+
+			
+				
+				
+					
+				
+				
+					
+					
 
 
 		};

@@ -7,6 +7,8 @@ import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
 import Reserve  from '../components/Reserve.vue'
 import Discharge  from '../components/Discharge.vue'
+import DoctorOrder from '../components/DoctorOrder.vue';
+
 
 Vue.use(Router);
 
@@ -40,7 +42,12 @@ export default new Router({
         {
             path: '/discharge/:id',
             component: Discharge
+        },
+        {
+            path: '/DoctorOrder/:id',
+            component: DoctorOrder
         }
+    
 
     ]
 });
