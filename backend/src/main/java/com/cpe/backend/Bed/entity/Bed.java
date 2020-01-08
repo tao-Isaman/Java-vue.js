@@ -1,5 +1,6 @@
 package com.cpe.backend.Bed.entity;
 
+
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
