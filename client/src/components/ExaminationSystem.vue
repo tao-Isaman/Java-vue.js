@@ -1,4 +1,5 @@
 <template>
+
 <div>
 <v-card
     class="mx-auto"
@@ -257,6 +258,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .font {
   font-family: 'Prompt', sans-serif;
