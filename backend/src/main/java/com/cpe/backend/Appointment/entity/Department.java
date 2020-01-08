@@ -2,7 +2,6 @@ package com.cpe.backend.Appointment.entity;
 
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -11,6 +10,8 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Table(name="DEPARTMENT")
+
+
 public class Department {
     @Id
     @SequenceGenerator(name="department_seq",sequenceName="department_seq")
