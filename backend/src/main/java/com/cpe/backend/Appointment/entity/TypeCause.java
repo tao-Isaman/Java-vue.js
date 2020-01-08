@@ -9,6 +9,8 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Table(name="TYPECAUSE")
+
+
 public class TypeCause {
     @Id
     @SequenceGenerator(name="typecause_seq",sequenceName="typecause_seq")
@@ -16,7 +18,6 @@ public class TypeCause {
     @Column(name="TYPECAUSE_ID",unique = true, nullable = true)
     private @NotNull Long id;
     private @NotNull String typecauseSelect;
-
 
 
     @OneToMany(fetch = FetchType.EAGER)
