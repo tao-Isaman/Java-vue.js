@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <v-card
                 class="mx-auto"
@@ -14,7 +14,6 @@
                         <h1 class="font">ระบบนำจำหน่ายผู้ป่วย</h1>
                     </v-flex>
                 </v-layout>
-
                 <v-row justify="center">
                     <v-col cols="10">
                         <v-form v-model="valid" ref="form">
