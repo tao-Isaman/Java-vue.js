@@ -16,7 +16,7 @@ public interface MedicineItemRepository extends JpaRepository<MedicineItem, Long
     MedicineItem findById(long id);
     
 
-    @Query(value ="SELECT m.MEDICINE_ID,m.NAME,m.Price    FROM MEDICINE as m INNER JOIN MEDICINEITEM as i on m.MEDICINE_ID  = i.MEDICINES_ID  where i.DOC_ORDER_ID =  :Dr",
+    @Query(value ="SELECT m.MEDICINE_ID,m.MNAME,m.Price FROM MEDICINE as m INNER JOIN MEDICINEITEM as i on m.MEDICINE_ID = i.MEDICINE_ID where i.DOCTOR_ORDER_ID = :Dr",
     nativeQuery = true)
     Collection<Object[]> findByDocterOrder(@Param("Dr") long id);
 

@@ -44,9 +44,16 @@ public class DoctorOrderController {
         this.doctorOrderRepository = doctorOrderRepository;
     }
 
-    @GetMapping("/DoctorOrder")
+   
+    @GetMapping("/doctororder")
     public Collection<DoctorOrder> doctororder() {
         return doctorOrderRepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/doctororder/{id}")
+    public Optional<DoctorOrder> doctororders(@PathVariable Long id) {
+        Optional<DoctorOrder> doctororders = doctorOrderRepository.findById(id);
+        return doctororders;
     }
 
     // // ดึงตาราง
@@ -156,5 +163,13 @@ public class DoctorOrderController {
 
     //     return data;
     // }
+    @GetMapping("/ordertable/{id}")
+    public Collection<Object[]> getData(@PathVariable Long id){
+        System.out.println(id);
+        Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);
+        System.out.println(data);
+
+        return data;
+    }
 
 }

@@ -8,7 +8,9 @@ import ExaminationSystem from "../components/ExaminationSystem";
 import Reserve  from '../components/Reserve.vue'
 import Discharge  from '../components/Discharge.vue'
 import DoctorOrder from '../components/DoctorOrder.vue';
-
+import PostPayment from '../components/PostPayment.vue';
+import Bills from '../components/Bills.vue';
+import Bill from '../components/Bill.vue'
 
 Vue.use(Router);
 
@@ -47,7 +49,21 @@ export default new Router({
             path: '/DoctorOrder/:id',
             component: DoctorOrder
         }
-    
+        ,
+        {
+            path: '/PostPayment/:id',
+            component: PostPayment
+        }
+        ,
+        {
+            path: '/Bill/:id',
+            component: Bill
+        }       
+        ,
+        {
+            path: '/Bills/:id',
+            component: Bills
+        }    
 
     ]
 });
