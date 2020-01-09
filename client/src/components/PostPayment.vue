@@ -51,11 +51,7 @@
         </div>
       </v-col>
     </v-row>
-
-    
-
    
-
     <div v-if="Payment.paymentOption == 2">
 
         <v-row justify="center">
