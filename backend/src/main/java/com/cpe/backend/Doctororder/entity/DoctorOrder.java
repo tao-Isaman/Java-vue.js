@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.cpe.backend.Examination.entity.ExaminationSystem;
-// import com.cpe.backend.Payment.entity.Payment;
+import com.cpe.backend.Payment.entity.Payment;
 // import com.fasterxml.jackson.annotation.JsonManagedReference;
 // import com.fasterxml.jackson.annotation.JsonBackReference;
 // import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -52,18 +52,16 @@ public class DoctorOrder {
 
   @JsonIgnoreProperties("doctorOrder")
   //@JsonBackReference
-  // @OneToOne(cascade = CascadeType.ALL, mappedBy = "doctorOrder")
-  // // @OneToOne(fetch = FetchType.EAGER, mappedBy = "doctorOrder")
-  // private Payment payment;
+  @OneToOne(cascade = CascadeType.ALL, mappedBy = "doctorOrder")
+  private Payment payment;
 
   @OneToMany(fetch = FetchType.EAGER , mappedBy="doctorOrder")
   //mappedBy  = "type"
   @JsonManagedReference
   private Collection<MedicineItem> medicineItem;
 
-  @OneToOne(fetch = FetchType.EAGER)
-  // @JoinColumn(name = "Patient_ID", insertable = true)
-  private ExaminationSystem ex;
+     @OneToOne(fetch = FetchType.EAGER)
+     private ExaminationSystem ex;
 
 
 

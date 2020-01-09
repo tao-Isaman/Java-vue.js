@@ -35,12 +35,12 @@
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/5.png"  
+                 <img class="btlinhome" src="../assets/5.png"  v-on:click="goPayment"
                     style="width:500px;height:200px;"
                  />
                 </v-col>
                 <v-col cols="20">
-                 <img class="btlinhome" src="../assets/6.png" v-on:click="goExaminationSystem"
+                 <img class="btlinhome" src="../assets/6.jpg" v-on:click="goExaminationSystem"
                     style="width:500px;height:200px;"
                  />
                 </v-col>               
@@ -123,6 +123,10 @@ export default {
           this.$router.push("/DoctorOrder/" + this.$route.params.id);
           window.location.reload()
       },
+        goPayment(){
+          this.$router.push("/PostPayment/" + this.$route.params.id);
+          window.location.reload()   
+      }
  //Edit UI 2
    
   },

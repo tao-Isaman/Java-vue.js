@@ -28,6 +28,12 @@ import com.cpe.backend.Examination.repository.DoctorRepository;
 import com.cpe.backend.Examination.repository.DurationRepository;
 import com.cpe.backend.Examination.repository.ExaminationRepository;
 import com.cpe.backend.Examination.repository.StateRepository;
+import com.cpe.backend.Payment.entity.PaymentOption;
+import com.cpe.backend.Payment.entity.TypeBank;
+import com.cpe.backend.Payment.entity.Payment;
+import com.cpe.backend.Payment.repository.PaymentOptionRepository;
+import com.cpe.backend.Payment.repository.PaymentRepository;
+import com.cpe.backend.Payment.repository.TypeBankRepository;
 import com.cpe.backend.Bed.entity.Bed;
 import com.cpe.backend.Bed.entity.Nurse;
 import com.cpe.backend.Bed.entity.Reservation;
@@ -71,7 +77,7 @@ public class BackendApplication {
 						   SensoriumRepository sensoriumRepository,
 						   SelfcareRepository selfcareRepository,DistributionTypeRepository distributionTypeRepository, PatientRepository patientRepository ,
 						   MedicineRepository medicineRepository,MedicineItemRepository md,
-						   DoctorOrderRepository doctorOrderRepository,MedicationTypeRepository medicationTypeRepository) {
+						   DoctorOrderRepository doctorOrderRepository,MedicationTypeRepository medicationTypeRepository,PaymentOptionRepository paymentoptionRepository,TypeBankRepository typeBankRepository) {
 		return args -> {
 			User user1 = new User();
 			user1.setId("1111");
@@ -90,6 +96,12 @@ public class BackendApplication {
 			user3.setPassword("3333");
 			user3.setJob("เวชรเบียน");
 			userRepo.save(user3);
+
+			User user4 = new User();
+			user4.setId("4444");
+			user4.setPassword("4444");
+			user4.setJob("เจ้าหน้าที่การเงิน");
+			userRepo.save(user4);
 
 			Gender gender1 = new Gender();
 			gender1.setName("ชาย");
@@ -254,13 +266,21 @@ public class BackendApplication {
 			medicine3.setPrice(40L);
 			medicineRepository.save(medicine3);
 
-			Medicine medicine4 = new Medicine(); 
-			medicine4.setMname("Dicloxacillin 250 mg CAP"); // set ชื่อ (name) ให้ Object ชื่อ Medicine
-			medicine4.setPrice(100L);
-			medicineRepository.save(medicine4);
-
-
 			
+
+
+			Stream.of("ชำระเงินสด","ชำระผ่านบัตร").forEach(name -> {
+				PaymentOption paymentoption = new PaymentOption(); // สร้าง Object Employee
+				paymentoption.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Employee
+				paymentoptionRepository.save(paymentoption); // บันทึก Objcet ชื่อ Employee
+			});
+			
+			Stream.of("กสิกร","กรุงไทย","ไทยพาณิชย์").forEach(name -> {
+				TypeBank typeBank = new TypeBank(); // สร้าง Object Employee
+				typeBank.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Employee
+				typeBankRepository.save(typeBank); // บันทึก Objcet ชื่อ Employee
+			});
+
 				
 				
 					
