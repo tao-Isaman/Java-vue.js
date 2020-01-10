@@ -92,7 +92,7 @@
 
                              <br><br><br>
                             
-                            <v-btn @click="checkMedecine" :class="{ red: !valid, green: valid }" >Order</v-btn>
+                            <v-btn @click="checkMedecine" :class="{ red: !valid, green: valid }" >Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
                           
                         </v-col>
@@ -219,12 +219,12 @@ export default {
         .then(response => {  
               
           console.log(response);
-          alert("Created Order Successfully"); 
+          alert("Save Successfully"); 
           this.clear();
         })
         .catch(e => {
           console.log(e);
-          alert("can not Created Order!");
+          alert("Can Not Save!");
         
         });
       //  \ไม่สามรถบันทึกคำสั่งจ่ายยาได้
