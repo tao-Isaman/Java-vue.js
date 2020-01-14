@@ -11,11 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;;
 
 
@@ -37,16 +38,30 @@ public class Patient { // ผู้ป่วย
   private  Long nationalID;  
 
 
+  @NotNull
+  @Size(min = 5 ,max = 30)
   private String name = "";
 
 
+  @NotNull
+  @Size(min = 5 ,max = 240)
   private String Address = "";
 
 
 
+  @NotNull
+  @Size(min = 5 ,max = 240)
   private String initialSsym = "";
   
+  @NotNull
+  @Max(300)
+  @Min(30)
   private int hight ;
+
+
+  @NotNull
+  @Max(300)
+  @Min(1)
   private int weigth ;
   
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = Benefit.class)
