@@ -57,14 +57,14 @@ public class ExaminationController {
 
     @PostMapping("/examinationSystem/{patient_id}/{pulse}/{pressure}/{symptom}/{duration_id}/{state_id}/{doctor_id}")
     public ExaminationSystem newExaminationSystem(ExaminationSystem newExaminationSystem,
-                                      @PathVariable long patient_id,
-                                      @PathVariable long duration_id,
-                                      @PathVariable long state_id,
-                                      @PathVariable long doctor_id,
-                                      @PathVariable int pulse,
-                                      @PathVariable String pressure,
-                                      @PathVariable String symptom,
-                                      @RequestBody Map<String, String> body) {
+                                                  @PathVariable long patient_id,
+                                                  @PathVariable long duration_id,
+                                                  @PathVariable long state_id,
+                                                  @PathVariable long doctor_id,
+                                                  @PathVariable int pulse,
+                                                  @PathVariable String pressure,
+                                                  @PathVariable String symptom,
+                                                  @RequestBody Map<String, String> body) {
 
         Patient patient = patientRepository.findById(patient_id);
         Duration duration = durationRepository.findById(duration_id);
@@ -77,7 +77,7 @@ public class ExaminationController {
         newExaminationSystem.setSymptom(body.get("symptom"));
         newExaminationSystem.setDuration(duration);
         newExaminationSystem.setState(state);
-        newExaminationSystem.setCheckDate(body.get("checkDate"));
+        newExaminationSystem.setCheckDate(new Date());
         newExaminationSystem.setCheckBy(checkBy);
 
         return examinationRepository.save(newExaminationSystem);

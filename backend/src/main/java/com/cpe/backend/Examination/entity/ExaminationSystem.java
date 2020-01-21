@@ -7,15 +7,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.cpe.backend.Examination.entity.Doctor;
 import com.cpe.backend.RegisterPatient.entity.Patient;;
@@ -33,10 +39,19 @@ public class ExaminationSystem {//ข้อวินิจฉัย
     private @NonNull Long id;
 
     @Column(name="CHECK_DATE")
-    private @NonNull String checkDate;
+    private @NonNull Date checkDate;
 
+    @NotNull
+    @Max(200)
+    @Min(1)
     private int pulse;
+
+    @NotNull
+    @Size(min = 2 ,max = 7)
     private String pressure = "";
+
+    @NotNull
+    @Size(min = 5 ,max = 250)
     private String symptom ="";
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Doctor.class)
