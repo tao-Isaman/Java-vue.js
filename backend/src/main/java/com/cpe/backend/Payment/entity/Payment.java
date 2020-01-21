@@ -13,8 +13,8 @@ import com.cpe.backend.Doctororder.entity.DoctorOrder;
 // import com.fasterxml.jackson.annotation.JsonBackReference;
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.FetchType;
 
 //import java.util.Date;
@@ -37,21 +37,28 @@ public class Payment {
     private @NonNull Long id;
     // private @NonNull Long totalPrice;
 
+    @NotNull
+    @Size(min = 5 ,max = 240)
+    private String Note = "";
+
+    @NotNull
     @JsonIgnoreProperties("payment")
     //@JsonManagedReference
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "DOCTORORDER_ID", nullable = false,unique = true)
-    private DoctorOrder doctorOrder;
+    private  DoctorOrder doctorOrder;
+        
 
-
-
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PaymentOption.class)
     @JoinColumn(name = "PAYMENTOPTION_ID", insertable = true)
     private PaymentOption paymentOption;
 
+    
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeBank.class)
     @JoinColumn(name = "TYPEBANK_ID", insertable = true)
     private TypeBank typeBank;
+
 
 
 

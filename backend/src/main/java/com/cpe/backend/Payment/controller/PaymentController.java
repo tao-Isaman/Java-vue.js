@@ -79,7 +79,8 @@ public class PaymentController {
             newPayment.setDoctorOrder(doctorOrderRepository.findById(Long.valueOf(body.get("doctorOrder")).longValue()));
 			newPayment.setPaymentOption(paymentOptionRepository.findById(Long.valueOf(body.get("paymentOption")).longValue()));
             newPayment.setTypeBank(typeBankRepository.findById(Long.valueOf(body.get("typeBank")).longValue()));
-            
+            newPayment.setNote(body.get("note"));
+            // newPatient.setAddress(body.get("address"));
             return paymentRepository.save(newPayment);
 
           }
