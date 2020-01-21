@@ -56,6 +56,8 @@ public class RegisterPatientTests {
        assertEquals(1234567890123L, found.get().getNationalID());
         
     }
+
+    //ทดสอบว่า NationalID ห้ามเป็น not null
     @Test
     void B5907519_testPatientIdIsNotNull(){
         Patient patient = new Patient();
@@ -78,6 +80,7 @@ public class RegisterPatientTests {
 
     }
 
+    //ทดสอบว่า NationalID ห้ามเป็น 14 หลัก
     @Test
     void B5907519_testPatientIdIs14Digits(){
         Patient patient = new Patient();
@@ -100,6 +103,7 @@ public class RegisterPatientTests {
 
     }
 
+    //ทดสอบว่า NationalID ห้ามเป็น น้อยกว่า 13 หลัก
     @Test
     void B5907519_testPatientIdNotLessThen13Digits() {
         Patient patient = new Patient();
@@ -121,6 +125,7 @@ public class RegisterPatientTests {
         
     }
 
+    //ทดสอบว่า PataientNane ห้ามเป็น not null
     @Test
     void B5907519_testPataientNanemMustNotBeNull(){
         Patient patient = new Patient();
@@ -138,6 +143,7 @@ public class RegisterPatientTests {
         assertEquals("name", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientNane ห้ามน้อยกว่า 5 ตัวอักษร
     @Test
     void B5907519_testPataientNanemMustSizeLessThen5(){
         Patient patient = new Patient();
@@ -156,6 +162,7 @@ public class RegisterPatientTests {
         assertEquals("name", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientNane ต้องไม่เกิน 30 ตัวอักษร
     @Test
     void B5907519_testPataientNanemMustSizeMoreThen30(){
         Patient patient = new Patient();
@@ -174,6 +181,7 @@ public class RegisterPatientTests {
         assertEquals("name", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientAddres ห้ามเป็น not null
     @Test
     void B5907519_testPataientAddresMustNotBeNull(){
         Patient patient = new Patient();
@@ -191,6 +199,7 @@ public class RegisterPatientTests {
         assertEquals("Address", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientAddres ห้ามน้อยกว่า 5 ตัวอักษร
     @Test
     void B5907519_testPataientAddresMustLessThen5(){
         Patient patient = new Patient();
@@ -209,6 +218,7 @@ public class RegisterPatientTests {
         assertEquals("Address", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientAddres ห้ามน้มากว่า 240 ตัวอักษร
     @Test
     void B5907519_testPataientAddresMustMoreThen240(){
         Patient patient = new Patient();
@@ -218,6 +228,7 @@ public class RegisterPatientTests {
         patient.setWeigth(50);
         patient.setHight(80);
 
+        //วนลูปสร้าง String ความยาว 241 ตัวอักษร
         String addres = "" ;
         int i = 0;
         while(i<241){
@@ -234,6 +245,7 @@ public class RegisterPatientTests {
         assertEquals("Address", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientInitialSsy ห้ามเป็น not null
     @Test
     void B5907519_testPataientInitialSsymMustNotBenull(){
         Patient patient = new Patient();
@@ -251,6 +263,7 @@ public class RegisterPatientTests {
         assertEquals("initialSsym", v.getPropertyPath().toString());
     }
 
+    //ทดสอบว่า PataientInitialSsy ห้ามน้อยกว่า 5 ตัวอักษร
     @Test
     void B5907519_testPataientInitialSsymMustLessthen5(){
         Patient patient = new Patient();
@@ -271,6 +284,8 @@ public class RegisterPatientTests {
         assertEquals("initialSsym", v.getPropertyPath().toString());
     }
 
+//ทดสอบว่า PataientInitialSsy ห้ามน้อยเกิน 240 ตัวอักษร
+
     @Test
     void B5907519_testPataientInitialSsymMustMorethen240(){
         Patient patient = new Patient();
@@ -280,6 +295,7 @@ public class RegisterPatientTests {
         patient.setWeigth(50);
         patient.setHight(80);
 
+        //วนลูปสร้าง String 241 ตัวอักษร
         String initialSsym = "" ;
         int i = 0;
         while(i<241){
