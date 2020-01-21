@@ -8,22 +8,23 @@ import com.cpe.backend.RegisterPatient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class AppointmentController {
-@Autowired
+    @Autowired
     private final AppointmentRepository appointmentRepository;
-@Autowired
+    @Autowired
     private TypeCauseRepository typeCauseRepository;
-@Autowired
+    @Autowired
     private DepartmentRepository departmentRepository;
-@Autowired
+    @Autowired
     private TypeGoingRepository typeGoingRepository;
-@Autowired
-private PatientRepository patientRepository;
+    @Autowired
+    private PatientRepository patientRepository;
 
     public AppointmentController(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
@@ -50,6 +51,7 @@ private PatientRepository patientRepository;
         newAppointment.setCreatDepartment(creatDepartment);
         newAppointment.setCreatTypeGoing(creatTypeGoing);
         newAppointment.setCreatPatient(creatPatient);
+        newAppointment.setDate(new Date());
 
         return appointmentRepository.save(newAppointment);
     }
