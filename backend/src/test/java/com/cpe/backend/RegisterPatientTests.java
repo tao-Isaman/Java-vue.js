@@ -479,7 +479,7 @@ public class RegisterPatientTests {
         patient = patientRepository.saveAndFlush(patient);
 
        Optional<Patient> found = patientRepository.findById(patient.getNationalID());
-       assertEquals(80, found.get().getWeigth());
+       assertEquals(50, found.get().getWeigth());
     }
 
     @Test
@@ -495,7 +495,7 @@ public class RegisterPatientTests {
         patient = patientRepository.saveAndFlush(patient);
 
        Optional<Patient> found = patientRepository.findById(patient.getNationalID());
-       assertEquals(50, found.get().getHight());
+       assertEquals(80, found.get().getHight());
     }
    
    
