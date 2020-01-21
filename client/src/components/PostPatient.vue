@@ -218,11 +218,15 @@
                 )
                 .then(response => {
                   console.log(response);
-                  alert("บันทึกสำเร็จ");
+                  if(response.data != null)
+                    alert("บันทึกสำเร็จ");
+                  else
+                    alert("บันทึกไม่สำเร็จ");
                   this.clear();
                 })
                 .catch(e => {
                   console.log(e);
+                  alert("บันทึกไม่สำเร็จ");
                 });
         console.log(this.Patient);
         http
