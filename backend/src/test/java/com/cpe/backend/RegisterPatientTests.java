@@ -52,7 +52,7 @@ public class RegisterPatientTests {
 
         patient = patientRepository.saveAndFlush(patient);
 
-        Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
        assertEquals(1234567890123L, found.get().getNationalID());
         
     }
@@ -416,6 +416,86 @@ public class RegisterPatientTests {
         ConstraintViolation<Patient> v = result.iterator().next();
         assertEquals("must be less than or equal to 300", v.getMessage());
         assertEquals("hight", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void B5907519_testPataientNameOkWithSameSize(){
+        Patient patient = new Patient();
+        patient.setNationalID(1234567890123L); //13 digits
+        patient.setAddress("Address");
+        patient.setInitialSsym("initialSsym");
+        patient.setName("isaman");
+        patient.setWeigth(50);
+        patient.setHight(80);
+
+        patient = patientRepository.saveAndFlush(patient);
+
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       assertEquals("isaman", found.get().getName());
+    }
+
+    @Test
+    void B5907519_testPataientAddressOkWithSameSize(){
+        Patient patient = new Patient();
+        patient.setNationalID(1234567890123L); //13 digits
+        patient.setAddress("Address");
+        patient.setInitialSsym("initialSsym");
+        patient.setName("isaman");
+        patient.setWeigth(50);
+        patient.setHight(80);
+
+        patient = patientRepository.saveAndFlush(patient);
+
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       assertEquals("Address", found.get().getAddress());
+    }
+
+    @Test
+    void B5907519_testPataientInitialSsymOkWithSameSize(){
+        Patient patient = new Patient();
+        patient.setNationalID(1234567890123L); //13 digits
+        patient.setAddress("Address");
+        patient.setInitialSsym("initialSsym");
+        patient.setName("isaman");
+        patient.setWeigth(50);
+        patient.setHight(80);
+
+        patient = patientRepository.saveAndFlush(patient);
+
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       assertEquals("initialSsym", found.get().getInitialSsym());
+    }
+
+    @Test
+    void B5907519_testPataientWeigthOkWithSameSize(){
+        Patient patient = new Patient();
+        patient.setNationalID(1234567890123L); //13 digits
+        patient.setAddress("Address");
+        patient.setInitialSsym("initialSsym");
+        patient.setName("isaman");
+        patient.setWeigth(50);
+        patient.setHight(80);
+
+        patient = patientRepository.saveAndFlush(patient);
+
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       assertEquals(80, found.get().getWeigth());
+    }
+
+    @Test
+    void B5907519_testPataientHightOkWithSameSize(){
+        Patient patient = new Patient();
+        patient.setNationalID(1234567890123L); //13 digits
+        patient.setAddress("Address");
+        patient.setInitialSsym("initialSsym");
+        patient.setName("isaman");
+        patient.setWeigth(50);
+        patient.setHight(80);
+
+        patient = patientRepository.saveAndFlush(patient);
+
+       Optional<Patient> found = patientRepository.findById(patient.getNationalID());
+       assertEquals(50, found.get().getHight());
     }
    
    
