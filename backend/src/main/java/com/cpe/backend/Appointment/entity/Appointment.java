@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.cpe.backend.RegisterPatient.entity.Patient;
 
@@ -20,18 +21,24 @@ public class Appointment {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="appointment_seq")
     @Column(name="APPOINTMENT_ID",unique = true, nullable = true)
     private @NotNull Long id;
-    private @NotNull String additional;
+
     private @NotNull Date date;
 
+    @NotNull
+    @Size(min = 5,max = 20)
+    private String Additional = "";
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeCause.class)
     @JoinColumn(name = "TYPECAUSE_ID", insertable = true)
     private TypeCause creatTypeCause;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Department.class)
     @JoinColumn(name = "DEPARTMENT_ID", insertable = true)
     private Department creatDepartment;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeGoing.class)
     @JoinColumn(name = "TYPEGOING_ID", insertable = true)
     private TypeGoing creatTypeGoing;
@@ -39,5 +46,7 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Patient.class)
     @JoinColumn(name = "PATINET_ID", insertable = true)
     private Patient creatPatient;
-    
+
+
+
 }
