@@ -7,5 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface MedicationTypeRepository extends JpaRepository<MedicationType, Long> {
     MedicationType findById(long id);
+    
     //MedicationType findMedicationTypeName(String medicationTypeName);
 }

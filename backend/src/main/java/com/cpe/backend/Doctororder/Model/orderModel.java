@@ -10,5 +10,6 @@ public  class orderModel {
 
     private String allergies;
     private String reaction;
+    private String prescriptionNumber;
 
 }

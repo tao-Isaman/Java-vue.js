@@ -26,7 +26,7 @@ public class MedicineController {
     private final MedicineRepository  medicineRepository;
 
     public MedicineController(MedicineRepository medicineRepository) {
-            this.medicineRepository = medicineRepository;
+        this.medicineRepository = medicineRepository;
     }
     @GetMapping("/medicine")
     public Collection<Medicine> getMedicineAll() {
