@@ -104,6 +104,7 @@ public class DoctorOrderController {
          if(doc == null){
             newdocOrder.setEx(ex);
             newdocOrder.setDate(new Date());
+            newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
             newdocOrder.setAllergies(body.getAllergies());
             newdocOrder.setReaction(body.getReaction());
             
@@ -129,6 +130,7 @@ public class DoctorOrderController {
             }else{
                 newdocOrder.setEx(ex);
                 newdocOrder.setDate(new Date());
+                newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
                 newdocOrder.setAllergies(body.getAllergies());
                 newdocOrder.setReaction(body.getReaction());
                 
