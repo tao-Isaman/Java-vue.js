@@ -32,21 +32,11 @@
                         <v-col cols="7" align="center">
 
 
-                          <!-- <v-text-field class="font1"
-                            outlined
-                            label="National ID (รหัสบัตรประชาชน)"
-                            v-model="doctorsOrder.examinationId"
-                            :rules="[(v) => !!v || 'Item is required']"
-                            required
-                          ></v-text-field>
-                          
-                           <p v-if="patientCheck != ''">Patient Name : {{patientName}}</p>
-                         
-                          <v-btn class="font1" @click="findPatient" depressed large color="primary">ค้นหา</v-btn>
-
-                          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-                          <div v-if="patientCheck"> -->
+                          <v-text-field class="font1"
+                              label="Prescription Number (เลขใบสั่งจ่ายยา)"
+                              v-model="doctorsOrder.prescriptionNumber"
+                              :rules="[(v) => !!v || 'Item is required']"
+                            ></v-text-field>
 
                           <v-select class="font1"
                             v-model="doctorsOrder.examinationId"
@@ -90,11 +80,26 @@
                               :rules="[(v) => !!v || 'Item is required']"
                             ></v-text-field>
 
-                             <br><br><br>
+                             <br><br>
                             
-                            <v-btn @click="checkMedecine" :class="{ red: !valid, green: valid }" >Save</v-btn>
+                            <v-btn @click="snackbar = true" :class="{ red: !valid, green: valid }" >Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-                          
+<!-- top -->
+                              <!-- color = "green" -->
+                            <v-snackbar
+                              v-model="snackbar"
+                              :timeout="timeout"
+                              
+                            >
+                              {{ text }}
+                              <v-btn
+                                color="blue"
+                                text
+                                @click="snackbar = false"
+                              >
+                                Close
+                              </v-btn>
+                            </v-snackbar>
                         </v-col>
                         <v-col cols="1"></v-col>
                     </v-row>
@@ -123,9 +128,13 @@ export default {
         medicationTypeIds: [],
         allergies: "",
         reactoin: "",
+        prescriptionNumber : ""
         
       },
       valid: false,
+      snackbar: false,
+      text: 'My timeout is set to 2000.',
+      timeout: 3000,
       examinaton:[],
       medicationType:[],
       medicine:[],
@@ -216,8 +225,7 @@ export default {
       http
         .post( "/postDoctor",
             this.doctorsOrder)
-        .then(response => {  
-              
+        .then(response => {               
           console.log(response);
           alert("Save Successfully"); 
           this.clear();
@@ -270,13 +278,13 @@ export default {
 .font{
   font-family: 'Kanit', sans-serif;
   font-size: 50px ;
-  color: black;
+  color: rgb(0, 0, 0);
   opacity: 0.7;
 }
 
 .font1{
   font-family: 'Kanit', sans-serif;
-  font-size: 15px ;
+  font-size: 20px ;
   color: black;
   opacity: 0.85;
 }

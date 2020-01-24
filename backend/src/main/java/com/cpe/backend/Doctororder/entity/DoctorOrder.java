@@ -51,19 +51,17 @@ public class DoctorOrder {
   private Date Date;
 
   // \"[BMD]\\d{7}\"
-  @Pattern(regexp = "[(P)]\\d{10}[(T){12}]")
-  @Size(max = 12)
-  @NotNull private  String prescriptionNumber ="";
+  @Size(min = 5,max = 12)
+  @Pattern(regexp = "[(P)]\\d{10}")
+  @NotNull private  String prescriptionNumber = "";
 
   // @Column(name = "DrugAllergies")
   @Pattern(regexp = "[A-Za-z0-9_]{5,100}")
-  // @Size(min = 5, max = 250)
   @NotNull
   private String allergies = "";
 
   // @Column(name = "AllergiesReaction")
-  @Pattern(regexp = "[ก-๙]{5,150}")
-  // @Size(min = 5, max = 100)
+  @Size(min = 5, max = 150)
   @NotNull
   private String reaction = "";
 
@@ -72,8 +70,8 @@ public class DoctorOrder {
   @OneToOne(cascade = CascadeType.ALL, mappedBy = "doctorOrder")
   private Payment payment;
 
-  @OneToMany(fetch = FetchType.EAGER , mappedBy="doctorOrder")
   //mappedBy  = "type"
+  @OneToMany(fetch = FetchType.EAGER , mappedBy="doctorOrder")  
   @JsonManagedReference
   private Collection<MedicineItem> medicineItem;
 
