@@ -151,7 +151,7 @@ public class DoctorOrderTests {
         final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
         final ConstraintViolation<DoctorOrder> v = result.iterator().next();
-        assertEquals("must match \"[A-Za-z0-9_]{5,100}\"", v.getMessage());
+        assertEquals("must match \"[A-Za-z0-9_]{1,100}\"", v.getMessage());
         assertEquals("allergies", v.getPropertyPath().toString());
 
     }
@@ -254,7 +254,7 @@ public class DoctorOrderTests {
         final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
         final ConstraintViolation<DoctorOrder> v = result.iterator().next();
-        assertEquals("must match \"[(P)]\\d{10}\"", v.getMessage());
+        assertEquals("must match \"[P]\\d{10}\"", v.getMessage());
         assertEquals("prescriptionNumber", v.getPropertyPath().toString());
 
     }
