@@ -5,6 +5,7 @@ import login from '../components/login.vue';
 import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
+import showEx from '../components/showEx.vue'
 import Reserve  from '../components/Reserve.vue'
 import ShowReserv from '../components/showReserv.vue'
 import Discharge  from '../components/Discharge.vue'
@@ -70,8 +71,12 @@ export default new Router({
         {
             path: '/showReserv',
             component: ShowReserv
-        }    
- 
+        }
+        ,
+        {
+            path: '/showEx',
+            component: showEx
+        }
 
     ]
 });
