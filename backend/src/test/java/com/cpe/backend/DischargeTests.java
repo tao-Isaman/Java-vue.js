@@ -1,4 +1,4 @@
-package com.cpe.backend;
+﻿package com.cpe.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,8 +10,6 @@ import com.cpe.backend.Discharge.entity.DistributionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Date;
-
-
 
 // import static org.junit.jupiter.api.Assertions.assertThrows;
 
