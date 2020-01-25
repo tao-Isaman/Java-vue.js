@@ -20,6 +20,8 @@ public class Appointment {
     @SequenceGenerator(name="appointment_seq",sequenceName="appointment_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="appointment_seq")
     @Column(name="APPOINTMENT_ID",unique = true, nullable = true)
+    
+     
     private @NotNull Long id;
 
     private @NotNull Date date;

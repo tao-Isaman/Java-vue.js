@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd69a242-da2b-4c24-b7b3-c8778aad5cfc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/AppointmentTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/TypeCauseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/TypeCauseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/TypeGoingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/TypeGoingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/TypeCause.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/TypeCause.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/TypeGoing.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/entity/TypeGoing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/AppointmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/DepartmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/TypeCauseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/TypeCauseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/TypeGoingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/repository/TypeGoingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/AppointmentTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/AppointmentTests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,12 +31,6 @@
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-7" />
-    <option name="y" value="3" />
-    <option name="width" value="596" />
-    <option name="height" value="735" />
   </component>
   <component name="ProjectId" id="1W1CvXumyuzCKobRoxTKrKEzkec" />
   <component name="PropertiesComponent">
@@ -86,6 +89,8 @@
       <updated>1578304961447</updated>
       <workItem from="1578307948443" duration="723000" />
       <workItem from="1579626682647" duration="847000" />
+      <workItem from="1579943510091" duration="105000" />
+      <workItem from="1579943903115" duration="594000" />
     </task>
     <servers />
   </component>
