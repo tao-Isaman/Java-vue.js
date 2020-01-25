@@ -11,12 +11,12 @@ import javax.persistence.Table;
 
 import com.cpe.backend.Appointment.entity.Department;
 import com.cpe.backend.RegisterPatient.entity.Patient;
-
+//import java.util.Optional;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
 import java.util.Date;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;;
@@ -34,6 +34,8 @@ public class Reservation {
     @Column(name = "RESERVATION_ID", unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull Date ReservDate;
+    @Size(min=5,max=240)
+    private String note = "";
 
     @Getter @Setter
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Patient.class)     
@@ -41,37 +43,21 @@ public class Reservation {
     private Patient patient; 
  
     @Getter @Setter
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Department.class)     
     @JoinColumn(name = "Department_ID", insertable = true)     
     private Department department; 
 
     @Getter @Setter
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Bed.class)     
     @JoinColumn(name = "Beds_ID", insertable = true)     
     private Bed bed; 
  
     @Getter @Setter
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Nurse.class)     
     @JoinColumn(name = "Nurse_ID", insertable = true)     
     private Nurse nurse;
 
-	// public void setDepartment(Department department) {
-       
-    // }
-
-	// public void setBed(Bed bed) {
-        
-	// }
-
-	// public void setDate(Date date) {
-        
-	// }
-
-	// public void setPatient(Patient patient) {
-        
-	// }
-
-	// public void setNurse(Nurse nurse) {
-        
-	// } 
 }
