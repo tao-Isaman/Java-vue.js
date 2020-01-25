@@ -281,26 +281,7 @@ public class BackendApplication {
 				typeBankRepository.save(typeBank); // บันทึก Objcet ชื่อ Employee
 			});
 
-			ExaminationSystem examination3 = new ExaminationSystem();
-			String sDate97="11/4/2019";
-			// Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-			// examination3.setCheckDate(sDate97);
-			examination3.setPulse(200);
-			examination3.setPressure("123");
-			examination3.setSymptom("ไข้หวัด2");
-			// examination3.setPatient(p2);
-			examinationRepository.save(examination3);
-
-			ExaminationSystem examination2 = new ExaminationSystem();
-			String sDate91="11/4/2019";
-			// Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-			// examination2.setCheckDate(sDate91);
-			examination2.setPulse(200);
-			examination2.setPressure("123");
-			examination2.setSymptom("ไข้หวัด3");
-			// examination2.setPatient(p3);
-			examinationRepository.save(examination2);
-				
+			
 					
 				
 				
