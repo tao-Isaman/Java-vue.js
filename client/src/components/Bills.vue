@@ -7,6 +7,7 @@
         raised
         shaped
     >
+          <div id="printMe">
         <v-row justify="center">
       <v-col cols="2">
        <h1> ใบเสร็จ </h1>
@@ -64,8 +65,7 @@
        </v-row>
               <v-row justify="center">
       <v-col cols="7">
-            <h2> ราคายารวมทั้งสิ้น :   {{medicinetotal}} บาท
-       </h2>
+            <h2> ราคายารวมทั้งสิ้น :   {{medicinetotal}} บาท </h2>
        <h2> ราคาเตียงรวมทั้งสิ้น :   {{bedPricetotal}} บาท
        </h2>
        <h2> รวมค่าใช้จ่ายทั้งหมด :   {{bedPricetotal + medicinetotal}} บาท
@@ -74,12 +74,21 @@
         </v-row>
 
                               <v-row justify="center">
-      <v-col cols="7">
-            <h2> หมายเหตุ :   {{payment.note}}  </h2>
-  
-      </v-col>
-        </v-row>
+                                  <v-col cols="7">
+                                        <h2> หมายเหตุ :   {{payment.note}}  </h2>                          
+                                  </v-col>
+                              </v-row>
+ </div>
+                                 <v-row justify="end">
+                                    <v-col cols="end">                     
+                                          <v-btn class="ma-2" tile  color="green" @click="print">
+                                                  <v-icon left></v-icon> พิมพ์ใบเสร็จที่นี่
+                                          </v-btn>
+                                    </v-col>
+                                 </v-row>
+        
     </v-card>
+
   </div>
 </template>
 
@@ -126,6 +135,11 @@ export default {
     },
   methods: {
     /* eslint-disable */
+
+
+    print() {
+      this.$htmlToPaper('printMe');
+    },
 
     getDate(id){
         http

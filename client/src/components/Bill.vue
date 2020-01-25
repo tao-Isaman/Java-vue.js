@@ -7,6 +7,8 @@
         raised
         shaped
     >
+
+   <div id="printMe">
         <v-row justify="center">
       <v-col cols="1">
        <h1> ใบเสร็จ </h1>
@@ -79,6 +81,15 @@
             <h2> หมายเหตุ :   {{payment.note}} บาท </h2>
       </v-col>
         </v-row>
+
+   </div>
+                                         <v-row justify="end">
+                                    <v-col cols="end">                     
+                                          <v-btn class="ma-2" tile  color="green" @click="print">
+                                                  <v-icon left></v-icon> พิมพ์ใบเสร็จที่นี่
+                                          </v-btn>
+                                    </v-col>
+                                 </v-row>
         </v-card>
   </div>
 </template>
@@ -120,12 +131,16 @@ export default {
       bedprice:0,
       bedname:"",
       pname:""
-
-
       };
     },
   methods: {
     /* eslint-disable */
+
+    
+    print() {
+      this.$htmlToPaper('printMe');
+    },
+
     getDate(id){
         http
             .get("/getDate/"+id)
@@ -141,7 +156,6 @@ export default {
             .catch(e => {
               console.log(e);
             });
-
     },
     getDay(){
         http
@@ -155,16 +169,12 @@ export default {
               this.getDate(response.data[0][5]);
               this.bedname = response.data[0][2];
               this.pname = response.data[0][6];
-
               
             })
             .catch(e => {
               console.log(e);
             });
-
-
     },
-
     get1() {
           http
             .get("/payment/"+this.$route.params.id)
@@ -236,7 +246,6 @@ export default {
     this.get2();
   }, 
 };
-
 </script>
 
 <style>
