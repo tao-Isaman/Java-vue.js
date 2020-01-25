@@ -1,13 +1,17 @@
 package com.cpe.backend;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.Date;
+
 import java.util.*;
 import java.util.Optional;
 import java.util.Set;
-import java.util.Date;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
@@ -95,6 +99,7 @@ public class BedTests {
         assertEquals("bed", v.getPropertyPath().toString());
 
     }
+    
 //Department ต้องไม่เป็นค่า Null
     @Test
     void B5915330_testDepartmentIsNotNull(){
@@ -118,6 +123,7 @@ public class BedTests {
         assertEquals("department", v.getPropertyPath().toString());
 
     }
+    
     //Note ต้องมีค่าไม่น้อยกว่า 5 ตัวอักษร
     @Test
     void B5915330_testNotesMustNotLessThen5(){
@@ -159,6 +165,7 @@ public class BedTests {
         assertEquals("size must be between 5 and 240", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
+    
     //เทสการบันทึก
     @Test
     void B5915330_testReservationithCorrect() {
