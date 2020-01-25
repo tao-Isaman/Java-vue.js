@@ -51,12 +51,12 @@ public class DoctorOrder {
   private Date Date;
 
   // \"[BMD]\\d{7}\"
-  @Size(min = 5,max = 12)
-  @Pattern(regexp = "[(P)]\\d{10}")
+  // @Size(min = 5,max = 11)
+  @Pattern(regexp = "[P]\\d{10}")
   @NotNull private  String prescriptionNumber = "";
 
   // @Column(name = "DrugAllergies")
-  @Pattern(regexp = "[A-Za-z0-9_]{5,100}")
+  @Pattern(regexp = "[A-Za-z0-9_]{1,100}")
   @NotNull
   private String allergies = "";
 

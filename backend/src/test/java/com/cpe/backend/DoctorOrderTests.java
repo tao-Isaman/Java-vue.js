@@ -64,7 +64,9 @@ public class DoctorOrderTests {
             doctorOrder.setAllergies("Paracetamal");
             doctorOrder.setReaction("ไม่มีอาการ");
             doctorOrder.setEx(e1);
+
             doctorOrder = doctorOrderRepository.saveAndFlush(doctorOrder);
+            
         }catch (ConstraintViolationException e) {
             Optional<DoctorOrder> found = doctorOrderRepository.findById(doctorOrder.getId());
             assertEquals("P1234567890", found.get().getPrescriptionNumber());
@@ -269,7 +271,7 @@ public class DoctorOrderTests {
         doctorOrder.setEx(null);
 
         final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
-        assertEquals(1, result.size());
+        assertEquals( 1, result.size());
         final ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("examination id not null", v.getMessage());
         assertEquals("ex", v.getPropertyPath().toString());
