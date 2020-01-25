@@ -25,7 +25,6 @@ import com.cpe.backend.Examination.repository.DurationRepository;
 import com.cpe.backend.Examination.entity.State;
 import com.cpe.backend.Examination.repository.StateRepository;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
