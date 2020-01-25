@@ -25,7 +25,8 @@
                             </v-col>
                             <v-col cols="2">
                                 <div class="my-2">
-                                    <v-btn @click="findPatient" depressed large color="primary">Search</v-btn>
+                                    <v-btn @click="findPatient" depressed large color="primary">Search</v-btn><br><br>
+                                    <v-btn @click="show" depressed large color="yellow">แสดงผล</v-btn>
                                 </div>
                             </v-col>
                         </v-row>
@@ -207,7 +208,7 @@
                         this.reservation
 
                     )
-                    .then(response => {
+                          .then(response => {
                         console.log(response);
                         alert("บันทึกสำเร็จ");
                         this.clear();
@@ -217,6 +218,11 @@
                     });
                 this.submitted = true;
             },
+                    
+            show(){
+                this.$router.push("/showReserv");
+            },
+            
             clear() {
                 this.$refs.form.reset();
                 this.patientCheck = false;

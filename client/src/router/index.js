@@ -6,6 +6,7 @@ import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
 import Reserve  from '../components/Reserve.vue'
+import ShowReserv from '../components/showReserv.vue'
 import Discharge  from '../components/Discharge.vue'
 import DoctorOrder from '../components/DoctorOrder.vue';
 import PostPayment from '../components/PostPayment.vue';
@@ -63,7 +64,14 @@ export default new Router({
         {
             path: '/Bills/:id',
             component: Bills
+        }   
+        ,
+        
+        {
+            path: '/showReserv',
+            component: ShowReserv
         }    
+ 
 
     ]
 });
