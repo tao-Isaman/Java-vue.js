@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <v-card
                 class="mx-auto"
@@ -74,6 +74,19 @@
                                 </v-col>
                             </v-row>
 
+                             <v-row justify="center">
+                                    <v-col cols="10">
+                                        <v-text-field
+                                                outlined
+                                                label="ข้อมูลเพิ่มเติม"
+                                                v-model="reservation.note"
+                                                :rules="[(v) => !!v || 'Item is required']"
+                                                required
+                                        ></v-text-field>
+                                    </v-col>
+                                </v-row>
+
+
                             <p>วันที่เข้าพัก</p>
                             <v-row justify="center">
                                 <v-date-picker v-model="reservation.checkDate" xml:lang="en" type="date" format="YYYY-MM-dd"></v-date-picker>
@@ -111,6 +124,7 @@
                     bedId: "",
                     departmentId: "",
                     checkDate:"",
+                     note:"",
                 },
 
                 valid: false,
