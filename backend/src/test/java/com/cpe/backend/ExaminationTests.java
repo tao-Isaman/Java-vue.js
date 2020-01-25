@@ -53,221 +53,248 @@ public class ExaminationTests {
     // ตั้งชื่อ test ให้สอดคล้องกับสิ่งที่ต้อง test
 
     @Test
-    void B5915064_testPulseMustNotBeNull(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPressure("90 120");
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
+    void B5915064_testExaminationwithCorrect(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
 
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+        examinationRepository.saveAndFlush(examinationSystem);
+
+        Optional<ExaminationSystem> check = examinationRepository.findById(examinationSystem.getId());
+        assertEquals(90, check.get().getPulse());
+        assertEquals(examinationSystem.getCheckDate(), check.get().getCheckDate());
+        assertEquals("90 120", check.get().getPressure());
+        assertEquals("Something", check.get().getSymptom());
+        assertEquals(duration, check.get().getDuration());
+        assertEquals(state, check.get().getState());
+        assertEquals(docter, check.get().getCheckBy());
+    }
+    @Test
+    void B5915064_testPulseMustBeMoreThan1orLess200(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(0);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
 
         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
         assertEquals("must be greater than or equal to 1", v.getMessage());
         assertEquals("pulse", v.getPropertyPath().toString());
     }
 
+     @Test
+     void B5915064_testPressureNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure(null);
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("pressure", v.getPropertyPath().toString());
+     }
+     @Test
+     void B5915064_testSymptomNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom(null);
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("symptom", v.getPropertyPath().toString());
+     }
+
+     @Test
+     void B5915064_testDurationNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+
+        Doctor docter = doctorRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(null);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("duration", v.getPropertyPath().toString());
+     }
+
+     @Test
+     void B5915064_testStateNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Duration duration = durationRepository.findById(1);
+        Doctor docter = doctorRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(null);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("state", v.getPropertyPath().toString());
+     }
+     @Test
+     void B5915064_testCheckDateNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Duration duration = durationRepository.findById(1);
+        Doctor docter = doctorRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(null);
+        examinationSystem.setCheckBy(docter);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("checkDate", v.getPropertyPath().toString());
+     }
+
+     @Test
+     void B5915064_testDocterNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        java.util.Date date = new java.util.Date(2020-01-21);
+
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(null);
+
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
+
+         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("checkBy", v.getPropertyPath().toString());
+     }
+
     @Test
-    void B5915064_testPulseMustLessThen1(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(0);
-        e1.setPressure("90 120");
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
+    void B5915064_testPressureMustBeMoreThan2orLess7(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
 
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
+        java.util.Date date = new java.util.Date(2020-01-21);
 
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("must be greater than or equal to 1", v.getMessage());
-        assertEquals("pulse", v.getPropertyPath().toString());
-    }
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("1");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
 
-    @Test
-    void B5915064_testPulseMustMoreThen200(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(201);
-        e1.setPressure("90 120");
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
-
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("must be less than or equal to 200", v.getMessage());
-        assertEquals("pulse", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void B5915064_testPressureMustNotBeNull(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
 
         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
         assertEquals("size must be between 2 and 7", v.getMessage());
         assertEquals("pressure", v.getPropertyPath().toString());
     }
-
     @Test
-    void B5915064_testPressureMustLessthen2(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setPressure("9");
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
+    void B5915064_testSymptomMustBeMoreThan5orLess250(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
 
+        java.util.Date date = new java.util.Date(2020-01-21);
 
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
+        examinationSystem.setPulse(90);
+        examinationSystem.setPressure("90 120");
+        examinationSystem.setSymptom("Some");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
 
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("size must be between 2 and 7", v.getMessage());
-        assertEquals("pressure", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void B5915064_testPressureMustLessthen7(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setPressure("100 1200");
-        e1.setSymptom("Something");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
-
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("size must be between 2 and 7", v.getMessage());
-        assertEquals("pressure", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void B5915064_testSymptomMustNotBeNull(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setPressure("90 120");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
+         Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+         assertEquals(1, result.size());
 
         ConstraintViolation<ExaminationSystem> v = result.iterator().next();
         assertEquals("size must be between 5 and 250", v.getMessage());
         assertEquals("symptom", v.getPropertyPath().toString());
     }
-
-    @Test
-    void B5915064_testSymptomMustSizeLessThen5(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setPressure("90 120");
-        e1.setSymptom("ffff");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
-
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("size must be between 5 and 250", v.getMessage());
-        assertEquals("symptom", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void B5915064_testSymptomMustSizeMoreThen250(){
-        Doctor d1 = this.doctorRepository.findById(1L);
-        Duration dt1 = this.durationRepository.findById(1L);
-        State s1 = this.stateRepository.findById(1L);
-        Date date = new Date();
-        ExaminationSystem e1 = new ExaminationSystem();
-        e1.setPulse(90);
-        e1.setPressure("90 120");
-        e1.setDuration(dt1);
-        e1.setState(s1);
-        e1.setCheckDate(date);
-        e1.setCheckBy(d1);
-
-        String symptom = "" ;
-        int i = 0;
-        while(i<251){
-            symptom += "a";
-            i++;
-        }
-        e1.setSymptom(symptom);
-
-        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(e1);
-        assertEquals(1, result.size());
-
-        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
-        assertEquals("size must be between 5 and 250", v.getMessage());
-        assertEquals("symptom", v.getPropertyPath().toString());
-    }
-
-
-
 }
