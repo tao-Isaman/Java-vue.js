@@ -73,6 +73,12 @@
        </h2>
       </v-col>
         </v-row>
+
+                      <v-row justify="center">
+      <v-col cols="6">
+            <h2> หมายเหตุ :   {{payment.note}} บาท </h2>
+      </v-col>
+        </v-row>
         </v-card>
   </div>
 </template>
@@ -84,6 +90,7 @@ export default {
     return {
       payment: {
         id:"",
+        note:"",
         doctorOrder:{
           id:"",
           date:"",
@@ -226,8 +233,6 @@ export default {
   mounted() {
     this.get1();
     this.getMed();
-
-
     this.get2();
   }, 
 };
