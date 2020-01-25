@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.Date;
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -48,37 +49,7 @@ public class PaymentTests {
         validator = factory.getValidator();
     }
 
-    // @Test
-    // void B5907625_testPaymentNameOkwitHNote(){
-    //     Payment payment = new Payment();
-    //     DoctorOrder doctorOrder = new DoctorOrder();
-    //     PaymentOption paymentOption = new PaymentOption();
-    //     TypeBank typeBank = new TypeBank();
-    //     Date date = new Date();
-    //     ExaminationSystem ex = new ExaminationSystem();
-    //     MedicineItem md = new MedicineItem();
-
-    //    doctorOrder.setDate(date);
-    //    doctorOrder.setReaction("reaction");
-    //    doctorOrder.setAllergies("allergies");
-    //    doctorOrder.setPayment(payment);
-    //    doctorOrder.setMedicineItem();
-    //    doctorOrder.setEx(ex);
-     
-
-
-    //     payment.setDoctorOrder(doctorOrder);
-    //     payment.setPaymentOption(paymentOption);
-    //     payment.setTypeBank(typeBank);
-    //     payment.setNote("Note");
-
-        
-       
-    //     payment = paymentRepository.saveAndFlush(payment);
-
-    //    Optional<Payment> found = paymentRepository.findById(payment.getId());
-    //    assertEquals("Note", found.get().getNote());
-    // }
+    
     @Test
     void B5907625_testDoctorOrderIsNotNull(){
         Payment payment = new Payment();
@@ -202,26 +173,52 @@ public class PaymentTests {
         assertEquals("Note", v.getPropertyPath().toString());
     }
  
+    @Test
+    public void B5907625_testFullDataSuccess() {
+        Payment payment = new Payment();
+        DoctorOrder doctorOrder = new DoctorOrder();
+        PaymentOption paymentOption = new PaymentOption();
+        TypeBank typeBank = new TypeBank();
+        try {
+                        payment.setDoctorOrder(doctorOrder);
+                        payment.setPaymentOption(paymentOption);
+                        payment.setTypeBank(typeBank);
+                        payment.setNote("abcdef");
+        }catch (ConstraintViolationException e) {
 
+            Optional<Payment> found = paymentRepository.findById(payment.getId());
+            assertEquals("abcdef", found.get().getNote());
+
+        } catch (NullPointerException e) {}
+        // ExaminationSystem e1 = new ExaminationSystem();
+        // DoctorOrder doctorOrder = new DoctorOrder();
+        // e1.setPressure("90 120");
+        // e1.setPulse(180);
+        // e1.setSymptom("Something");
+        // DoctorOrder doctorOrder = new DoctorOrder();
+        // doctorOrder.setId(1L);
+        // doctorOrder.setDate(new Date());            
+        // doctorOrder.setPrescriptionNumber("P1234567890");
+        // doctorOrder.setAllergies("Paracetamal");
+        // doctorOrder.setReaction("ไม่มีอาการ");
+        // doctorOrder.setEx(e1);
+        // doctorOrder = doctorOrderRepository.saveAndFlush(doctorOrder);
+        // try {
+        //     entityManager.persist(doctorOrder);
+        //     entityManager.flush();
+
+        // } catch(javax.validation.ConstraintViolationException e) {
+        //     fail("Should not pass to this line testSuccess");
+        // } catch(NullPointerException e){
+        //     System.out.println("Null Pointer Error."); 
+        // }catch(Exception e) {
+        //     System.out.println("Error Others.");               
+        // }
+            
+
+    }
 
 
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

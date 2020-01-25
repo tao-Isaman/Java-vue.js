@@ -24,7 +24,7 @@
           outlined
           v-model="Payment.doctorOrder"
           :items="doctororders"
-          item-text="date"
+          item-text="prescriptionNumber"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -209,18 +209,26 @@ export default {
           console.log(response.data.id);
          // this.prop = response.data
           if(response.data.id == null){
-              alert("error")
+            const options2 = { title: "Alert", size: "sm" };
+             this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
 
           }else if(this.Payment.paymentOptions==0){
-              alert("error")
-          } else{
-             if(this.Payment.typeBank == 0){
+            const options2 = { title: "Alert", size: "sm" };
+             this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
+          } else if(this.Payment.typeBank == 0){
+                       const options1 = { title: "Alert", size: "sm" };
+                       this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
+    
                 document.location.href = 'http://localhost:8080/bills/'+response.data.id;
-            }
-            else
-              document.location.href = 'http://localhost:8080/bill/'+response.data.id;
+          }else{
+             if(this.Payment.typeBank == 1){
+                       const options1 = { title: "Alert", size: "sm" };
+                       this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
 
+              document.location.href = 'http://localhost:8080/bill/'+response.data.id;
+               }
           }
+
             
         })
         .catch(e => {
@@ -229,6 +237,7 @@ export default {
 
       console.log(this.Payment);
 
+  
     },
     clear() {
       this.$refs.form.reset();

@@ -8,12 +8,12 @@
         shaped
     >
         <v-row justify="center">
-      <v-col cols="1">
+      <v-col cols="2">
        <h1> ใบเสร็จ </h1>
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
        <h2> ชื่อผู้ป่วย :   {{pname}}
 
        </h2>
@@ -21,7 +21,7 @@
        </v-row>
 
        <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
        <h2> เลขกำกับใบสั่งยา :   
          {{payment.doctorOrder.id}}
        </h2>
@@ -29,7 +29,7 @@
        </v-row>
 
        <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
        <h2> วันที่จ่ายยา :    
           {{payment.doctorOrder.date}}
        </h2>
@@ -37,7 +37,7 @@
        </v-row>
 
        <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
        <h2> การชำระเงิน :   
          {{payment.paymentOption.name}}  
        </h2>
@@ -45,7 +45,7 @@
        </v-row>
 
       <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
        <h2> รายการยา :   
        </h2>
        <v-row >
@@ -63,13 +63,20 @@
       </v-col>
        </v-row>
               <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="7">
             <h2> ราคายารวมทั้งสิ้น :   {{medicinetotal}} บาท
        </h2>
        <h2> ราคาเตียงรวมทั้งสิ้น :   {{bedPricetotal}} บาท
        </h2>
        <h2> รวมค่าใช้จ่ายทั้งหมด :   {{bedPricetotal + medicinetotal}} บาท
        </h2>
+      </v-col>
+        </v-row>
+
+                              <v-row justify="center">
+      <v-col cols="7">
+            <h2> หมายเหตุ :   {{payment.note}}  </h2>
+  
       </v-col>
         </v-row>
     </v-card>
@@ -83,9 +90,11 @@ export default {
     return {
       payment: {
         id:"",
+       note:"",
         doctorOrder:{
           id:"",
           date:"",
+          prescriptionNumber:"",
           // medicine:{
           //   id:null,
           //   name:"",
