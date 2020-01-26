@@ -24,7 +24,7 @@
           outlined
           v-model="Payment.doctorOrder"
           :items="doctororders"
-          item-text="date"
+          item-text="prescriptionNumber"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -54,28 +54,40 @@
    
     <div v-if="Payment.paymentOption == 2">
 
-        <v-row justify="center">
-      <v-col cols="6">
+           <v-row justify="center">
+                          <v-col cols="6">
         
-        <v-select
-          label="เลือกธนาคาร"
-          outlined
-          v-model="Payment.typeBank"
-          :items="typeBanks"
-          item-text="name"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          
-        ></v-select>
+                              <v-select
+                                      label="เลือกธนาคาร"
+                                      outlined
+                                      v-model="Payment.typeBank"
+                                      :items="typeBanks"
+                                      item-text="name"
+                                      item-value="id"
+                                      :rules="[(v) => !!v || 'Item is required']"
+                                      required
+                
+                              ></v-select>
       
-      </v-col>
+                            </v-col>
       
-    </v-row>
+             </v-row>
 
     
     </div>
-
+        <v-row justify="center">
+              <v-col cols="6">
+                      <v-textarea
+                                        class="font"
+                                        outlined
+                                        label="หมายเหตุ"
+                                        v-model="Payment.note"
+                                        :rules="[(v) => !!v || 'กรณีต้องการหมายเหตุเพิ่มเติม']"
+                                        required
+                      ></v-textarea>
+              </v-col>
+      
+         </v-row>
 
 </v-form>
     <v-row justify="center">
@@ -104,6 +116,7 @@ export default {
         doctorOrder: "",
         paymentOption: "",
         typeBank: 0,
+        note: "",
 
       },
       check: false,
@@ -111,7 +124,6 @@ export default {
       val:"",
       components: {
       },
-      picker: new Date().toISOString().substr(0, 10),
       valid: false,
       pclear: false,
       doctororders: [],
@@ -171,6 +183,17 @@ export default {
         .get("/typeBank")
         .then(response => {
           this.typeBanks = response.data;
+          console.log("Type bank is " + response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+        getNote() {
+      http
+        .get("/Note")
+        .then(response => {
+          this.Note = response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -186,16 +209,26 @@ export default {
           console.log(response.data.id);
          // this.prop = response.data
           if(response.data.id == null){
-              alert("error")
+            const options2 = { title: "Alert", size: "sm" };
+             this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
 
-          }else {
-            if(this.Payment.typeBank == 0){
+          }else if(this.Payment.paymentOptions==0){
+            const options2 = { title: "Alert", size: "sm" };
+             this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
+          } else if(this.Payment.typeBank == 0){
+                       const options1 = { title: "Alert", size: "sm" };
+                       this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
+    
                 document.location.href = 'http://localhost:8080/bills/'+response.data.id;
-            }
-            else
-              document.location.href = 'http://localhost:8080/bill/'+response.data.id;
+          }else{
+             if(this.Payment.typeBank == 1){
+                       const options1 = { title: "Alert", size: "sm" };
+                       this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
 
+              document.location.href = 'http://localhost:8080/bill/'+response.data.id;
+               }
           }
+
             
         })
         .catch(e => {
@@ -204,6 +237,7 @@ export default {
 
       console.log(this.Payment);
 
+  
     },
     clear() {
       this.$refs.form.reset();
@@ -213,6 +247,7 @@ export default {
       this.get2();
       this.get3();
       this.get4();
+
     }
     /* eslint-enable no-console */
   },
@@ -220,6 +255,7 @@ export default {
     this.get2();
     this.get3();
     this.get4();
+
     
   },
   
@@ -233,9 +269,8 @@ export default {
   color: black;
 }
  .back {
- background-image: linear-gradient(0deg, rgba(224, 214, 220, 0.3), rgba(243, 76, 174, 0.3)), url(C:\team16-master\client\src\assets\g1.png);
-  background-size: cover;
-  background-blend-mode: multiply;
+    background-image:  url(../assets/g1.png);
+    background-size: cover;
 }
 
 </style>>

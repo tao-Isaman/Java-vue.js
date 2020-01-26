@@ -16,7 +16,7 @@ import com.cpe.backend.RegisterPatient.repository.BenefitRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 public class BenefitController {
 

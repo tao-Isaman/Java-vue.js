@@ -98,12 +98,13 @@ public class DoctorOrderController {
          System.out.println(Long.valueOf(body.getExaminationId()).longValue());
          System.out.println("========");
          System.out.println(doc);
-         //System.out.println(doc.getEx());
+        //  System.out.println(doc.getEx());
          System.out.println("========");
          
          if(doc == null){
             newdocOrder.setEx(ex);
             newdocOrder.setDate(new Date());
+            newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
             newdocOrder.setAllergies(body.getAllergies());
             newdocOrder.setReaction(body.getReaction());
             
@@ -129,6 +130,7 @@ public class DoctorOrderController {
             }else{
                 newdocOrder.setEx(ex);
                 newdocOrder.setDate(new Date());
+                newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
                 newdocOrder.setAllergies(body.getAllergies());
                 newdocOrder.setReaction(body.getReaction());
                 
@@ -153,6 +155,77 @@ public class DoctorOrderController {
         }
         
     }
+
+
+    // @PostMapping("/postDoctor")
+    // public DoctorOrder index(@RequestBody orderModel body) {
+    //     // @RequestBody Map<String, String> p
+    //     // @PathVariable String allergies, @PathVariable String reaction,
+    //     DoctorOrder newdocOrder = new DoctorOrder();
+    //     DoctorOrder errorDoctorOrder = new DoctorOrder();
+        
+    //     ExaminationSystem ex = examinationRepository.findById(body.getExaminationId()).get();
+    //     System.out.println(ex);
+
+    //     DoctorOrder doc = doctorOrderRepository.findByExaminationSystemId(Long.valueOf(body.getExaminationId()).longValue());
+    //      System.out.println(Long.valueOf(body.getExaminationId()).longValue());
+    //      System.out.println("========");
+    //      System.out.println(doc);
+    //      System.out.println(doc.getEx());
+    //      System.out.println("========");
+         
+    //      if(doc == null){
+    //         newdocOrder.setEx(ex);
+    //         newdocOrder.setDate(new Date());
+    //         newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
+    //         newdocOrder.setAllergies(body.getAllergies());
+    //         newdocOrder.setReaction(body.getReaction());
+            
+    //         System.out.println("check2");
+
+    //         for(int i = 0 ; i< body.getMedicationTypeIds().length ; i++){
+    //             MedicineItem medI = new MedicineItem();
+    //             medI.setMedicine(medicineRepository.findById(Long.valueOf(body.getMedicineIds()[i]).longValue()));
+    //             medI.setMedicationType(medicationTypeRepository.findById(Long.valueOf(body.getMedicationTypeIds()[i]).longValue()));
+    //             medI.setDoctorOrder(newdocOrder);
+    //             medicineItemRepository.save(medI);
+    //         }
+
+
+    //         DoctorOrder docOrderNew = doctorOrderRepository.save(newdocOrder);
+    //         return docOrderNew;
+
+    //      }else{
+    //         if(doc.getEx() != null){
+
+    //             System.out.println("check1");
+    //             return errorDoctorOrder;
+    //         }else{
+    //             newdocOrder.setEx(ex);
+    //             newdocOrder.setDate(new Date());
+    //             newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
+    //             newdocOrder.setAllergies(body.getAllergies());
+    //             newdocOrder.setReaction(body.getReaction());
+                
+
+    //             System.out.println("check2");
+
+    //             for(int i = 0 ; i< body.getMedicationTypeIds().length ; i++){
+    //                 MedicineItem medI = new MedicineItem();
+    //                 medI.setMedicine(medicineRepository.findById(Long.valueOf(body.getMedicineIds()[i]).longValue()));
+    //                 medI.setMedicationType(medicationTypeRepository.findById(Long.valueOf(body.getMedicationTypeIds()[i]).longValue()));
+    //                 medI.setDoctorOrder(newdocOrder);
+    //                 medicineItemRepository.save(medI);
+    //             }
+    //             System.out.println(body.getAllergies());
+
+    //             DoctorOrder docOrderNew = doctorOrderRepository.save(newdocOrder);
+
+    //             return docOrderNew;
+    //         }
+    //     }
+        
+    // }
 
     
     // @GetMapping("/ordertable/")

@@ -1,7 +1,6 @@
 package com.cpe.backend.Appointment.controller;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.cpe.backend.RegisterPatient.entity.Patient;
 import com.cpe.backend.Appointment.entity.TypeCause;
 import com.cpe.backend.Appointment.repository.TypeCauseRepository;
 import org.springframework.beans.factory.annotation.Autowired;

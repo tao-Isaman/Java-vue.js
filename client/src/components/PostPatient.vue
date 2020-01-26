@@ -1,5 +1,25 @@
 <template>
+
   <div>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="font">บันทึกสำเร็จ</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-card
             class="mx-auto"
             max-width="1200"
@@ -124,10 +144,80 @@
                     </v-col>
                   </v-row>
 
+
+
+
+
+
+                <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="font">บันทึกสำเร็จ</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
+    <v-dialog
+      v-model="dialog2"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="font">บันทึกไม่สำเร็จ</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog2 = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
+
+
+
+
+
                   <v-row justify="center">
                     <v-col cols="20">
                       <v-btn x-large @click="saveVideoRental" :class="{ red: !valid, green: valid }">submit</v-btn>
                       <v-btn x-large style="margin-left: 15px;" @click="clear">clear</v-btn>
+                      
+
+    <v-dialog
+      v-model="dialog2"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="font">บันทึกไม่สำเร็จ</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog2 = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -167,7 +257,9 @@
         customerName: "",
         benefits:[],
         genders:[],
-        provinces:[]
+        provinces:[],
+        dialog : false ,
+        dialog2 : false 
       };
     },
     methods: {
@@ -218,15 +310,23 @@
                 )
                 .then(response => {
                   console.log(response);
-                  if(response.data != null)
-                    alert("บันทึกสำเร็จ");
-                  else
-                    alert("บันทึกไม่สำเร็จ");
+                  if(response.data != null){
+                    const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
+                        this.$router.push("/PatientList");
+                  }
+                  else {
+                    const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options1);
+                  }
                   this.clear();
                 })
                 .catch(e => {
                   console.log(e);
-                  alert("บันทึกไม่สำเร็จ");
+                  {
+                    const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options1);
+                  }
                 });
         console.log(this.Patient);
         http

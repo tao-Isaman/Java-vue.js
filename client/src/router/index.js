@@ -5,12 +5,15 @@ import login from '../components/login.vue';
 import home from '../components/home.vue'
 import Apointment from "../components/Apointment";
 import ExaminationSystem from "../components/ExaminationSystem";
+import showEx from '../components/showEx.vue'
 import Reserve  from '../components/Reserve.vue'
+import ShowReserv from '../components/showReserv.vue'
 import Discharge  from '../components/Discharge.vue'
 import DoctorOrder from '../components/DoctorOrder.vue';
 import PostPayment from '../components/PostPayment.vue';
 import Bills from '../components/Bills.vue';
 import Bill from '../components/Bill.vue'
+import showPatientList from '../components/showPatientList.vue';
 
 Vue.use(Router);
 
@@ -63,7 +66,22 @@ export default new Router({
         {
             path: '/Bills/:id',
             component: Bills
-        }    
+        }   
+        ,
+        
+        {
+            path: '/showReserv',
+            component: ShowReserv
+        }
+        ,
+        {
+            path: '/showEx',
+            component: showEx
+        },
+        {
+            path:'/PatientList',
+            component:showPatientList
+        }
 
     ]
 });

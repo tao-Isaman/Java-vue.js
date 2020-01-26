@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <v-card
                 class="mx-auto"
@@ -25,7 +25,8 @@
                             </v-col>
                             <v-col cols="2">
                                 <div class="my-2">
-                                    <v-btn @click="findPatient" depressed large color="primary">Search</v-btn>
+                                    <v-btn @click="findPatient" depressed large color="primary">Search</v-btn><br><br>
+                                    <v-btn @click="show" depressed large color="yellow">แสดงผล</v-btn>
                                 </div>
                             </v-col>
                         </v-row>
@@ -74,6 +75,19 @@
                                 </v-col>
                             </v-row>
 
+                             <v-row justify="center">
+                                    <v-col cols="10">
+                                        <v-text-field
+                                                outlined
+                                                label="ข้อมูลเพิ่มเติม"
+                                                v-model="reservation.note"
+                                                :rules="[(v) => !!v || 'Item is required']"
+                                                required
+                                        ></v-text-field>
+                                    </v-col>
+                                </v-row>
+
+
                             <p>วันที่เข้าพัก</p>
                             <v-row justify="center">
                                 <v-date-picker v-model="reservation.checkDate" xml:lang="en" type="date" format="YYYY-MM-dd"></v-date-picker>
@@ -111,6 +125,7 @@
                     bedId: "",
                     departmentId: "",
                     checkDate:"",
+                     note:"",
                 },
 
                 valid: false,
@@ -193,16 +208,23 @@
                         this.reservation
 
                     )
-                    .then(response => {
+                         .then(response => {
                         console.log(response);
-                        alert("บันทึกสำเร็จ");
+                        const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
                         this.clear();
                     })
                     .catch(e => {
-                        console.log(e);
+                    console.log(e);
+                    const options2 = { title: "ประกาศ!", size: "sm" };
+                    this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });
-                this.submitted = true;
+                    this.submitted = true;
+                    },
+            show(){
+                this.$router.push("/showReserv");
             },
+            
             clear() {
                 this.$refs.form.reset();
                 this.patientCheck = false;

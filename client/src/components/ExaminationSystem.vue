@@ -1,5 +1,5 @@
-<template>
 
+<template>
 <div>
 <v-card
     class="mx-auto"
@@ -33,6 +33,7 @@
               <v-col cols="2">
                 <div class="my-2">
                   <v-btn @click="findPatient" depressed large color="primary">ค้นหา</v-btn>
+                  <v-btn @click="show" depressed large color="yellow">แสดงผล</v-btn>
                 </div>
               </v-col>
             </v-row>
@@ -231,14 +232,20 @@ export default {
           this.examinationSystem
         )
         .then(response => {
-          console.log(response);
-         alert("บันทึกสำเร็จ");
+         console.log(response);
+         const options1 = { title: "Alert", size: "sm" };
+         this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
          this.clear();
         })
         .catch(e => {
           console.log(e);
+          const options2 = { title: "Alert", size: "sm" };
+          this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
         });
       this.submitted = true;
+    },
+    show(){
+       this.$router.push("/showEx");
     },
     clear() {
       this.$refs.form.reset();

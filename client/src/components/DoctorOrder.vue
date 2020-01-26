@@ -32,21 +32,7 @@
                         <v-col cols="7" align="center">
 
 
-                          <!-- <v-text-field class="font1"
-                            outlined
-                            label="National ID (รหัสบัตรประชาชน)"
-                            v-model="doctorsOrder.examinationId"
-                            :rules="[(v) => !!v || 'Item is required']"
-                            required
-                          ></v-text-field>
                           
-                           <p v-if="patientCheck != ''">Patient Name : {{patientName}}</p>
-                         
-                          <v-btn class="font1" @click="findPatient" depressed large color="primary">ค้นหา</v-btn>
-
-                          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-                          <div v-if="patientCheck"> -->
 
                           <v-select class="font1"
                             v-model="doctorsOrder.examinationId"
@@ -90,11 +76,32 @@
                               :rules="[(v) => !!v || 'Item is required']"
                             ></v-text-field>
 
-                             <br><br><br>
+                            <v-text-field class="font1"
+                              label="Prescription Number (เลขใบสั่งจ่ายยา)"
+                              v-model="doctorsOrder.prescriptionNumber"
+                              :rules="[(v) => !!v || 'Item is required']"
+                            ></v-text-field>
+
+                             <br><br>
                             
                             <v-btn @click="checkMedecine" :class="{ red: !valid, green: valid }" >Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-                          
+<!-- top -->
+                              <!-- color = "green" -->
+                            <!-- <v-snackbar
+                              v-model="snackbar"
+                              :timeout="timeout"
+                              
+                            >
+                              {{ text }}
+                              <v-btn
+                                color="blue"
+                                text
+                                @click="snackbar = false"
+                              >         
+                                Close
+                              </v-btn>
+                            </v-snackbar> -->
                         </v-col>
                         <v-col cols="1"></v-col>
                     </v-row>
@@ -122,17 +129,20 @@ export default {
         medicineIds: [],
         medicationTypeIds: [],
         allergies: "",
-        reactoin: "",
+        reaction: "",
+        prescriptionNumber : "",
         
       },
       valid: false,
+      menu2:true,
       examinaton:[],
       medicationType:[],
       medicine:[],
       date:"",
-      menu2:true,
-      patientCheck: false,
-      patientName: "",
+      snackbar: false,
+      text: 'My timeout is set to 2000.',
+      timeout: 3000,
+      
     
     };
   },
@@ -151,25 +161,25 @@ export default {
         });
     },
 // this.examinationSystem.Patient_ID
-     findPatient() {
-      http
-        .get("/examinationystem/"+this.doctorsOrder.Patient_ID)
-        .then(response => {
-          // console.log(response);
-          this.examinaton = response.data;
-          console.log(response.data);
-          if (response.data != null) {
-            this.patientName = response.data.name;
-            this.patientCheck = response.status;
-          } else {
-            this.clear()
-          }          
-        })
-        .catch(e => {
-          console.log(e);
-        });
-      this.submitted = true;
-    },
+    //  findPatient() {
+    //   http
+    //     .get("/examinationystem/"+this.doctorsOrder.Patient_ID)
+    //     .then(response => {
+    //       // console.log(response);
+    //       this.examinaton = response.data;
+    //       console.log(response.data);
+    //       if (response.data != null) {
+    //         this.patientName = response.data.name;
+    //         this.patientCheck = response.status;
+    //       } else {
+    //         this.clear()
+    //       }          
+    //     })
+    //     .catch(e => {
+    //       console.log(e);
+    //     });
+    //   this.submitted = true;
+    // },
 
     getMedicine() {
       http
@@ -210,14 +220,10 @@ export default {
   
     setDoctorsOrder() {
       console.log("this.doctorsOrder = " + this.doctorsOrder);
-      // this.postDoctor.allergies +
-            // "/" +
-            // this.postDoctor.reactoin,
       http
         .post( "/postDoctor",
             this.doctorsOrder)
-        .then(response => {  
-              
+        .then(response => {               
           console.log(response);
           alert("Save Successfully"); 
           this.clear();
@@ -242,8 +248,6 @@ export default {
       this.getMedicine()
       this.getExamination();
       this.getMedicationType();
-      // this.postDoctor.dAllergies();
-      // this.postDoctor.rAllergies();
     }
     /* eslint-enable no-console */
   },
@@ -270,13 +274,13 @@ export default {
 .font{
   font-family: 'Kanit', sans-serif;
   font-size: 50px ;
-  color: black;
+  color: rgb(0, 0, 0);
   opacity: 0.7;
 }
 
 .font1{
   font-family: 'Kanit', sans-serif;
-  font-size: 15px ;
+  font-size: 20px ;
   color: black;
   opacity: 0.85;
 }

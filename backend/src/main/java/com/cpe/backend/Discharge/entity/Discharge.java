@@ -18,7 +18,11 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Digits;
 //import com.cpe.backend.entity.Employee;;
 
 @Data
@@ -34,17 +38,20 @@ public class Discharge {
     private @NonNull Long id;
 
     @Column(name="LEAVE_DATE")
-    private @NonNull Date leave;
+    private @NotNull Date leave;
 
     @Column(name="NOTE")
-    private @NonNull String note;
+    @Size(min = 5 , max = 30)
+    private @NotNull String note;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Sensorium.class)
     @JoinColumn(name = "SENSORIUM_ID", insertable = true)
+    @NotNull
     private Sensorium sensorium;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Selfcare.class)
     @JoinColumn(name = "SELFCARE_ID", insertable = true)
+    @NotNull
     private Selfcare selfcare;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Patient.class)
@@ -53,6 +60,7 @@ public class Discharge {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = DistributionType.class)
     @JoinColumn(name = "DISTRIBUTION_TYPE_ID", insertable = true)
+    @NotNull
     private DistributionType type;
 
 	public void setPatient(Patient patient) {

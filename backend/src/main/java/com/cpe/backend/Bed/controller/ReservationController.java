@@ -24,8 +24,6 @@ import java.util.stream.Collectors;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.net.URLDecoder;
-
-import com.cpe.backend.Appointment.controller.DepartmentController;
 import com.cpe.backend.Bed.entity.Bed;
 import com.cpe.backend.Appointment.entity.Department;
 import com.cpe.backend.Bed.entity.Nurse;
@@ -63,69 +61,34 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reservationPost/{patient_id}/{nurse_id}/{bed_id}/{department_id}", method = RequestMethod.POST)
-    public Reservation newReservation(Reservation newReservation, @PathVariable long bed_id,
-            @PathVariable long department_id, @PathVariable long nurse_id, @PathVariable long patient_id,
+    public Reservation newReservation(Reservation newReservation,
+            @PathVariable long bed_id,
+            @PathVariable long department_id, 
+            @PathVariable long nurse_id,
+            @PathVariable long patient_id,
             @RequestBody Map<String, String> Body) {
-        // Reservation newReservation = new Reservation();
 
-        Bed bed = bedRepository.findById(bed_id);
-    Department department = departmentRepository.findById(department_id);
-    Nurse nurse = nurseRepository.findById(nurse_id);
-    Patient patient = patientRepository.findById(patient_id);
-    System.out.println(bed.getName());
+            Bed bed = bedRepository.findById(bed_id);
+            Department department = departmentRepository.findById(department_id);
+            Nurse nurse = nurseRepository.findById(nurse_id);
+            Patient patient = patientRepository.findById(patient_id);
+            
+            System.out.println(bed.getName());
 
-    newReservation.setBed(bed);
-    newReservation.setDepartment(department);
+        newReservation.setBed(bed);
+        newReservation.setDepartment(department);
+        newReservation.setNote(Body.get("note"));
+        newReservation.setReservDate(new Date());
 
-    String date1 = Body.get("checkDate");
-    char[] letters = date1.toCharArray();
-    for(int i = 0 ; i < date1.length() ; i ++){
-        if(letters[i] == '-'){
-            letters[i] = '/';
-        }
-    }
-    String date3 = new String(letters);
-    System.out.println(date3);
-    String date11 = "10/06/1997";
-
-    try{
-        Date date2 = new SimpleDateFormat("yyyy/MM/dd").parse(date3.toString());
-        newReservation.setReservDate(date2);
-    }catch(Exception e){
-        System.out.println(e);
-    }
-	
-
-    
-    newReservation.setPatient(patient);
-    newReservation.setNurse(nurse);
+        newReservation.setPatient(patient);
+        newReservation.setNurse(nurse);
 
     return reservationRepository.save(newReservation);     
     }
+
     @GetMapping("/reservationByPatient/{patient_id}")
     public Collection<Object[]> getResevationByPatientID(@PathVariable("patient_id") Long patient_id){
         return reservationRepository.findByPatientID(patient_id);
     }
 
-    @GetMapping("getDate/{id}")
-    public int getDate(@PathVariable Long id) {
-        SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        Optional<Reservation> rev = reservationRepository.findById(id);
-        Date dayStart = rev.get().getReservDate();
-        String formatter = new SimpleDateFormat("dd-MM-yyyy").format(date);
-        Date dayNow;
-        try {
-            dayNow = myFormat.parse(formatter);
-            long diff = dayNow.getTime() - dayStart.getTime();
-            System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-            return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        
-
-
-        return 0;
-    }
 }

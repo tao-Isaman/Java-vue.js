@@ -281,8 +281,7 @@ public class BackendApplication {
 				typeBankRepository.save(typeBank); // บันทึก Objcet ชื่อ Employee
 			});
 
-				
-				
+			
 					
 				
 				

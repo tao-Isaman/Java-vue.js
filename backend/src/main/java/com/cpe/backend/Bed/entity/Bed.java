@@ -28,7 +28,6 @@ public class Bed {
     private @NonNull Integer price;
 
     @OneToMany(fetch = FetchType.EAGER)
-    // mappedBy  = "createdBy"
     private Collection<Reservation> reservation;
 
     public void setName(String type) {
