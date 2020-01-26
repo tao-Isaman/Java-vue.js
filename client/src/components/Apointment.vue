@@ -109,7 +109,12 @@
                                         <v-bottom-sheet v-model="sheet">
                                             <template v-slot:activator="{ on }">
                                                 <v-btn prepend-icon="check_box" :class="{ red: !valid, green: valid } " dark v-on="on" @click="findTypeCause">สรุปรายละเอียด</v-btn>
+                                                <v-btn @click="saveVideoRental" :class="{ red: !valid, green: valid }">submit</v-btn>
                                                 <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
+                                                <v-btn class="ma-2" tile outlined color="success" @click="print">
+                                                    <v-icon left>mdi-pencil</v-icon> พิมพ์ใบนัดที่นี่
+                                                </v-btn>
+
                                             </template>
 
                                             <v-sheet class="text-center" height="750px">
@@ -152,11 +157,7 @@
                                                                         </v-col>
                                                                     </v-row>
 
-                                                                    <v-col cols="12" >
-                                                                        <v-btn @click="saveVideoRental" :class="{ red: !valid, green: valid }">submit</v-btn>
-                                                                        <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
 
-                                                                    </v-col>
                                                                 </v-form>
                                                             </v-col>
                                                         </v-row>
@@ -231,6 +232,10 @@
             };
         },
         methods: {
+
+            print() {
+                this.$htmlToPaper('printMe');
+            },
             /* eslint-disable no-console */
 
             // ดึงข้อมูล Employee ใส่ combobox
@@ -344,17 +349,19 @@
                     )
                     .then(response => {
                         console.log(response);
-                        alert("บันทึกสำเร็จ");
+                        const options1 = { title: "Alert", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
                     })
                     .catch(e => {
                         console.log(e);
+                        const options2 = { title: "Alert", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });
                 this.submitted = true;
             },
             clear() {
                 this.$refs.form.reset();
                 this.patientCheck = false;
-
             },
             refreshList() {
                 this.getCreatTypeCause();
