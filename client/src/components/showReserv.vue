@@ -30,6 +30,7 @@ export default {
     return {
       headers: [
         { text: "วันที่", value: "reservDate" },
+        { text: "เตียง", value: "bed.type" },
         { text: "PatientID", value: "patient.nationalID" },
         { text: "หมายหตุ", value: "note"},
         { text: "พยาบาล", value: "nurse.name" },
