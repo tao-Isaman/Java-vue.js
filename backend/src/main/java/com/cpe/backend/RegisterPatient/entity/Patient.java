@@ -53,6 +53,7 @@ public class Patient { // ผู้ป่วย
   @Size(min = 5 ,max = 240)
   private String initialSsym = "";
   //update
+  //update 2
   
   @NotNull
   @Max(300)
