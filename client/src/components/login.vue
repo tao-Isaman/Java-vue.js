@@ -82,11 +82,17 @@ export default {
         .then(response => {
           console.log(response);
           if(this.User.username == response.data){
-              alert("User " + response.data +" Login Success !  ");
+              {
+                    const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("เข้าสู่ระบบ", options1);
+                  }
               this.$router.push("/home/"+this.User.username);
           }
           else{
-              alert(response.data );           
+              {
+                    const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("username or password invalid !", options1);
+                  }           
           }
         })
         .catch(e => {

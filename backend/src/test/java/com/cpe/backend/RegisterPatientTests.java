@@ -482,6 +482,7 @@ public class RegisterPatientTests {
        assertEquals(50, found.get().getWeigth());
     }
 
+        
     @Test
     void B5907519_testPataientHightOkWithSameSize(){
         Patient patient = new Patient();

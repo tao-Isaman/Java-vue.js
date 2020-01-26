@@ -18,7 +18,7 @@ import com.cpe.backend.RegisterPatient.repository.UserRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
 
