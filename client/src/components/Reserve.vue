@@ -208,17 +208,19 @@
                         this.reservation
 
                     )
-                          .then(response => {
+                         .then(response => {
                         console.log(response);
-                        alert("บันทึกสำเร็จ");
+                        const options1 = { title: "ประกาศ!", size: "sm" };
+                        this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
                         this.clear();
                     })
                     .catch(e => {
-                        console.log(e);
+                    console.log(e);
+                    const options2 = { title: "ประกาศ!", size: "sm" };
+                    this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });
-                this.submitted = true;
-            },
-                    
+                    this.submitted = true;
+                    },
             show(){
                 this.$router.push("/showReserv");
             },
