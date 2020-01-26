@@ -24,7 +24,7 @@
        <v-row justify="center">
       <v-col cols="7">
        <h2> เลขกำกับใบสั่งยา :   
-         {{payment.doctorOrder.id}}
+         {{payment.doctorOrder.prescriptionNumber}}
        </h2>
       </v-col>
        </v-row>
