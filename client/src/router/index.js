@@ -14,6 +14,7 @@ import PostPayment from '../components/PostPayment.vue';
 import Bills from '../components/Bills.vue';
 import Bill from '../components/Bill.vue'
 import showPatientList from '../components/showPatientList.vue';
+import prescriptionNumber from '../components/prescriptionNumber';
 
 Vue.use(Router);
 
@@ -81,6 +82,10 @@ export default new Router({
         {
             path:'/PatientList',
             component:showPatientList
+        },
+        {
+            path:'/prescriptionNumber',
+            component:prescriptionNumber
         }
 
     ]
