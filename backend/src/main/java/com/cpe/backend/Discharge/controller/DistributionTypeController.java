@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.util.Optional;
 
 import com.cpe.backend.Discharge.entity.DistributionType;
 import com.cpe.backend.Discharge.repository.DistributionTypeRepository;
@@ -27,6 +29,12 @@ public class DistributionTypeController {
     @GetMapping("/distributionType")
     public Collection<DistributionType> DistributionType() {
         return distributionTypeRepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/distributionType/{id}")
+    public  Optional <DistributionType> distributionType(@PathVariable Long id){
+            Optional<DistributionType> DistributionType = distributionTypeRepository.findById(id);
+            return DistributionType;
     }
 
 }
