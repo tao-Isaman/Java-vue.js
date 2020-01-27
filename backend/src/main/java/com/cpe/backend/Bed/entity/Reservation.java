@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.cpe.backend.Appointment.entity.Department;
 import com.cpe.backend.RegisterPatient.entity.Patient;
+//import java.util.Optional;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.Date;
@@ -32,10 +33,7 @@ public class Reservation {
    
     @Column(name = "RESERVATION_ID", unique = true, nullable = true)
     private @NonNull Long id;
-    
-    @Column(name="RESERV_DATE")
     private @NonNull Date ReservDate;
-
     @Size(min=5,max=240)
     private String note = "";
 
