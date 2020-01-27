@@ -236,7 +236,7 @@ public class DoctorOrderController {
 
     //     return data;
     // }
-    @GetMapping("/ordertable/{id}")
+    @GetMapping("/prescriptionNumber/{id}")
     public Collection<Object[]> getData(@PathVariable Long id){
         System.out.println(id);
         Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);

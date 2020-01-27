@@ -86,22 +86,8 @@
                             
                             <v-btn @click="checkMedecine" :class="{ red: !valid, green: valid }" >Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-<!-- top -->
-                              <!-- color = "green" -->
-                            <!-- <v-snackbar
-                              v-model="snackbar"
-                              :timeout="timeout"
-                              
-                            >
-                              {{ text }}
-                              <v-btn
-                                color="blue"
-                                text
-                                @click="snackbar = false"
-                              >         
-                                Close
-                              </v-btn>
-                            </v-snackbar> -->
+                            <v-btn @click="show" style="margin-left:100px;">Prescription</v-btn>
+
                         </v-col>
                         <v-col cols="1"></v-col>
                     </v-row>
@@ -160,6 +146,10 @@ export default {
           console.log(e);
         });
     },
+
+    show(){
+                this.$router.push("/prescriptionNumber");
+            },
 // this.examinationSystem.Patient_ID
     //  findPatient() {
     //   http
