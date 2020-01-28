@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 import com.cpe.backend.RegisterPatient.entity.Patient;
 
@@ -23,12 +24,12 @@ public class Appointment {
     
      
     private @NotNull Long id;
-
     private @NotNull Date date;
 
-    @NotNull
+
     @Size(min = 5,max = 20)
-    private String Additional = "";
+    @Pattern(regexp = "[a-z]*")
+    @NotNull private String Additional = "";
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeCause.class)

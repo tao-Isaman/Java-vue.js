@@ -66,6 +66,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
+        appointment.setAdditional(null);
 
 
 
@@ -77,7 +78,7 @@ public class AppointmentTests {
 
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Appointment> v = result.iterator().next();
-        assertEquals("size must be between 5 and 20", v.getMessage());
+        assertEquals("must not be null", v.getMessage());
         assertEquals("Additional", v.getPropertyPath().toString());
 
     }
@@ -153,7 +154,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaaa");
+        appointment.setAdditional("aaaaa");
 
 
 
@@ -182,7 +183,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(null);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaaa");
+        appointment.setAdditional("aaaaa");
 
 
 
@@ -211,7 +212,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(null);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaaa");
+        appointment.setAdditional("aaaaa");
 
 
 
@@ -240,7 +241,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(null);
-        appointment.setAdditional("aaaaaa");
+        appointment.setAdditional("aaaaa");
 
 
 
@@ -268,7 +269,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(department);
         appointment.setCreatTypeGoing(typeGoing);
        appointment.setDate(date);
-        appointment.setAdditional("aaaaaa");
+        appointment.setAdditional("aaaaa");
 
 
 
@@ -279,6 +280,28 @@ public class AppointmentTests {
         assertEquals(department, found.get().getCreatDepartment());
         assertEquals(typeGoing, found.get().getCreatTypeGoing());
         assertEquals(date, found.get().getDate());
-        assertEquals("aaaaaa", found.get().getAdditional());
+        assertEquals("aaaaa", found.get().getAdditional());
+    }
+
+    @Test
+    void B5915101_testCreatAditionalWrongPattern(){
+        Appointment appointment = new Appointment();
+        TypeCause t1 = new TypeCause();
+        Department d1 = new Department();
+        TypeGoing g1 = new TypeGoing();
+        Date date = new Date();
+
+        appointment.setId(1234567890123L);
+        appointment.setCreatTypeCause(t1);
+        appointment.setCreatDepartment(d1);
+        appointment.setCreatTypeGoing(g1);
+        appointment.setDate(date);
+        appointment.setAdditional("ไม่มีนะ");
+
+        final Set<ConstraintViolation<Appointment>> result = validator.validate(appointment);
+        assertEquals(1, result.size());
+        final ConstraintViolation<Appointment> v = result.iterator().next();
+        assertEquals("must match \"[a-z]*\"", v.getMessage());
+        assertEquals("Additional", v.getPropertyPath().toString());
     }
 }

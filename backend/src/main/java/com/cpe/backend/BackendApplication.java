@@ -265,7 +265,6 @@ public class BackendApplication {
 			medicine3.setMname("ยาแก้แพ้"); // set ชื่อ (name) ให้ Object ชื่อ Medicine
 			medicine3.setPrice(40L);
 			medicineRepository.save(medicine3);
-
 			
 
 
@@ -280,6 +279,7 @@ public class BackendApplication {
 				typeBank.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Employee
 				typeBankRepository.save(typeBank); // บันทึก Objcet ชื่อ Employee
 			});
+
 
 			
 					
