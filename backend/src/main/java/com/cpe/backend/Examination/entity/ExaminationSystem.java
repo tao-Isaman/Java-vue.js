@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 import com.cpe.backend.Examination.entity.Doctor;
 import com.cpe.backend.RegisterPatient.entity.Patient;;
@@ -42,14 +43,14 @@ public class ExaminationSystem {//ข้อวินิจฉัย
     @NotNull
     private Date checkDate;
 
-    
+
     @Max(200)
     @Min(1)
     @NotNull
     private int pulse;
 
     @NotNull
-    @Size(min = 2 ,max = 7)
+    @Pattern(regexp = "\\d{2}[D]\\d{3}[S]")
     private String pressure;
 
     @NotNull
