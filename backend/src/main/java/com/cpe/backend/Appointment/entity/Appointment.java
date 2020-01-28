@@ -28,7 +28,7 @@ public class Appointment {
 
 
     @Size(min = 5,max = 20)
-    @Pattern(regexp = "[a-z]*")
+    @Pattern(regexp = "[ก-๙]*")
     @NotNull private String Additional = "";
 
     @NotNull

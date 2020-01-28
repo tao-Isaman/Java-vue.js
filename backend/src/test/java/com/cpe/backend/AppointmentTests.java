@@ -96,7 +96,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaa");
+        appointment.setAdditional("ไมมี");
 
 
 
@@ -125,7 +125,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaaaaaaaaaaaaaaaaaa");
+        appointment.setAdditional("กกกกกกกกกกกกกกกกกกกกก");
 
 
 
@@ -154,7 +154,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaa");
+        appointment.setAdditional("ไม่มีนะ");
 
 
 
@@ -183,7 +183,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(null);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaa");
+        appointment.setAdditional("ไม่มีนะ");
 
 
 
@@ -212,7 +212,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(null);
         appointment.setDate(date);
-        appointment.setAdditional("aaaaa");
+        appointment.setAdditional("ไม่มีนะ");
 
 
 
@@ -241,7 +241,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(null);
-        appointment.setAdditional("aaaaa");
+        appointment.setAdditional("ไม่มีนะ");
 
 
 
@@ -269,7 +269,7 @@ public class AppointmentTests {
         appointment.setCreatDepartment(department);
         appointment.setCreatTypeGoing(typeGoing);
        appointment.setDate(date);
-        appointment.setAdditional("aaaaa");
+        appointment.setAdditional("ไม่มีนะ");
 
 
 
@@ -280,7 +280,7 @@ public class AppointmentTests {
         assertEquals(department, found.get().getCreatDepartment());
         assertEquals(typeGoing, found.get().getCreatTypeGoing());
         assertEquals(date, found.get().getDate());
-        assertEquals("aaaaa", found.get().getAdditional());
+        assertEquals("ไม่มีนะ", found.get().getAdditional());
     }
 
     @Test
@@ -296,12 +296,12 @@ public class AppointmentTests {
         appointment.setCreatDepartment(d1);
         appointment.setCreatTypeGoing(g1);
         appointment.setDate(date);
-        appointment.setAdditional("ไม่มีนะ");
+        appointment.setAdditional("aaaaaa");
 
         final Set<ConstraintViolation<Appointment>> result = validator.validate(appointment);
         assertEquals(1, result.size());
         final ConstraintViolation<Appointment> v = result.iterator().next();
-        assertEquals("must match \"[a-z]*\"", v.getMessage());
+        assertEquals("must match \"[ก-๙]*\"", v.getMessage());
         assertEquals("Additional", v.getPropertyPath().toString());
     }
 }
