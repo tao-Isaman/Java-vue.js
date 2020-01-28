@@ -61,11 +61,11 @@ public class DischargeTests {
        Sensorium sensorium = sensoriumRepository.findById(1);
        Selfcare selfcare = selfcareRepository.findById(1);
        DistributionType type = distributionTypeRepository.findById(1);
-       Date date = new Date();
+       //Date date = new Date();
 
        //discharge.setId(1L);
-       discharge.setNote("aaaaaa");
-       discharge.setLeave(date);
+       discharge.setNote("ไม่มีนะ");
+       //discharge.setLeave(date);
        discharge.setSensorium(sensorium);
        discharge.setSelfcare(selfcare);
        discharge.setDistributionType(type);
@@ -75,7 +75,7 @@ public class DischargeTests {
 
        Optional<Discharge> found = dischargeRepository.findById(discharge.getId());
        //assertEquals(1L, found.get().getPatient());
-       assertEquals("aaaaaa", found.get().getNote());
+       assertEquals("ไม่มีนะ", found.get().getNote());
        assertEquals(sensorium, found.get().getSensorium());
        assertEquals(selfcare, found.get().getSelfcare());
        assertEquals(type, found.get().getType());
@@ -117,7 +117,7 @@ public class DischargeTests {
         Date date = new Date();
  
          discharge.setId(1L);
-         discharge.setNote("aaa");
+         discharge.setNote("ไมมี");
          discharge.setLeave(date);
          discharge.setSensorium(sensorium);
          discharge.setSelfcare(selfcare);
@@ -130,13 +130,13 @@ public class DischargeTests {
  
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Discharge> v = result.iterator().next();
-        assertEquals("size must be between 5 and 30", v.getMessage());
+        assertEquals("size must be between 5 and 50", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
  
     }
     // ทดสอบว่า note ห้ามเกิน 30 ตัวอักษร
    @Test
-   void B5904815_testNoteMustSizeMoreThen30(){
+   void B5904815_testNoteOverSize51(){
        Discharge discharge = new Discharge();
        Sensorium sensorium = new Sensorium();
        Selfcare selfcare = new Selfcare();
@@ -144,11 +144,18 @@ public class DischargeTests {
        Date date = new Date();
 
         discharge.setId(1L);
-        discharge.setNote("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         discharge.setLeave(date);
         discharge.setSensorium(sensorium);
         discharge.setSelfcare(selfcare);
         discharge.setDistributionType(type);
+
+        String note = "";
+        int i = 0;
+        while (i < 51) {
+            note += "ก";
+            i++;
+        }
+        discharge.setNote(note);
 
        Set<ConstraintViolation<Discharge>> result = validator.validate(discharge);
 
@@ -157,9 +164,31 @@ public class DischargeTests {
 
        // error message ตรงชนิด และถูก field
        ConstraintViolation<Discharge> v = result.iterator().next();
-       assertEquals("size must be between 5 and 30", v.getMessage());
+       assertEquals("size must be between 5 and 50", v.getMessage());
        assertEquals("note", v.getPropertyPath().toString());
    }
+   @Test
+    void B5904815_testNoteWrongPattern(){
+        Discharge discharge = new Discharge();
+        Sensorium sensorium = new Sensorium();
+        Selfcare selfcare = new Selfcare();
+        DistributionType type = new DistributionType();
+        Date date = new Date();
+
+        discharge.setId(1L);
+        discharge.setNote("aaaaaa");
+        discharge.setLeave(date);
+        discharge.setSensorium(sensorium);
+        discharge.setSelfcare(selfcare);
+        discharge.setDistributionType(type);
+
+
+        final Set<ConstraintViolation<Discharge>> result = validator.validate(discharge);
+        assertEquals(1, result.size());
+        final ConstraintViolation<Discharge> v = result.iterator().next();
+        assertEquals("must match \"[ก-๙]*\"", v.getMessage());
+        assertEquals("note", v.getPropertyPath().toString());
+    }
    // ทดสอบว่า sensorium ห้ามเป็น null
    @Test
    void B5904815_testSensoriumNotNull(){
@@ -170,7 +199,7 @@ public class DischargeTests {
        Date date = new Date();
 
        discharge.setId(1L);
-        discharge.setNote("aaaaaa");
+        discharge.setNote("ไม่มีนะ");
         discharge.setLeave(date);
         discharge.setSensorium(null);
         discharge.setSelfcare(selfcare);
@@ -187,6 +216,32 @@ public class DischargeTests {
        assertEquals("sensorium", v.getPropertyPath().toString());
 
    }
+   @Test
+   void B5904815_testSelfcareNotNull(){
+       Discharge discharge = new Discharge();
+       Sensorium sensorium = new Sensorium();
+       Selfcare selfcare = new Selfcare();
+       DistributionType type = new DistributionType();
+       Date date = new Date();
+
+        discharge.setId(1L);
+        discharge.setNote("ไม่มีนะ");
+        discharge.setLeave(date);
+        discharge.setSensorium(sensorium);
+        discharge.setSelfcare(null);
+        discharge.setDistributionType(type);
+
+       Set<ConstraintViolation<Discharge>> result = validator.validate(discharge);
+
+       // result ต้องมี error 1 ค่าเท่านั้น
+       assertEquals(1, result.size());
+
+       // error message ตรงชนิด และถูก field
+       ConstraintViolation<Discharge> v = result.iterator().next();
+       assertEquals("must not be null", v.getMessage());
+       assertEquals("selfcare", v.getPropertyPath().toString());
+
+   }
     // ทดสอบว่า distribution ห้ามเป็น null
     @Test
     void B5904815_testDistributionTypeNotNull(){
@@ -197,7 +252,7 @@ public class DischargeTests {
         Date date = new Date();
  
          discharge.setId(1L);
-         discharge.setNote("aaaaaa");
+         discharge.setNote("ไม่มีนะ");
          discharge.setLeave(date);
          discharge.setSensorium(sensorium);
          discharge.setSelfcare(selfcare);
@@ -214,4 +269,5 @@ public class DischargeTests {
         assertEquals("type", v.getPropertyPath().toString());
  
     }
+    
 }
