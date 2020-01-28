@@ -13,6 +13,7 @@ import com.cpe.backend.RegisterPatient.entity.Patient;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Digits;
@@ -41,7 +43,9 @@ public class Discharge {
     private @NotNull Date leave;
 
     @Column(name="NOTE")
-    @Size(min = 5 , max = 30)
+
+    @Size(min = 5 , max = 50)
+    @Pattern(regexp = "[ก-๙]*")
     private @NotNull String note;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Sensorium.class)
