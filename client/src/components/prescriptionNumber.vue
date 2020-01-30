@@ -59,12 +59,12 @@
 
             <v-row> 
                 <v-col>
-                    <div v-if="prescriptionNumberCheck != ''"  class="font2">
+                    <div v-if="prescriptionNumberCheck"  class="font2">
                      <v-form v-model="valid" ref="form">
                         <v-flex md12>
                             <v-row> 
-                                <v-col cols = "2" ></v-col>
-                                <v-col cols = "9" >
+                                <v-col cols = "1" ></v-col>
+                                <v-col cols = "10" >
                                    <div id ="printMe">
                                     <h1 id = 'text_center' class='content'>ใบสั่งจ่ายยา </h1>
                                     <h2 id = 'text_right' class='content1'>เลขที่ใบจ่ายยา : {{prescriptionNumber}}</h2>
@@ -88,7 +88,7 @@
                                     <h2 id = 'text_left' class='content'>แพทย์ผู้รักษา : {{dname}}</h2>
                                    </div>
 
-                                                                            <v-btn class="ma-2" tile  color="green" @click="print">
+                                <v-btn class="ma-2" tile  color="green" @click="print">
                                                   <v-icon left></v-icon> พิมพ์ใบเสร็จที่นี่
                                           </v-btn>
                                 </v-col>
@@ -130,9 +130,8 @@ export default {
     name:"prescription",
     data(){
         return{
-            
-            
             valid: false,
+            prescriptionNumberCheck:false,
             NationalID:"",
             prescriptionNumber:"",
             patientName:"",
@@ -145,8 +144,7 @@ export default {
             allergies:"",
             reaction:"",
             date:"",
-            Name:"",
-            prescriptionNumberCheck:false
+            Name:""
         };
     },
 
@@ -154,61 +152,70 @@ export default {
 
     print() {
       this.$htmlToPaper('printMe');
+      this.clear()
     },
 
-        getNationalID(){
+    getNationalID(){
             http
             .get("/prescriptionNumber/"+this.NationalID)
             .then(response => {
-                // eslint-disable-next-line
-    /* eslint-disable */
-            console.log(response.data);
-    
+            // eslint-disable-next-line
+            /* eslint-disable */
+                console.log(response);
                 if (response.data != null) {
-                    this.Name = response.data[0][5];
                     this.prescriptionNumberCheck = response.NationalID;
-                    this.allergies =response.data[0][2];
+                    this.prescriptionNumberCheck = response.status;
+                     this.date = response.data[0][1];
+                     this.allergies =response.data[0][2];
                     this.reaction = response.data[0][3];
+                     this.prescriptionNumber = response.data[0][4];
+                    this.Name = response.data[0][5];
+                    this.NationalID = response.data[0][6];
                     this.Mname1 = response.data[0][8];
-                    this.prescriptionNumber = response.data[0][4];
-                    this.dname= response.data[0][10];
+                    this.Mname2 = response.data[1][8];
                     this.typeName1 = response.data[0][9];
                     this.typeName2 = response.data[1][9];
-                    this.NationalID = response.data[0][6];
-                    this.date = response.data[0][1];
-                    this.Mname2 = response.data[1][8];
-                     for (i = 0; i < response.data.length; i++) {
-                        this.Mname[i] = response.data[i][0];
+                    this.dname= response.data[0][10];
+                   
                     
-            }
-                } else {
+                    //  for (i = 0; i < response.data.length; i++) {
+                    //     this.Mname[i] = response.data[i][0];   
+                    // }
+                } else if(response.data == null) {
+                    this.clear()
+                     console.log(e);
+                
+                const options2 = { title: "Alert", size: "s" };
+                this.$dialogs.alert("National Id is Not Corect!",options2);
                 this.clear()
-            }
-            // eslint-disable-next-line
-              /* eslint-disable */
-            console.log(response.data[0][1]);
-              
-            });
-        this.submitted = true;
+               
+                }           
+                console.log(response.data[0][1]);
+            })
+            // .catch(e => {
+            // console.log(e);
+                
+            //     const options2 = { title: "Alert", size: "s" };
+            //     this.$dialogs.alert("National Id is Not Corect!",options2);
+            //     this.clear()
+            // })
+            
+            this.submitted = true;
         }
     },
-    getDate(id){
-        http
-            .get("/getDate/"+id)
-            .then(response => {
-              console.log(response.data);
-              this.Day = response.data;
-              this.bedPricetotal = this.Day*this.bedprice;
-              console.log(this.bedprice);
-              console.log(this.bedPricetotal);
-              
-              
-            })
-            .catch(e => {
-              console.log(e);
-            });
+    clear(){
+      this.$refs.form.reset();
+    },
+    refreshList(){
+      this.getNationalID();
+      this.print();
+     
+    }, 
+    mounted(){
+        this.getNationalID();
 
     }
+   
      
 };  
 </script>
@@ -259,7 +266,7 @@ export default {
 .content {
     padding:10px;
     clear:both;
-    width:1150px;
+    width:900px;
     margin:15px;
 }
 .content1 {

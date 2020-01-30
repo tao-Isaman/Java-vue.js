@@ -46,7 +46,7 @@ public class DoctorOrderTests {
     
     @BeforeEach
     public void setup() {
-        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
@@ -101,18 +101,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testDateNotNull() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(null);
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("Paracetamal");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("Date", v.getPropertyPath().toString());
 
@@ -120,18 +120,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testAllergiesNotNull() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies(null);
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("allergies", v.getPropertyPath().toString());
 
@@ -139,18 +139,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testAllergiesWrongPattern() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("ไม่มี");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must match \"[A-Za-z0-9_]{1,100}\"", v.getMessage());
         assertEquals("allergies", v.getPropertyPath().toString());
 
@@ -158,18 +158,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testReactionNotNull() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction(null);
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("reaction", v.getPropertyPath().toString());
 
@@ -177,9 +177,9 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testReactionOverSize151() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("Paracetamal");
@@ -194,9 +194,9 @@ public class DoctorOrderTests {
         }
         doctorOrder.setReaction(reaction);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("size must be between 5 and 150", v.getMessage());
         assertEquals("reaction", v.getPropertyPath().toString());
 
@@ -204,18 +204,17 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testReactionLessSize4() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("Paracetamal");
         doctorOrder.setReaction("nooo");
         doctorOrder.setEx(ex);
-
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("size must be between 5 and 150", v.getMessage());
         assertEquals("reaction", v.getPropertyPath().toString());
 
@@ -223,18 +222,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testPrescriptionNumberNotNull() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber(null);
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("prescriptionNumber", v.getPropertyPath().toString());
 
@@ -242,18 +241,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testPrescriptionNumberWrongPattern() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890H");
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("must match \"[P]\\d{10}\"", v.getMessage());
         assertEquals("prescriptionNumber", v.getPropertyPath().toString());
 
@@ -261,18 +260,18 @@ public class DoctorOrderTests {
 
     @Test
     public void B5916719_testExaminationSystemIdNotNull() {
-        final ExaminationSystem ex = new ExaminationSystem();
+         ExaminationSystem ex = new ExaminationSystem();
         ex.setSymptom("symtom");
-        final DoctorOrder doctorOrder = new DoctorOrder();
+         DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890");
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(null);
 
-        final Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
+         Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals( 1, result.size());
-        final ConstraintViolation<DoctorOrder> v = result.iterator().next();
+         ConstraintViolation<DoctorOrder> v = result.iterator().next();
         assertEquals("examination id not null", v.getMessage());
         assertEquals("ex", v.getPropertyPath().toString());
     }

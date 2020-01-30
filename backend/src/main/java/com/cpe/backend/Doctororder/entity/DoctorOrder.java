@@ -61,6 +61,7 @@ public class DoctorOrder {
   private String allergies = "";
 
   // @Column(name = "AllergiesReaction")
+  // @Pattern(regexp = "[ก-๙]{5,150}")
   @Size(min = 5, max = 150)
   @NotNull
   private String reaction = "";
