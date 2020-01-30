@@ -236,10 +236,10 @@ public class DoctorOrderController {
 
     //     return data;
     // }
-    @GetMapping("/prescriptionNumber/{id}")
-    public Collection<Object[]> getData(@PathVariable Long id){
-        System.out.println(id);
-        Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);
+    @GetMapping("/prescriptionNumber/{national_id}")
+    public Collection<Object[]> getData(@PathVariable Long national_id){
+        System.out.println(national_id);
+        Collection<Object[]> data =  doctorOrderRepository.findBynNationaId(national_id);
         System.out.println(data);
 
         return data;

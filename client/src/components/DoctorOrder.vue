@@ -125,9 +125,7 @@ export default {
       medicationType:[],
       medicine:[],
       date:"",
-      snackbar: false,
-      text: 'My timeout is set to 2000.',
-      timeout: 3000,
+     
       
     
     };
@@ -198,7 +196,9 @@ export default {
     checkMedecine(){
       if((this.doctorsOrder.medicationTypeIds.length > this.doctorsOrder.medicineIds.length) || (this.doctorsOrder.medicationTypeIds.length < this.doctorsOrder.medicineIds.length)){
         console.log("เข้าฟังก์ชั่น")
-        alert("เลือกจำนวน Medication Type ให้สอดคล้องกับจำนวน Medicine");
+                   const options2 = { title: "Alert", size: "sm" };
+
+        this.$dialogs.alert("เลือกจำนวน Medication Type ให้สอดคล้องกับจำนวน Medicine",options2);
         
       }
       else {
@@ -214,13 +214,15 @@ export default {
         .post( "/postDoctor",
             this.doctorsOrder)
         .then(response => {               
-          console.log(response);
-          alert("Save Successfully"); 
+          console.log(response);                                 
+          const options2 = { title: "Alert", size: "sm" };
+          this.$dialogs.alert("Save Successfully",options2); 
           this.clear();
         })
         .catch(e => {
           console.log(e);
-          alert("Can Not Save!");
+          const options2 = { title: "Alert", size: "sm" };
+          this.$dialogs.alert("Can Not Save!",options2);
         
         });
       //  \ไม่สามรถบันทึกคำสั่งจ่ายยาได้
@@ -230,7 +232,6 @@ export default {
     
     clear() {
       this.$refs.form.reset();
-      this.patientCheck = false;
     },
 
 
