@@ -13,6 +13,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Setter
+@Getter
 @Data
 @Entity
 @NoArgsConstructor

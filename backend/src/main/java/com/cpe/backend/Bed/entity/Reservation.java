@@ -17,10 +17,11 @@ import javax.persistence.GenerationType;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;;
-
 
 @Data
 @Entity
@@ -35,8 +36,15 @@ public class Reservation {
     @Column(name = "RESERVATION_ID", unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull Date ReservDate;
+
+    @NotNull
     @Size(min=5,max=240)
     private String note = "";
+
+    @NotNull
+    @Pattern(regexp = "[ABCDEFGHIJKM]\\d{1,20}")
+    @Size(min = 2, max = 3)
+    private String number ="";
 
     @Getter @Setter
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Patient.class)     
