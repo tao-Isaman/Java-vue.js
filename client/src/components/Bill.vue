@@ -28,7 +28,7 @@
        <v-row justify="center">
       <v-col cols="6">
        <h2> เลขกำกับใบสั่งยา :   
-         {{payment.doctorOrder.id}}
+         {{payment.doctorOrder.prescriptionNumber}}
        </h2>
       </v-col>
        </v-row>
@@ -80,7 +80,7 @@
 
                       <v-row justify="center">
       <v-col cols="6">
-            <h2> หมายเหตุ :   {{payment.note}} บาท </h2>
+            <h2> หมายเหตุ :   {{payment.note}}  </h2>
       </v-col>
         </v-row>
 
