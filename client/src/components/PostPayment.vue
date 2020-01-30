@@ -223,7 +223,7 @@ export default {
     
                 document.location.href = 'http://localhost:8080/bills/'+response.data.id;
           }else{
-             if(this.Payment.typeBank == 1){
+             if(this.Payment.typeBank !== 0){
                        const options1 = { title: "Alert", size: "sm" };
                        this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
 
