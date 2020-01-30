@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fd69a242-da2b-4c24-b7b3-c8778aad5cfc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Appointment/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Apointment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Apointment.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +95,7 @@
       <workItem from="1580223591963" duration="12000" />
       <workItem from="1580227777352" duration="821000" />
       <workItem from="1580387829933" duration="845000" />
+      <workItem from="1580389090416" duration="813000" />
     </task>
     <servers />
   </component>
