@@ -58,7 +58,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
@@ -79,6 +79,31 @@ public class ExaminationTests {
         assertEquals(state, check.get().getState());
         assertEquals(docter, check.get().getCheckBy());
     }
+
+    @Test
+    void B5915064_testPulseNotNull(){
+        ExaminationSystem examinationSystem = new ExaminationSystem();
+        Doctor docter = doctorRepository.findById(1);
+        Duration duration = durationRepository.findById(1);
+        State state = this.stateRepository.findById(1);
+
+        Date date = new Date();
+
+        examinationSystem.setPressure("90D120S");
+        examinationSystem.setSymptom("Something");
+        examinationSystem.setDuration(duration);
+        examinationSystem.setState(state);
+        examinationSystem.setCheckDate(date);
+        examinationSystem.setCheckBy(docter);
+
+        Set<ConstraintViolation<ExaminationSystem>> result = validator.validate(examinationSystem);
+        assertEquals(1, result.size());
+
+        ConstraintViolation<ExaminationSystem> v = result.iterator().next();
+        assertEquals("must be greater than or equal to 1", v.getMessage());
+        assertEquals("pulse", v.getPropertyPath().toString());
+    }
+
     @Test
     void B5915064_testPulseMustBeMoreThan1orLess200(){
         ExaminationSystem examinationSystem = new ExaminationSystem();
@@ -86,7 +111,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(0);
         examinationSystem.setPressure("90D120S");
@@ -113,7 +138,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure(null);
@@ -138,7 +163,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90");
@@ -164,7 +189,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
@@ -189,7 +214,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
@@ -213,8 +238,7 @@ public class ExaminationTests {
 
         Doctor docter = doctorRepository.findById(1);
         State state = this.stateRepository.findById(1);
-
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
@@ -238,7 +262,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         Doctor docter = doctorRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
@@ -284,7 +308,7 @@ public class ExaminationTests {
         Duration duration = durationRepository.findById(1);
         State state = this.stateRepository.findById(1);
 
-        java.util.Date date = new java.util.Date(2020-01-21);
+        Date date = new Date();
 
         examinationSystem.setPulse(90);
         examinationSystem.setPressure("90D120S");
