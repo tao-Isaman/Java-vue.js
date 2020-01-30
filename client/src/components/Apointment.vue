@@ -2,7 +2,7 @@
     <div>
         <v-card
                 class="mx-auto"
-                max-width="1200"
+                max-width="12000"
                 outlined
                 raised
                 shaped
@@ -98,6 +98,53 @@
                                                 :rules="[(v) => !!v || 'Item is required']"
                                                 required
                                         ></v-text-field>
+
+                                        <v-sheet class="text-center" height="750px" wide="300" >
+                                            <div id="printMe">
+                                                <v-container>
+                                                    <v-row justify="center">
+                                                        <v-col justify="center" cols="10">
+                                                            <v-form v-model="valid" ref="form" >
+                                                                <!-- SOURCE -->
+                                                                <h1>รายละเอียดการนัดหมายผู้ป่วย</h1> <br>
+                                                                <v-row>
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>รหัสผู้ป่วย : </strong> {{this.appointment.patientId}}</p>
+                                                                    </v-col>
+                                                                    <v-col>
+                                                                        <p class="text-left" ><strong>ชื่อผู้ป่วย :</strong> {{this.patientName}}</p>
+                                                                    </v-col>
+                                                                </v-row>
+                                                                <v-row>
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>สาเหตุที่นัด เพราะ : </strong>{{this.typecauseName}}  </p>
+                                                                    </v-col>
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>การเดินทางโดย : </strong>{{this.typegoingName}} </p>
+                                                                    </v-col>
+                                                                </v-row>
+                                                                <v-row >
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>แผนกที่นัดหมาย :  </strong> {{this.departmentName}}</p>
+                                                                    </v-col>
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>วันที่นัดหมาย : </strong>{{this.appointment.date}}  </p>
+                                                                    </v-col>
+                                                                </v-row>
+                                                                <v-row>
+                                                                    <v-col cols="5">
+                                                                        <p class="text-left"><strong>รายละเอียดเพิ่มเติม : </strong>{{this.appointment.additional}} </p>
+                                                                    </v-col>
+                                                                </v-row>
+
+
+                                                            </v-form>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-container>
+                                            </div>
+
+                                        </v-sheet>
                                     </v-col>
                                 </v-row>
 
@@ -108,63 +155,14 @@
                                     <div class="text-center">
                                         <v-bottom-sheet v-model="sheet">
                                             <template v-slot:activator="{ on }">
-                                                <v-btn prepend-icon="check_box" :class="{ red: !valid, green: valid } " dark v-on="on" @click="findTypeCause">สรุปรายละเอียด</v-btn>
-                                                <v-btn @click="saveVideoRental" :class="{ red: !valid, green: valid }">submit</v-btn>
+                                                <v-btn @click="findTypeCause" >สรุปรายละเอียด</v-btn>
                                                 <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-                                                <v-btn class="ma-2" tile outlined color="success" @click="print">
-                                                    <v-icon left>mdi-pencil</v-icon> พิมพ์ใบนัดที่นี่
-                                                </v-btn>
-
+                                                <v-btn @click="saveVideoRental" :class="{ red: !valid, green: valid }">submit</v-btn>
+                                                <v-row justify="center">
+                                                    <v-btn color="primary" dark  @click="print">พิมพ์</v-btn>
+                                                </v-row>
                                             </template>
 
-                                            <v-sheet class="text-center" height="750px">
-                                                <div id="printMe">
-                                                    <v-container>
-                                                        <v-row justify="center">
-                                                            <v-col justify="center" cols="6">
-                                                                <v-form v-model="valid" ref="form" >
-                                                                    <!-- SOURCE -->
-                                                                    <h1>รายละเอียดการออกใบนัด</h1> <br>
-                                                                    <v-row>
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>รหัสผู้ป่วย : {{this.appointment.patientId}}</strong> </p>
-                                                                        </v-col>
-                                                                        <v-col>
-                                                                            <p class="text-left" ><strong>ชื่อผู้ป่วย :</strong> {{this.patientName}}</p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row>
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>สาเหตุที่นัด เพราะ : {{this.typecauseName}} </strong> </p>
-                                                                        </v-col>
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>การเดินทางโดย : {{this.typegoingName}} </strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row >
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>แผนกที่นัดหมาย : {{this.departmentName}} </strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row>
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>วันที่นัดหมาย : {{this.appointment.date}} </strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row>
-                                                                        <v-col cols="5">
-                                                                            <p class="text-left"><strong>รายละเอียดเพิ่มเติม : {{this.appointment.additional}}</strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-
-
-                                                                </v-form>
-                                                            </v-col>
-                                                        </v-row>
-                                                    </v-container>
-                                                </div>
-
-                                            </v-sheet>
                                         </v-bottom-sheet>
                                     </div>
                                 </v-row>
@@ -234,8 +232,18 @@
         methods: {
 
             print() {
-                this.$htmlToPaper('printMe');
+                if(this.saveVideoRental == true) {
+                    this.$htmlToPaper('printMe');
+                    const options3 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบนัดหมายผู้ป่วยสำเร็จ", options3);
+                }else if(this.saveVideoRental == false) {
+                    const options4 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบนัดหมายผู้ป่วยไม่สำเร็จ", options4);
+
+                }
             },
+
+
             /* eslint-disable no-console */
 
             // ดึงข้อมูล Employee ใส่ combobox
@@ -349,11 +357,13 @@
                     )
                     .then(response => {
                         console.log(response);
+                        this.saveVideoRental = true;
                         const options1 = { title: "Alert", size: "sm" };
                         this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
                     })
                     .catch(e => {
                         console.log(e);
+                        this.saveVideoRental = false;
                         const options2 = { title: "Alert", size: "sm" };
                         this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });

@@ -51,7 +51,6 @@ public class AppointmentController {
         newAppointment.setCreatDepartment(creatDepartment);
         newAppointment.setCreatTypeGoing(creatTypeGoing);
         newAppointment.setCreatPatient(creatPatient);
-        newAppointment.setDate(new Date());
 
         return appointmentRepository.save(newAppointment);
     }
