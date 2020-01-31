@@ -1,4 +1,4 @@
-﻿package com.cpe.backend;
+package com.cpe.backend;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -101,6 +101,7 @@ public class BedTests {
         assertEquals("bed", v.getPropertyPath().toString());
 
     }
+   
 //Department ต้องไม่เป็นค่า Null
     @Test
     void B5915330_testDepartmentIsNotNull(){
@@ -127,6 +128,7 @@ public class BedTests {
         assertEquals("department", v.getPropertyPath().toString());
 
     }
+    
     //Note ต้องมีค่าไม่น้อยกว่า 5 ตัวอักษร
     @Test
     void B5915330_testNotesMustNotLessThen5(){
@@ -150,7 +152,7 @@ public class BedTests {
         assertEquals("size must be between 5 and 240", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
-
+ 
     //Note ต้องมีค่าไม่มากกว่า 240 ตัวอักษร
     @Test
     void B5915330_testNotesMustNotMoreThen240(){
@@ -174,6 +176,7 @@ public class BedTests {
         assertEquals("size must be between 5 and 240", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
+    
 //Note ห้าม Null
     @Test
     void B5915330_testNoteMustBeNotNull(){
@@ -197,6 +200,7 @@ public class BedTests {
         assertEquals("must not be null", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
+    
     //เทสการบันทึก
     @Test
     void B5915330_testReservationitCorrect() {
@@ -222,6 +226,7 @@ public class BedTests {
         assertEquals(reservation.getReservDate(), check.get().getReservDate());
         assertEquals("เตียงที่มีขนาดใหญ่พิเศษ", check.get().getNote());
     }
+   
     //Number ต้องตรงตาม Pattern
     @Test
     void B5915330_testNumberFirstCharacterMustNotBeX() {
@@ -245,8 +250,8 @@ public class BedTests {
         assertEquals("must match \"[ABCDEFGHIJKM]\\d{1,20}\"",message.getMessage());
         assertEquals("number",message.getPropertyPath().toString());
     }
-
-    //Note ห้าม Null
+ 
+    //Number ห้าม Null
     @Test
     void B5915330_testNumberMustBeNotNull(){
         Reservation reservation = new Reservation();
