@@ -1,7 +1,7 @@
 <template>
     <v-app>
-    <v-container style="height: 500%; margin-right:15%">
-          <v-card style="width:1000%; margin:auto; background-color:#FFFFFF">
+    <v-container style="height: 500%; margin-right:10%">
+          <v-card style="width:100%; margin:auto; background-color:#FFFFFF">
             <v-layout text-center wrap>
               <v-flex mb-4>
                 <br />
@@ -30,8 +30,8 @@ export default {
     return {
       headers: [
         { text: "วันที่", value: "reservDate" },
-        { text: "เตียง", value: "bed.type" },
-        { text: "PatientID", value: "patient.nationalID" },
+        { text: "หมายเลขเตียง", value: "number"},
+        { text: "หมายเลขประจำตัวประชาชน", value: "patient.nationalID" },
         { text: "หมายหตุ", value: "note"},
         { text: "พยาบาล", value: "nurse.name" },
         { text: "แผนกผู้ป่วย", value: "department.departmentlSelect" },
