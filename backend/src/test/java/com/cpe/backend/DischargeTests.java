@@ -65,7 +65,6 @@ public class DischargeTests {
 
        //discharge.setId(1L);
        discharge.setNote("ไม่มีนะ");
-       //discharge.setLeave(date);
        discharge.setSensorium(sensorium);
        discharge.setSelfcare(selfcare);
        discharge.setDistributionType(type);
