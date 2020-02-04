@@ -39,7 +39,7 @@ public class AppointmentController {
                                       @PathVariable long typecause_id,
                                       @PathVariable long department_id,
                                       @PathVariable long patient_id,
-                                      @PathVariable long typegoing_id) {
+                                      @PathVariable long typegoing_id){
 
         TypeCause creatTypeCause = typeCauseRepository.findById(typecause_id);
         Department creatDepartment = departmentRepository.findById(department_id);
@@ -47,10 +47,11 @@ public class AppointmentController {
         Patient creatPatient = patientRepository.findById(patient_id);
 
 
+        newAppointment.setCreatPatient(creatPatient);
         newAppointment.setCreatTypeCause(creatTypeCause);
+        newAppointment.setDate(new Date());
         newAppointment.setCreatDepartment(creatDepartment);
         newAppointment.setCreatTypeGoing(creatTypeGoing);
-        newAppointment.setCreatPatient(creatPatient);
 
         return appointmentRepository.save(newAppointment);
     }
