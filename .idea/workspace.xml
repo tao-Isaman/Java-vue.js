@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd69a242-da2b-4c24-b7b3-c8778aad5cfc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/controller/ExaminationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/controller/ExaminationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/entity/ExaminationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/entity/ExaminationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/DoctorOrderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/DoctorOrderTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ExaminationSystem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ExaminationSystem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/showEx.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/showEx.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="fd69a242-da2b-4c24-b7b3-c8778aad5cfc" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +17,7 @@
       <file leaf-file-name="ExaminationTests.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
+            <state relative-caret-position="8960">
               <caret line="474" column="1" selection-start-line="474" selection-start-column="1" selection-end-line="474" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -50,7 +41,7 @@
       <file leaf-file-name="ExaminationSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/entity/ExaminationSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="1240">
               <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -62,7 +53,7 @@
       <file leaf-file-name="ExaminationSystem.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/ExaminationSystem.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5015">
+            <state relative-caret-position="5760">
               <caret line="288" selection-start-line="288" selection-end-line="288" />
             </state>
           </provider>
@@ -71,7 +62,7 @@
       <file leaf-file-name="showEx.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/showEx.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="1260">
               <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
             </state>
           </provider>
@@ -114,6 +105,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -319,9 +313,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,10 +427,10 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.21568628" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.501634" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -480,6 +471,50 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8960">
+          <caret line="474" column="1" selection-start-line="474" selection-start-column="1" selection-end-line="474" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/entity/ExaminationSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1240">
+          <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/ExaminationSystem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5760">
+          <caret line="288" selection-start-line="288" selection-end-line="288" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/showEx.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/controller/ExaminationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1540">
+          <caret line="77" column="77" selection-start-line="77" selection-start-column="77" selection-end-line="77" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -535,7 +570,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/test/java/com/cpe/backend/ExaminationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
+        <state relative-caret-position="8960">
           <caret line="474" column="1" selection-start-line="474" selection-start-column="1" selection-end-line="474" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -545,7 +580,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/cpe/backend/Examination/entity/ExaminationSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="1240">
           <caret line="88" column="1" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -555,14 +590,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/ExaminationSystem.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5015">
+        <state relative-caret-position="5760">
           <caret line="288" selection-start-line="288" selection-end-line="288" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/showEx.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="1260">
           <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
         </state>
       </provider>
