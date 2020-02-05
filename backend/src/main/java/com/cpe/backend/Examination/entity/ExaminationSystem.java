@@ -18,6 +18,7 @@ import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -46,15 +47,19 @@ public class ExaminationSystem {//ข้อวินิจฉัย
 
     @Max(200)
     @Min(1)
-    @NotNull
-    private int pulse;
+    private @NotNull Integer pulse;
+
+    @Max(300)
+    @Min(1)
+    private @NotNull Integer pressureh;
+
+    @Max(300)
+    @Min(1)
+    private @NotNull Integer pressurel;
 
     @NotNull
-    @Pattern(regexp = "\\d{2}[D]\\d{3}[S]")
-    private String pressure;
-
-    @NotNull
-    @Size(min = 5 ,max = 250)
+    @Pattern(regexp = "[ก-๙]*")
+    @Size(max=250,min=5)
     private String symptom;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Doctor.class)
@@ -76,12 +81,6 @@ public class ExaminationSystem {//ข้อวินิจฉัย
     @JoinColumn(name = "State_ID", insertable = true)
     @NotNull
     private State state;
-
-    /*public void setCheckdate(String x){
-
-
-        this.checkDate = x;
-    }*/
 
 
 
