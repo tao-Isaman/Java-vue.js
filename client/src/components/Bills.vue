@@ -37,6 +37,14 @@
       </v-col>
        </v-row>
 
+      <v-row justify="center">
+          <v-col cols="7">
+              <h2> วันที่ชำระเงิน :    
+                  {{payment.date}}
+              </h2>
+          </v-col>
+       </v-row>
+
        <v-row justify="center">
       <v-col cols="7">
        <h2> การชำระเงิน :   
@@ -100,6 +108,7 @@ export default {
       payment: {
         id:"",
        note:"",
+       date:"",
         doctorOrder:{
           id:"",
           date:"",
