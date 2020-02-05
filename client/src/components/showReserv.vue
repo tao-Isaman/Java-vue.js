@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <v-app>
     <v-container style="height: 500%; margin-right:10%">
           <v-card style="width:100%; margin:auto; background-color:#FFFFFF">
@@ -30,7 +30,7 @@ export default {
     return {
       headers: [
         { text: "วันที่", value: "reservDate" },
-        { text: "หมายเลขเตียง", value: "number"},
+        { text: "โซนเตียงผู้ป่วย", value: "zone"},
         { text: "หมายเลขประจำตัวประชาชน", value: "patient.nationalID" },
         { text: "หมายหตุ", value: "note"},
         { text: "พยาบาล", value: "nurse.name" },

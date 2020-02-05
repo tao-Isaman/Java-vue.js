@@ -42,9 +42,9 @@ public class Reservation {
     private String note = "";
 
     @NotNull
-    @Pattern(regexp = "[ABCDEFGHIJKM]\\d{1,20}")
-    @Size(min = 2, max = 3)
-    private String number ="";
+    @Pattern(regexp = "[ABCD]\\d{1,9}")
+    @Size(max = 2)
+    private String zone ="";
 
     @Getter @Setter
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Patient.class)     
