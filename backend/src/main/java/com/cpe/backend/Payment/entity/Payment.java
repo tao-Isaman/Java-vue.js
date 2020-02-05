@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.FetchType;
 
-//import java.util.Date;
+import java.util.Date;
 // import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +35,8 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PAYMENT_SEQ")
     @Column(name = "PAYMENT_ID", unique = true, nullable = true)
     private @NonNull Long id;
-    // private @NonNull Long totalPrice;
+    private @NotNull Date date;
+  
 
     @NotNull
     @Size(min = 5 ,max = 240)
