@@ -61,7 +61,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("abcedf");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -87,7 +87,7 @@ public class BedTests {
         reservation.setBed(null);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("abcedf");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -114,7 +114,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(null);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("abcedf");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -142,7 +142,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("m");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -166,7 +166,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("mlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeir");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -190,7 +190,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote(null);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -214,7 +214,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("A11");
+        reservation.setZone("A1");
         reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
 
         reservation =  reservationRepository.save(reservation);
@@ -227,9 +227,9 @@ public class BedTests {
         assertEquals("เตียงที่มีขนาดใหญ่พิเศษ", check.get().getNote());
     }
    
-    //Number ต้องตรงตาม Pattern
+    //Zone ต้องตรงตาม Pattern ของตัวอักษร
     @Test
-    void B5915330_testNumberFirstCharacterMustNotBeX() {
+    void B5915330_testZoneFirstCharacterMustNotBeX() {
         Reservation reservation = new Reservation();
         Nurse nurse = new Nurse();
         Bed bed = new Bed();
@@ -240,20 +240,44 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber("X11");
+        reservation.setZone("X1");
         reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
         assertEquals(1, result.size());
         ConstraintViolation<Reservation> message = result.iterator().next();
-        assertEquals("must match \"[ABCDEFGHIJKM]\\d{1,20}\"",message.getMessage());
-        assertEquals("number",message.getPropertyPath().toString());
+        assertEquals("must match \"[ABCD]\\d{1,9}\"",message.getMessage());
+        assertEquals("zone",message.getPropertyPath().toString());
+    }
+
+    //Zone ต้องตรงตาม Pattern ของตัวเลข
+    @Test
+    void B5915330_testZoneNumberMustBeOneDigit() {
+        Reservation reservation = new Reservation();
+        Nurse nurse = new Nurse();
+        Bed bed = new Bed();
+        Department department = new Department();
+        java.util.Date reservDate = new java.util.Date(2020-01-21);
+      
+        reservation.setNurse(nurse);
+        reservation.setBed(bed);
+        reservation.setDepartment(department);
+        reservation.setReservDate(reservDate);
+        reservation.setZone("A11");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+
+        Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Reservation> message = result.iterator().next();
+        assertEquals("size must be between 0 and 2",message.getMessage());
+        assertEquals("zone",message.getPropertyPath().toString());
     }
  
-    //Number ห้าม Null
+    //zone ห้าม Null
     @Test
-    void B5915330_testNumberMustBeNotNull(){
+    void B5915330_testZoneMustBeNotNull(){
         Reservation reservation = new Reservation();
         Nurse nurse = new Nurse();
         Bed bed = new Bed();
@@ -264,7 +288,7 @@ public class BedTests {
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
-        reservation.setNumber(null);
+        reservation.setZone(null);
         reservation.setNote("เตียงขนาดพิเศษ");
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
@@ -272,7 +296,7 @@ public class BedTests {
 
         ConstraintViolation<Reservation> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
-        assertEquals("number", v.getPropertyPath().toString());
+        assertEquals("zone", v.getPropertyPath().toString());
     }
        
 }

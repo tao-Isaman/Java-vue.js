@@ -78,7 +78,7 @@ public class ReservationController {
         newReservation.setBed(bed);
         newReservation.setDepartment(department);
         newReservation.setNote(Body.get("note"));
-        newReservation.setNumber(Body.get("number"));
+        newReservation.setZone(Body.get("zone"));
 
 
     String date1 = Body.get("checkDate");

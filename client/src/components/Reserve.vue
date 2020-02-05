@@ -85,8 +85,8 @@
                                     <v-col cols="10">
                                         <v-text-field
                                                 outlined
-                                                label="Bed Number{A1-M20}"
-                                                v-model="reservation.number"
+                                                label="Bed Zone{A1-D9}"
+                                                v-model="reservation.zone"
                                                 :rules="[(v) => !!v || 'Item is required']"
                                                 required
                                         ></v-text-field>
@@ -145,7 +145,7 @@
                     departmentId: "",
                     checkDate:"",
                      note:"",
-                     number:"",
+                     zone:"",
                 },
 
                 valid: false,
