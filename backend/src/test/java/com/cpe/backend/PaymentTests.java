@@ -189,7 +189,7 @@ public class PaymentTests {
                         payment.setPaymentOption(paymentOption);
                         payment.setTypeBank(typeBank);
                         payment.setNote("abcdef");
-                        payment.setDate(date);                                                                                                                                                                                                                 
+                        payment.setDate(date);                                                                                                                                                                                                                
         }catch (ConstraintViolationException e) {
 
             Optional<Payment> found = paymentRepository.findById(payment.getId());
