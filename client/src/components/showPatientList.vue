@@ -40,8 +40,8 @@ export default {
       headers: [
         { text: "เลขบัตรประจำตัวประชาชน", value: "nationalID" },
         { text: "ชื่อผู้ป่วย", value: "name" },
-        { text: "น้ำหนัก kg.", value: "hight"},
-        { text: "ส่วนสูง cm.", value: "weigth" },
+        { text: "น้ำหนัก kg.", value: "weigth"},
+        { text: "ส่วนสูง cm.", value: "hight" },
         { text: "สิทธิการรักษา", value: "benefit.name" },
         { text:  "เพศ", value: "gender.name" },
         { text: "จังหวัด", value: "province.name" },
