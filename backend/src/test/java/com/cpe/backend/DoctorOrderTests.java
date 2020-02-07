@@ -55,6 +55,11 @@ public class DoctorOrderTests {
         ExaminationSystem e1 = new ExaminationSystem();
         DoctorOrder doctorOrder = new DoctorOrder();
         try {
+<<<<<<< HEAD
+=======
+            //e1.setPressure("90 120");
+            e1.setPulse(180);
+>>>>>>> 84246d7db47c09173e0f7bd38d62504ad53d1c7e
             e1.setSymptom("Something");
             doctorOrder.setId(1L);
             doctorOrder.setDate(new Date());

@@ -12,11 +12,12 @@
 
    <div id="printMe">
         <v-row justify="center">
-      <v-col cols="1">
        <h1> ใบเสร็จ </h1>
-      </v-col>
-
     </v-row>
+
+       <br>
+
+
     <v-row justify="center">
       <v-col cols="6">
        <h2> ชื่อผู้ป่วย : 
@@ -40,6 +41,17 @@
        </h2>
       </v-col>
        </v-row>
+
+
+
+      <v-row justify="center">
+              <v-col cols="6">
+                  <h2> วันที่ชำระเงิน :    
+                      {{payment.date}}
+                  </h2>
+              </v-col>
+          </v-row>
+
 
        <v-row justify="center">
       <v-col cols="6">

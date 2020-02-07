@@ -77,6 +77,13 @@
 
     
     </div>
+
+
+                                
+
+                                
+
+
         <v-row justify="center">
               <v-col cols="6">
                       <v-textarea
@@ -107,11 +114,15 @@
 
 <script>
 import http from "../http-common";
+import DatePicker from 'vuetify'
 
 
 export default {
-  
   name: "Payment",
+        components: {
+            // eslint-disable-next-line vue/no-unused-components
+            DatePicker
+        },
   data() {
     return {
       Payment: {
@@ -119,6 +130,7 @@ export default {
         paymentOption: "",
         typeBank: 0,
         note: "",
+        date: ""
 
       },
       check: false,
@@ -194,6 +206,17 @@ export default {
         getNote() {
       http
         .get("/Note")
+        .then(response => {
+          this.Note = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+            getDateP() {
+      http
+        .get("/date")
         .then(response => {
           this.Note = response.data;
           console.log(response.data);

@@ -28,7 +28,7 @@
                                     ></v-text-field>
                                     <p v-if="patientCheck != ''">Patient Name : {{patientName}}</p>
                                 </v-col>
-                                
+
                                 <v-col cols="2">
                                     <div class="my-2">
                                         <v-btn @click="findPatient" depressed large color="primary">ค้นหา</v-btn>
@@ -77,65 +77,65 @@
                                             :rules="[(v) => !!v || 'Item is required']"
                                             required
                                     ></v-textarea>
-                                </v-col>
 
+                                    <v-sheet class="text-center" height="750px">
+                                        <div id="printMe">
+                                            <v-container>
+                                                <v-row justify="center">
+                                                    <v-col justify="center" cols="15">
+                                                        <v-form v-model="valid" ref="form" >
+                                                            <!-- SOURCE -->
+                                                            <h1>แบบสำหรับส่งผู้ป่วยไปรับการตรวจหรือรักษาต่อ</h1> <br>
+                                                            <v-row>
+                                                                <v-col cols="10">
+                                                                    <p class="text-left"><strong>ชื่อผู้ป่วย: {{this.patientName}}</strong> </p>
+                                                                </v-col>
+                                                                <v-col cols="10">
+                                                                    <p class="text-left" ><strong>รหัสบัตรประชาชน : {{this.discharge.nationalId}}</strong></p>
+                                                                </v-col>
+                                                            </v-row>
+                                                            <v-row>
+                                                                <v-col cols="10">
+                                                                    <p class="text-left"><strong>ระดับความรู้สึกตัว : {{this.sensoriumName}} </strong> </p>
+                                                                </v-col>
+                                                                <v-col cols="10">
+                                                                    <p class="text-left"><strong>ความสามารถในการดูแลตนเอง : {{this.selfcareName}} </strong> </p>
+                                                                </v-col>
+                                                            </v-row>
+                                                            <v-row >
+                                                                <v-col cols="10">
+                                                                    <p class="text-left"><strong>ประเภทการนำจำหน่าย : {{this.distributionTypeName}} </strong> </p>
+                                                                </v-col>
+                                                            </v-row>
+
+                                                            <v-row>
+                                                                <v-col cols="10">
+                                                                    <p class="text-left"><strong>หมายเหตุ : {{this.discharge.note}}</strong> </p>
+                                                                </v-col>
+                                                            </v-row>
+
+
+                                                        </v-form>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </div>
+
+                                    </v-sheet>
+                                </v-col>
                                 <v-row justify="center">
+
                                     <div class="text-center">
                                         <v-bottom-sheet v-model="sheet">
                                             <template v-slot:activator="{ on }">
-                                                <v-btn prepend-icon="check_box" :class="{ red: !valid, green: valid } " dark v-on="on" @click="findPatient">สรุปรายละเอียด</v-btn>
-                                                <v-btn @click="saveDischarge" :class="{ red: !valid, green: valid }">บันทึก</v-btn>
+                                                <v-btn @click="findSensorium" >สรุปรายละเอียด</v-btn>
                                                 <v-btn style="margin-left: 15px;" @click="clear">ยกเลิก</v-btn>
-                                                <v-btn class="ma-2" tile outlined color="success" @click="print">
-                                                    <v-icon left>mdi-pencil</v-icon> พิมพ์ใบส่งตัว
-                                                </v-btn>
-
+                                                <v-btn @click="saveDischarge" :class="{ red: !valid, green: valid }">บันทึก</v-btn>
+                                                <v-row justify="center">
+                                                    <v-btn color="primary" dark  @click="print">พิมพ์ใบส่งตัว</v-btn>
+                                                </v-row>
                                             </template>
 
-                                            <v-sheet class="text-center" height="750px">
-                                                <div id="printMe">
-                                                    <v-container>
-                                                        <v-row justify="center">
-                                                            <v-col justify="center" cols="20">
-                                                                <v-form v-model="valid" ref="form" >
-                                                                    <!-- SOURCE -->
-                                                                    <h1>แบบสำหรับส่งผู้ป่วยไปรับการตรวจหรือรักษาต่อ</h1> <br>
-                                                                    <v-row>
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left"><strong>ชื่อผู้ป่วย: {{this.patientName}}</strong> </p>
-                                                                        </v-col>
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left" ><strong>รหัสบัตรประชาชน : {{this.discharge.nationalId}}</strong></p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row>
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left"><strong>ระดับความรู้สึกตัว : {{sensoriumName}} </strong> </p>
-                                                                        </v-col>
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left"><strong>ความสามารถในการดูแลตนเอง : {{selfcareName}} </strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    <v-row >
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left"><strong>ประเภทการนำจำหน่าย : {{distributionTypeName}} </strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-                                                                    
-                                                                    <v-row>
-                                                                        <v-col cols="10">
-                                                                            <p class="text-left"><strong>หมายเหตุ : {{this.discharge.note}}</strong> </p>
-                                                                        </v-col>
-                                                                    </v-row>
-
-
-                                                                </v-form>
-                                                            </v-col>
-                                                        </v-row>
-                                                    </v-container>
-                                                </div>
-
-                                            </v-sheet>
                                         </v-bottom-sheet>
                                     </div>
                                 </v-row>
@@ -159,7 +159,6 @@
     import VueHtmlToPaper from 'vue-html-to-paper'
     import DatePicker from 'vuetify'
     import Vue from 'vue';
-
     const options = {
         name: '_blank',
         specs: [
@@ -172,11 +171,8 @@
             'https://unpkg.com/kidlat-css/css/kidlat.css'
         ]
     }
-
     Vue.use(VueHtmlToPaper, options);
-
     // eslint-disable-next-line no-unused-vars
-
     export default {
         name: "discharge",
         components: {
@@ -190,7 +186,7 @@
                     sensoriumId: '',
                     selfcareId: '',
                     distributionTypeId: '',
-                    note: ''
+                    note: ''                    
                 },
                 sheet: false,
                 valid: false,
@@ -199,13 +195,20 @@
                 sensoriumName: '',
                 selfcareName: '',
                 distributionTypeName: '',
-                note: ''
-                
+                note: ''                
             };
         },
         methods: {
             print() {
-                this.$htmlToPaper('printMe');
+                if(this.saveDischarge == true) {
+                    this.$htmlToPaper('printMe');
+                    const options3 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบส่งตัวผู้ป่วยสำเร็จ", options3);
+                }else if(this.saveDischarge == false) {
+                    const options4 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบส่งตัวผู้ป่วยไม่สำเร็จ", options4);
+
+                }
             },
             /* eslint-disable no-console */
             getSensorium() {
@@ -219,7 +222,6 @@
                         console.log(e);
                     });
             },
-
             getSelfcare() {
                 http
                     .get("/selfcare")
@@ -231,7 +233,6 @@
                         console.log(e);
                     });
             },
-
             getDistributionType() {
                 http
                     .get("/distributionType")
@@ -268,12 +269,14 @@
                     .then(response => {
                         console.log(response);
                         this.sensoriumName = response.data.name;
+                        this.findSelfcare();
+                        this.findDistributionType();
                         console.log(sensorium);
                     })
                     .catch(e => {
                         console.log(e);
                     });
-                
+
             },
             findSelfcare() {
                 http
@@ -281,13 +284,12 @@
                     .then(response => {
                         console.log(response);
                         this.selfcareName = response.data.name;
-                        //this.findDistributionType();
                         console.log(selfcare);
                     })
                     .catch(e => {
                         console.log(e);
                     });
-                
+
             },
             findDistributionType() {
                 http
@@ -295,15 +297,13 @@
                     .then(response => {
                         console.log(response);
                         this.distributionTypeName = response.data.name;
-                        
                         console.log(distributionType);
                     })
                     .catch(e => {
                         console.log(e);
                     });
-                
-            },
 
+            },
             saveDischarge() {
                 http
                     .post("/adddischarge/"+
@@ -315,14 +315,14 @@
                         "/",this.discharge)
                     .then(response => {
                         console.log(response);
+                        this.saveDischarge = true;
                         const options1 = { title: "Alert", size: "sm" };
                         this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
-                        this.findSelfcare();
-                        this.findSensorium();
-                        this.findDistributionType();
+
                     })
                     .catch(e => {
                         console.log(e);
+                        this.saveDischarge = false;
                         const options2 = { title: "Alert", size: "sm" };
                         this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });
@@ -349,9 +349,7 @@
             this.findSensorium();
             this.findSelfcare();
             this.findDistributionType();
-
         }
-
     };
 </script>
 <style>

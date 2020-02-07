@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 // import java.io.IOException;
 // import java.sql.Timestamp;
 import java.util.Collection;
-// import java.util.Date;
+import java.util.Date;
 // import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -71,6 +71,7 @@ public class PaymentController {
 
         Payment newPayment = new Payment();
         Payment errorPayment = new Payment();
+   
         
          DoctorOrder DoctorOrder = doctorOrderRepository.findById(Long.valueOf(body.get("doctorOrder")).longValue());
          if(DoctorOrder.getPayment() != null){
@@ -80,6 +81,7 @@ public class PaymentController {
 			newPayment.setPaymentOption(paymentOptionRepository.findById(Long.valueOf(body.get("paymentOption")).longValue()));
             newPayment.setTypeBank(typeBankRepository.findById(Long.valueOf(body.get("typeBank")).longValue()));
             newPayment.setNote(body.get("note"));
+            newPayment.setDate(new Date());
             // newPatient.setAddress(body.get("address"));
             return paymentRepository.save(newPayment);
 

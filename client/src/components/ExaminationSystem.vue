@@ -49,8 +49,16 @@
 
               <v-text-field
                   outlined
-                  label="ความดันโลหิต"
-                  v-model="examinationSystem.pressure"
+                  label="ความดันโลหิต Systolic"
+                  v-model="examinationSystem.pressureh"
+                  :rules="[(v) => !!v || 'Item is required']"
+                  required
+              ></v-text-field>
+
+              <v-text-field
+                  outlined
+                  label="ความดันโลหิต Diastolic"
+                  v-model="examinationSystem.pressurel"
                   :rules="[(v) => !!v || 'Item is required']"
                   required
               ></v-text-field>
@@ -108,10 +116,6 @@
                 </v-col>
               </v-row>
 
-              <p>วันที่ประเมินอาการ</p>
-              <v-row justify="center">
-                <v-date-picker v-model="examinationSystem.checkDate" xml:lang="en" type="date" format="YYYY-MM-dd"></v-date-picker>
-              </v-row>
               <br>
               <br>
 
@@ -146,7 +150,8 @@ export default {
         State_ID: "",
         Doctor_ID: "",
         pulse: "",
-        pressure: "",
+        pressureh: "",
+        pressurel: "",
         symptom: "",
       },
       valid: false,
@@ -220,7 +225,9 @@ export default {
             "/" +
             this.examinationSystem.pulse +
             "/" +
-            this.examinationSystem.pressure +
+            this.examinationSystem.pressureh +
+            "/" +
+            this.examinationSystem.pressurel +
             "/" +
             this.examinationSystem.symptom +
             "/" +

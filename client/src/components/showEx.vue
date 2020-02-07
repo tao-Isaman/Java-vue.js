@@ -32,7 +32,8 @@ export default {
         { text: "PatientID", value: "patient.nationalID" },
         { text: "DoctorID", value: "checkBy.id" },
         { text: "ชีพจร", value: "pulse" },
-        { text: "ความดัน", value: "pressure" },
+        { text: "ความดัน Systolic", value: "pressureh" },
+        { text: "ความดัน Diastolic", value: "pressurel" },
         { text: "อาการ", value: "symptom" },
         { text: "ช่วงเวลา", value: "duration.name" },
         { text: "สถานะอาการ", value: "state.name" }

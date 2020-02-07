@@ -56,13 +56,13 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
-
+        Date date = new Date();
 
         payment.setDoctorOrder(null);
         payment.setPaymentOption(paymentOption);
         payment.setTypeBank(typeBank);
         payment.setNote("abcedf");
-
+        payment.setDate(date);
         Set<ConstraintViolation<Payment>> result = validator.validate(payment);
 
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -80,12 +80,13 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
-
+        Date date = new Date();
 
         payment.setDoctorOrder(doctorOrder);
         payment.setPaymentOption(paymentOption);
         payment.setTypeBank(typeBank);
         payment.setNote(null);
+        payment.setDate(date);
 
         Set<ConstraintViolation<Payment>> result = validator.validate(payment);
 
@@ -105,12 +106,13 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
-
+        Date date = new Date();
 
         payment.setDoctorOrder(doctorOrder);
         payment.setPaymentOption(null);
         payment.setTypeBank(typeBank);
         payment.setNote("abcdef");
+        payment.setDate(date);
 
         Set<ConstraintViolation<Payment>> result = validator.validate(payment);
 
@@ -130,10 +132,12 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
+        Date date = new Date();
 
         payment.setDoctorOrder(doctorOrder);
         payment.setPaymentOption(paymentOption);
         payment.setTypeBank(typeBank);
+        payment.setDate(date);
 
         Set<ConstraintViolation<Payment>> result = validator.validate(payment);
         assertEquals(1, result.size());
@@ -149,12 +153,12 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
-
+        Date date = new Date();
 
         payment.setDoctorOrder(doctorOrder);
         payment.setPaymentOption(paymentOption);
         payment.setTypeBank(typeBank);
-        
+        payment.setDate(date);
 
         String note = "" ;
         int i = 0;
@@ -179,11 +183,13 @@ public class PaymentTests {
         DoctorOrder doctorOrder = new DoctorOrder();
         PaymentOption paymentOption = new PaymentOption();
         TypeBank typeBank = new TypeBank();
+        Date date = new Date();
         try {
                         payment.setDoctorOrder(doctorOrder);
                         payment.setPaymentOption(paymentOption);
                         payment.setTypeBank(typeBank);
                         payment.setNote("abcdef");
+                        payment.setDate(date);                                                                                                                                                                                                                
         }catch (ConstraintViolationException e) {
 
             Optional<Payment> found = paymentRepository.findById(payment.getId());

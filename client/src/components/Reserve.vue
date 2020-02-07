@@ -9,6 +9,12 @@
         >
 
             <v-container class = "back">
+                <v-layout text-center wrap>
+                    <v-flex mb-4>
+                        <br />
+                        <h1 class="font">Bed Reservation</h1>
+                    </v-flex>
+                </v-layout>
                 <v-row justify="center">
                 <v-col cols="4">
                     <v-form v-model="valid" ref="form">
@@ -79,6 +85,18 @@
                                     <v-col cols="10">
                                         <v-text-field
                                                 outlined
+                                                label="Bed Zone{A1-D9}"
+                                                v-model="reservation.zone"
+                                                :rules="[(v) => !!v || 'Item is required']"
+                                                required
+                                        ></v-text-field>
+                                    </v-col>
+                                </v-row>
+
+                                <v-row justify="center">
+                                    <v-col cols="10">
+                                        <v-text-field
+                                                outlined
                                                 label="ข้อมูลเพิ่มเติม"
                                                 v-model="reservation.note"
                                                 :rules="[(v) => !!v || 'Item is required']"
@@ -86,6 +104,7 @@
                                         ></v-text-field>
                                     </v-col>
                                 </v-row>
+
 
 
                             <p>วันที่เข้าพัก</p>
@@ -126,6 +145,7 @@
                     departmentId: "",
                     checkDate:"",
                      note:"",
+                     zone:"",
                 },
 
                 valid: false,
@@ -208,15 +228,15 @@
                         this.reservation
 
                     )
-                         .then(response => {
+                    .then(response => {
                         console.log(response);
-                        const options1 = { title: "ประกาศ!", size: "sm" };
+                        const options1 = { title: "Alert", size: "sm" };
                         this.$dialogs.alert("บันทึกข้อมูลสำเร็จ", options1);
                         this.clear();
                     })
                     .catch(e => {
                     console.log(e);
-                    const options2 = { title: "ประกาศ!", size: "sm" };
+                    const options2 = { title: "Alert", size: "sm" };
                     this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
                     });
                     this.submitted = true;
@@ -224,7 +244,6 @@
             show(){
                 this.$router.push("/showReserv");
             },
-            
             clear() {
                 this.$refs.form.reset();
                 this.patientCheck = false;

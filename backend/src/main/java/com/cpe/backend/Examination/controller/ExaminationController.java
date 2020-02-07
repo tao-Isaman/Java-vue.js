@@ -55,14 +55,15 @@ public class ExaminationController {
         return examinationRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/examinationSystem/{patient_id}/{pulse}/{pressure}/{symptom}/{duration_id}/{state_id}/{doctor_id}")
+    @PostMapping("/examinationSystem/{patient_id}/{pulse}/{pressureh}/{pressurel}/{symptom}/{duration_id}/{state_id}/{doctor_id}")
     public ExaminationSystem newExaminationSystem(ExaminationSystem newExaminationSystem,
                                                   @PathVariable long patient_id,
                                                   @PathVariable long duration_id,
                                                   @PathVariable long state_id,
                                                   @PathVariable long doctor_id,
                                                   @PathVariable int pulse,
-                                                  @PathVariable String pressure,
+                                                  @PathVariable int pressureh,
+                                                  @PathVariable int pressurel,
                                                   @PathVariable String symptom,
                                                   @RequestBody Map<String, String> body) {
 
@@ -72,9 +73,10 @@ public class ExaminationController {
         Doctor checkBy = doctorRepository.findById(doctor_id);
 
         newExaminationSystem.setPatient(patient);
-        newExaminationSystem.setPulse(Integer.valueOf(body.get("pulse").toString()));
-        newExaminationSystem.setPressure(body.get("pressure"));
-        newExaminationSystem.setSymptom(body.get("symptom"));
+        newExaminationSystem.setPulse(pulse);
+        newExaminationSystem.setPressureh(pressureh);
+        newExaminationSystem.setPressurel(pressurel);
+        newExaminationSystem.setSymptom(symptom);
         newExaminationSystem.setDuration(duration);
         newExaminationSystem.setState(state);
         newExaminationSystem.setCheckDate(new Date());
