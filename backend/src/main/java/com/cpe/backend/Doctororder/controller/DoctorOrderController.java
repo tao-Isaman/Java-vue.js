@@ -3,6 +3,7 @@ package com.cpe.backend.Doctororder.controller;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
+import java.text.SimpleDateFormat;  
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -56,33 +57,6 @@ public class DoctorOrderController {
         return doctororders;
     }
 
-    // // ดึงตาราง
-    // @GetMapping("/Order1")
-    // public Optional<DoctorOrder> doctororders(@PathVariable Long id) {
-    //     Optional<DoctorOrder> doctororders = doctorOrderRepository.findById(id);
-    //     return doctororders;
-    // }
-
-    // // ดึงตาราง
-    // @GetMapping("/ordertable/{id}")
-    // public Collection<Object[]> getData(@PathVariable Long id){
-    //     System.out.println(id);
-    //     Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);
-    //     System.out.println(data);
-
-    //     return data;
-    // }
-    
-    // @GetMapping("/ordertable/{id}/{dAllergies}/{rAllergies}")
-    // public Collection<Object[]> getData(@PathVariable Long id, @PathVariable String rAllergies, @PathVariable String dAllergies){
-    //     System.out.println(id);
-    //     System.out.println(rAllergies);
-    //     System.out.println(dAllergies);
-    //     Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);
-    //     System.out.println(data);
-
-    //     return data;
-    // }
 
     @PostMapping("/postDoctor")
     public DoctorOrder index(@RequestBody orderModel body) {
@@ -103,7 +77,7 @@ public class DoctorOrderController {
          
          if(doc == null){
             newdocOrder.setEx(ex);
-            newdocOrder.setDate(new Date());
+            newdocOrder.setDate(body.getDate());
             newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
             newdocOrder.setAllergies(body.getAllergies());
             newdocOrder.setReaction(body.getReaction());
@@ -129,7 +103,7 @@ public class DoctorOrderController {
                 return errorDoctorOrder;
             }else{
                 newdocOrder.setEx(ex);
-                newdocOrder.setDate(new Date());
+                newdocOrder.setDate(body.getDate());
                 newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
                 newdocOrder.setAllergies(body.getAllergies());
                 newdocOrder.setReaction(body.getReaction());
@@ -157,92 +131,24 @@ public class DoctorOrderController {
     }
 
 
-    // @PostMapping("/postDoctor")
-    // public DoctorOrder index(@RequestBody orderModel body) {
-    //     // @RequestBody Map<String, String> p
-    //     // @PathVariable String allergies, @PathVariable String reaction,
-    //     DoctorOrder newdocOrder = new DoctorOrder();
-    //     DoctorOrder errorDoctorOrder = new DoctorOrder();
-        
-    //     ExaminationSystem ex = examinationRepository.findById(body.getExaminationId()).get();
-    //     System.out.println(ex);
+    @GetMapping("/NationalId/{PATIENT_ID}")
+    public Collection<Object[]> getNational(@PathVariable("PATIENT_ID") Long PATIENT_ID){
+        // System.out.println(PATIENT_ID);
+        // Collection<Object[]> national =  doctorOrderRepository.);
+        // System.out.println(national);
 
-    //     DoctorOrder doc = doctorOrderRepository.findByExaminationSystemId(Long.valueOf(body.getExaminationId()).longValue());
-    //      System.out.println(Long.valueOf(body.getExaminationId()).longValue());
-    //      System.out.println("========");
-    //      System.out.println(doc);
-    //      System.out.println(doc.getEx());
-    //      System.out.println("========");
-         
-    //      if(doc == null){
-    //         newdocOrder.setEx(ex);
-    //         newdocOrder.setDate(new Date());
-    //         newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
-    //         newdocOrder.setAllergies(body.getAllergies());
-    //         newdocOrder.setReaction(body.getReaction());
-            
-    //         System.out.println("check2");
-
-    //         for(int i = 0 ; i< body.getMedicationTypeIds().length ; i++){
-    //             MedicineItem medI = new MedicineItem();
-    //             medI.setMedicine(medicineRepository.findById(Long.valueOf(body.getMedicineIds()[i]).longValue()));
-    //             medI.setMedicationType(medicationTypeRepository.findById(Long.valueOf(body.getMedicationTypeIds()[i]).longValue()));
-    //             medI.setDoctorOrder(newdocOrder);
-    //             medicineItemRepository.save(medI);
-    //         }
-
-
-    //         DoctorOrder docOrderNew = doctorOrderRepository.save(newdocOrder);
-    //         return docOrderNew;
-
-    //      }else{
-    //         if(doc.getEx() != null){
-
-    //             System.out.println("check1");
-    //             return errorDoctorOrder;
-    //         }else{
-    //             newdocOrder.setEx(ex);
-    //             newdocOrder.setDate(new Date());
-    //             newdocOrder.setPrescriptionNumber(body.getPrescriptionNumber());
-    //             newdocOrder.setAllergies(body.getAllergies());
-    //             newdocOrder.setReaction(body.getReaction());
-                
-
-    //             System.out.println("check2");
-
-    //             for(int i = 0 ; i< body.getMedicationTypeIds().length ; i++){
-    //                 MedicineItem medI = new MedicineItem();
-    //                 medI.setMedicine(medicineRepository.findById(Long.valueOf(body.getMedicineIds()[i]).longValue()));
-    //                 medI.setMedicationType(medicationTypeRepository.findById(Long.valueOf(body.getMedicationTypeIds()[i]).longValue()));
-    //                 medI.setDoctorOrder(newdocOrder);
-    //                 medicineItemRepository.save(medI);
-    //             }
-    //             System.out.println(body.getAllergies());
-
-    //             DoctorOrder docOrderNew = doctorOrderRepository.save(newdocOrder);
-
-    //             return docOrderNew;
-    //         }
-    //     }
-        
-    // }
-
-    
-    // @GetMapping("/ordertable/")
-    // public Collection<Object[]> getData(@PathVariable Long id){
-    //     System.out.println(id);
-    //     Collection<Object[]> data =  doctorOrderRepository.findByDoctorID(id);
-    //     System.out.println(data);
-
-    //     return data;
-    // }
-    @GetMapping("/prescriptionNumber/{national_id}")
-    public Collection<Object[]> getData(@PathVariable Long national_id){
-        System.out.println(national_id);
-        Collection<Object[]> data =  doctorOrderRepository.findBynNationaId(national_id);
-        System.out.println(data);
-
-        return data;
+        return doctorOrderRepository.findByNationalId(PATIENT_ID);
     }
+
+    @GetMapping("/prescription/{prescription_number}")
+    public Collection<Object[]> getPrescription(@PathVariable ("prescription_number")String prescription_number){
+        // System.out.println(prescription_number);
+        // Collection<Object[]> prescription =  doctorOrderRepository.findByPrescriptionNumber(prescription_number);
+        // System.out.println(prescription);
+
+        return doctorOrderRepository.findByPrescriptionNumber(prescription_number);
+    }
+
+
 
 }
