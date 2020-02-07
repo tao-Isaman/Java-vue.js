@@ -20,46 +20,67 @@
                     <h1 class="font">ระบบออกใบสั่งจ่ายยา</h1>
                 </v-flex>
             </v-layout>
+          
             <v-row justify="center">
                 <v-col>
-                 <v-form v-model="valid" ref="form">
+                 <v-form>
                      <div>
                      <v-flex md12>
                         <v-row justify="center">
-                            <v-col cols="3" ></v-col>
-                            <v-col cols="6"  align="center">
-                                <v-text-field class="font1 "
-                                    outlined
-                                    label="National ID (รหัสบัตรประชาชน)"
-                                    v-model="NationalID"
-                                    :rules="[(v) => !!v || 'Item is required']"
-                                    required
-                                    
-                                ></v-text-field>
-
-                                <p v-if="prescriptionNumberCheck != ''">Name : {{Name}}</p>
-
+                            <v-col cols="2" ></v-col>
+                            <v-col cols="8"  align="center">
+                             <v-data-table :headers="headers" :items ="order" :items-per-page="5"></v-data-table>
+                           
                             </v-col>
-                            <v-col cols="3">
-                                <v-btn class="font1 " @click="getNationalID" depressed large color="primary">ค้นหา</v-btn>
+                            <v-col cols="2">
+                                
                                 
                             </v-col>
-                             
-
                         </v-row>
                      </v-flex>
                      </div>
                  </v-form>
                 </v-col>
-               
 
+            </v-row>
 
+              <v-row justify="center">
+                <v-col>
+                    <v-form v-model="valid" ref="form">
+                     <div>
+                     <v-flex md12>
+                        <v-row justify="center">
+                            <v-col cols="3" ></v-col>
+                            <v-col cols="5"  align="center">
+
+                
+                                <v-text-field class="font1 "
+                                    outlined
+                                    label="Prescription Number"
+                                    v-model= "prescription_number"
+                                    :rules="[(v) => !!v || 'Item is required']"
+                                    required
+                                    
+                                ></v-text-field>
+                              
+                            </v-col>
+                            <v-col cols="4">
+                               <v-btn class="font1 " @click="getPN" depressed large color="primary">ค้นหาใบจ่ายยา</v-btn>
+                                <!-- <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn> -->
+
+                                
+                            </v-col>
+                        </v-row>
+                     </v-flex>
+                     </div>
+                    </v-form>
+                </v-col>
 
             </v-row>
 
             <v-row> 
                 <v-col>
-                    <div v-if="prescriptionNumberCheck"  class="font2">
+                    <div v-if="prescriptionNumberSelected == true"  class="font2">
                      <v-form v-model="valid" ref="form">
                         <v-flex md12>
                             <v-row> 
@@ -71,29 +92,26 @@
                                     <br><br>
                                     <h2 id = 'text_left' class='content'>วันสั่งที่จ่ายยา : {{date}}</h2> 
                                     <h2 id = 'text_left' class='content'>National Id : {{NationalID}}</h2>
-                                    <h2 id = 'text_left' class='content'>ชื่อ : {{Name}}</h2>
-                                     <!-- <h2> 
-          <li v-for="(item) in Mname" :key="item.id">
-              {{item[1]}}  ราคา   
-          </li>
-             </h2> -->
+                                     <h2 id = 'text_left' class='content'>อาการ : {{symtom}}</h2>
                                     <h2 id = 'text_left' class='content'>ยา : {{Mname1}}</h2>
-                                    <h2 id = 'text_left' class='content'>     {{Mname2}}</h2>
-                                    <h2 id = 'text_left' class='content'>การบริโภค :{{typeName1}}</h2>
-                                     <h2 id = 'text_left' class='content'>        {{typeName2}}</h2>
-                                   
-                                   
+                                    <h2 id = 'text_left' class='content'>การบริโภค : {{typeName1}}</h2>
+    
                                     <h2 id = 'text_left' class='content'>แพ้ยา : {{allergies}}</h2>
                                     <h2 id = 'text_left' class='content'>อาการแพ้ : {{reaction}}</h2>
-                                    <h2 id = 'text_left' class='content'>แพทย์ผู้รักษา : {{dname}}</h2>
+                                     <h2 id = 'text_left' class='content'>แพทย์เจ้าของไข้ : {{dname}}</h2>
                                    </div>
 
                                 <v-btn class="ma-2" tile  color="green" @click="print">
-                                                  <v-icon left></v-icon> พิมพ์ใบเสร็จที่นี่
+                                                  <v-icon center></v-icon> พิมพ์ใบเสร็จที่นี่
                                           </v-btn>
-                                </v-col>
-                                <v-col cols = "1" >
 
+                                          <v-btn style="margin-left: 15px;" v-on:click="clear">clear</v-btn>
+
+                                </v-col>
+
+                               
+                                <v-col cols = "1" >
+                                
                                 </v-col>
                             </v-row>
                     </v-flex>
@@ -131,90 +149,129 @@ export default {
     data(){
         return{
             valid: false,
-            prescriptionNumberCheck:false,
+             menu2:true,
+            prescriptionNumberSelected:false,
+            order:[],
+            headers: [
+                { text: "National Id", value: 'ex.patient.nationalID'},
+                { text: "Prescription Number", value: 'prescriptionNumber'}
+            ],
+            
+            prescription_number:"",
+           
+
             NationalID:"",
+            date:"",
             prescriptionNumber:"",
-            patientName:"",
-            typeName1:"",
-             typeName2:"",
-            dname:"",
-            Mname:[],
-            Mname2:"",
-            Mname1:"",
             allergies:"",
             reaction:"",
-            date:"",
-            Name:""
+            Mname1:"",
+            typeName1:"",
+            symtom:"",
+              dname:"",
+              
+          
+            
+            
         };
     },
 
     methods:{
-
-    print() {
-      this.$htmlToPaper('printMe');
-      this.clear()
-    },
-
-    getNationalID(){
-            http
-            .get("/prescriptionNumber/"+this.NationalID)
-            .then(response => {
-            // eslint-disable-next-line
-            /* eslint-disable */
-                console.log(response);
-                if (response.data != null) {
-                    this.prescriptionNumberCheck = response.NationalID;
-                    this.prescriptionNumberCheck = response.status;
-                     this.date = response.data[0][1];
-                     this.allergies =response.data[0][2];
-                    this.reaction = response.data[0][3];
-                     this.prescriptionNumber = response.data[0][4];
-                    this.Name = response.data[0][5];
-                    this.NationalID = response.data[0][6];
-                    this.Mname1 = response.data[0][8];
-                    this.Mname2 = response.data[1][8];
-                    this.typeName1 = response.data[0][9];
-                    this.typeName2 = response.data[1][9];
-                    this.dname= response.data[0][10];
-                   
-                    
-                    //  for (i = 0; i < response.data.length; i++) {
-                    //     this.Mname[i] = response.data[i][0];   
-                    // }
-                } else if(response.data == null) {
-                    this.clear()
-                     console.log(e);
-                
-                const options2 = { title: "Alert", size: "s" };
-                this.$dialogs.alert("National Id is Not Corect!",options2);
-                this.clear()
-               
-                }           
-                console.log(response.data[0][1]);
-            })
-            // .catch(e => {
-            // console.log(e);
-                
-            //     const options2 = { title: "Alert", size: "s" };
-            //     this.$dialogs.alert("National Id is Not Corect!",options2);
-            //     this.clear()
-            // })
+        print() {
+            if(this.getPN == true) {
+                    this.$htmlToPaper('printMe');
+                    const options3 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบสั่งจ่ายยาสำเร็จ", options3);
+                     this.clear();
+            }else if(this.getPN == false) {
+                    const options4 = { title: "Alert", size: "sm" };
+                    this.$dialogs.alert("พิมพ์ใบสั่งจ่ายยาไม่สำเร็จ", options4);
+                     this.clear();
+                }
+        },
+        clear(){
+        this.$refs.form.reset();
+        this.prescriptionNumberSelected = false;
+        },
+        getdoctorsOrder() {
+        http
+            .get("/doctororder")
+            .then(response => {     
+                this.order = response.data;
             
-            this.submitted = true;
-        }
-    },
-    clear(){
-      this.$refs.form.reset();
-    },
-    refreshList(){
-      this.getNationalID();
-      this.print();
-     
-    }, 
-    mounted(){
-        this.getNationalID();
+            })
+            .catch(e => {
+                // eslint-disable-next-line
+                /* eslint-disable */
+            console.log(e);
+            });
+        },
 
-    }
+        getPN(){
+            http
+                .get("/prescription/" + this.prescription_number)
+                .then(response => {
+                console.log(this.prescriptionNumber);
+                    console.log(response.data);  
+                    if (response.data != null && response.data != "") {
+                        this.prescriptionNumberSelected = true;
+                        this.NationalID = response.data[0][1];
+                        this.date = response.data[0][2];
+                        this.prescriptionNumber = response.data[0][3];
+                        this.symtom = response.data[0][4],
+                        this.allergies =response.data[0][5];
+                        this.reaction = response.data[0][6];
+                        
+                        for (let i = 0; i < (response.data).length; i++) {
+                            if(i!=0 && i!= (response.data).length){
+                                this.Mname1 += ",  ";
+                            }
+                            this.Mname1 += response.data[i][7];
+                            
+                        }
+                        
+                        // //this.Mname2 = response.data[1][8];
+                        // this.typeName1 = response.data[0][9];
+                        for (let i = 0; i < (response.data).length; i++) {
+                            if(i!=0 && i!= (response.data).length){
+                                this.typeName1 += ",  ";
+                            }
+                            this.typeName1 += response.data[i][8];
+                            
+                        }
+                        this.dname = response.data[1][9];
+                        console.log((response.data).length+"SIZE");
+                    
+                        console.log(response.data[0][1]);
+                        this.getPN= true;
+                         
+                    }
+                    else{
+                        console.log(response.data+"*********EMPTY**********");
+                        const options2 = { title: "Alert", size: "s" };
+                        this.$dialogs.alert("NOT FOUND!",options2);
+                        this.getPN= false;
+                        this.clear();
+                    }
+                })
+                .catch(e => {
+                console.log(e);
+                })
+                
+                this.submitted = true;
+        },
+        refreshList(){
+            this.print()
+            this.getPN();
+        
+        }, 
+        
+    },
+    
+        mounted(){
+            this.getPN();
+            this.getdoctorsOrder();
+        }
    
      
 };  

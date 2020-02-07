@@ -52,7 +52,7 @@ public class DoctorOrder {
 
   // \"[BMD]\\d{7}\"
   // @Size(min = 5,max = 11)
-  @Pattern(regexp = "[P]\\d{10}")
+  @Pattern(regexp = "[P]\\d{17}")
   @NotNull private  String prescriptionNumber = "";
 
   // @Column(name = "DrugAllergies")

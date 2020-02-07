@@ -80,6 +80,13 @@
                               label="Prescription Number (เลขใบสั่งจ่ายยา)"
                               v-model="doctorsOrder.prescriptionNumber"
                               :rules="[(v) => !!v || 'Item is required']"
+                              :disabled="true"
+                            ></v-text-field>
+                             <v-text-field class="font1"
+                              label="Date (วันที่สั่งจ่ายยา)"
+                              v-model="doctorsOrder.date"
+                              :rules="[(v) => !!v || 'Item is required']"
+                              :disabled="true"
                             ></v-text-field>
 
                              <br><br>
@@ -116,7 +123,8 @@ export default {
         medicationTypeIds: [],
         allergies: "",
         reaction: "",
-        prescriptionNumber : "",
+        prescriptionNumber : "P"+[new Date().toJSON().replace(/[^\d]/g,'')],
+        date: new Date().toJSON().replace(/-/g,'-'),
         
       },
       valid: false,
@@ -124,7 +132,7 @@ export default {
       examinaton:[],
       medicationType:[],
       medicine:[],
-      date:"",
+     
      
       
     

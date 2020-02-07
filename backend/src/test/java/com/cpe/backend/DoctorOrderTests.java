@@ -55,12 +55,10 @@ public class DoctorOrderTests {
         ExaminationSystem e1 = new ExaminationSystem();
         DoctorOrder doctorOrder = new DoctorOrder();
         try {
-            e1.setPressure("90 120");
-            e1.setPulse(180);
             e1.setSymptom("Something");
             doctorOrder.setId(1L);
             doctorOrder.setDate(new Date());
-            doctorOrder.setPrescriptionNumber("P1234567890");
+            doctorOrder.setPrescriptionNumber("P20200207065259122");
             doctorOrder.setAllergies("Paracetamal");
             doctorOrder.setReaction("ไม่มีอาการ");
             doctorOrder.setEx(e1);
@@ -105,7 +103,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(null);
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("Paracetamal");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
@@ -124,7 +122,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies(null);
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
@@ -143,7 +141,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("ไม่มี");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
@@ -162,7 +160,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction(null);
         doctorOrder.setEx(ex);
@@ -181,7 +179,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("Paracetamal");
         // doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(ex);
@@ -208,7 +206,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("Paracetamal");
         doctorOrder.setReaction("nooo");
         doctorOrder.setEx(ex);
@@ -253,7 +251,7 @@ public class DoctorOrderTests {
          Set<ConstraintViolation<DoctorOrder>> result = validator.validate(doctorOrder);
         assertEquals(1, result.size());
          ConstraintViolation<DoctorOrder> v = result.iterator().next();
-        assertEquals("must match \"[P]\\d{10}\"", v.getMessage());
+        assertEquals("must match \"[P]\\d{17}\"", v.getMessage());
         assertEquals("prescriptionNumber", v.getPropertyPath().toString());
 
     }
@@ -264,7 +262,7 @@ public class DoctorOrderTests {
         ex.setSymptom("symtom");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
-        doctorOrder.setPrescriptionNumber("P1234567890");
+        doctorOrder.setPrescriptionNumber("P20200207065259122");
         doctorOrder.setAllergies("allergies");
         doctorOrder.setReaction("ไม่มีอาการ");
         doctorOrder.setEx(null);
