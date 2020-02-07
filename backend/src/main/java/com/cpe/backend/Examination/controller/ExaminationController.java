@@ -73,10 +73,10 @@ public class ExaminationController {
         Doctor checkBy = doctorRepository.findById(doctor_id);
 
         newExaminationSystem.setPatient(patient);
-        newExaminationSystem.setPulse(Integer.valueOf(body.get("pulse").toString()));
-        newExaminationSystem.setPressureh(Integer.valueOf(body.get("pressureh").toString()));
-        newExaminationSystem.setPressurel(Integer.valueOf(body.get("pressurel").toString()));
-        newExaminationSystem.setSymptom(body.get("symptom"));
+        newExaminationSystem.setPulse(pulse);
+        newExaminationSystem.setPressureh(pressureh);
+        newExaminationSystem.setPressurel(pressurel);
+        newExaminationSystem.setSymptom(symptom);
         newExaminationSystem.setDuration(duration);
         newExaminationSystem.setState(state);
         newExaminationSystem.setCheckDate(new Date());
