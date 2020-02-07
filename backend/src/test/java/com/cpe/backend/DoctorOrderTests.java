@@ -55,12 +55,10 @@ public class DoctorOrderTests {
         ExaminationSystem e1 = new ExaminationSystem();
         DoctorOrder doctorOrder = new DoctorOrder();
         try {
-<<<<<<< HEAD
-=======
             //e1.setPressure("90 120");
             e1.setPulse(180);
->>>>>>> 84246d7db47c09173e0f7bd38d62504ad53d1c7e
-            e1.setSymptom("Something");
+
+            e1.setSymptom("อาการ");
             doctorOrder.setId(1L);
             doctorOrder.setDate(new Date());
             doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -105,7 +103,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testDateNotNull() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(null);
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -124,7 +122,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testAllergiesNotNull() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -143,7 +141,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testAllergiesWrongPattern() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -162,7 +160,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testReactionNotNull() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -181,7 +179,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testReactionOverSize151() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -208,7 +206,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testReactionLessSize4() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
@@ -226,7 +224,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testPrescriptionNumberNotNull() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber(null);
@@ -245,7 +243,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testPrescriptionNumberWrongPattern() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P1234567890H");
@@ -264,7 +262,7 @@ public class DoctorOrderTests {
     @Test
     public void B5916719_testExaminationSystemIdNotNull() {
          ExaminationSystem ex = new ExaminationSystem();
-        ex.setSymptom("symtom");
+        ex.setSymptom("อาการ");
          DoctorOrder doctorOrder = new DoctorOrder();
         doctorOrder.setDate(new Date());
         doctorOrder.setPrescriptionNumber("P20200207065259122");
