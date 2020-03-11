@@ -155,6 +155,7 @@ export default {
             .get("/getDate/"+id)
             .then(response => {
               console.log(response.data);
+              console.log("Day");
               this.Day = response.data;
               this.bedPricetotal = this.Day*this.bedprice;
               console.log(this.bedprice);

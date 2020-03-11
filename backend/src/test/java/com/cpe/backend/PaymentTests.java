@@ -24,11 +24,16 @@ import com.cpe.backend.Doctororder.entity.MedicationType;
 import com.cpe.backend.Doctororder.entity.Medicine;
 import com.cpe.backend.Doctororder.entity.MedicineItem;
 import com.cpe.backend.Examination.entity.ExaminationSystem;
+
 import com.cpe.backend.Payment.entity.Payment;
 import com.cpe.backend.Payment.entity.PaymentOption;
 import com.cpe.backend.Payment.entity.TypeBank;
+
 import com.cpe.backend.Payment.repository.PaymentOptionRepository;
 import com.cpe.backend.Payment.repository.PaymentRepository;
+import com.cpe.backend.Payment.repository.TypeBankRepository;
+import com.cpe.backend.Doctororder.repository.DoctorOrderRepository;
+import com.cpe.backend.Examination.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -41,7 +46,15 @@ public class PaymentTests {
 
     @Autowired
     private PaymentRepository paymentRepository;
-    private PaymentOptionRepository payop;
+
+    @Autowired
+    private PaymentOptionRepository paymentOptionRepository;
+
+    @Autowired
+    private TypeBankRepository typeBankRepository;
+
+      @Autowired
+    private DoctorOrderRepository doctorOrderRepository;
 
     @BeforeEach
     public void setup() {
@@ -49,6 +62,32 @@ public class PaymentTests {
         validator = factory.getValidator();
     }
 
+    
+    @Test
+    public void B5907625_testFullDataSuccess() {
+        Payment payment = new Payment();
+        DoctorOrder doctorOrder = doctorOrderRepository.findById(1);
+        PaymentOption paymentOption = paymentOptionRepository.findById(1);
+        TypeBank typeBank = typeBankRepository.findById(1);
+        Date date = new Date();
+
+        try {
+                        payment.setDoctorOrder(doctorOrder);
+                        payment.setPaymentOption(paymentOption);
+                        payment.setTypeBank(typeBank);
+                        payment.setNote("abcdef");
+                        payment.setDate(date);                                                                                                                                                                                                                
+        }catch (ConstraintViolationException e) {
+
+            Optional<Payment> found = paymentRepository.findById(payment.getId());   
+            assertEquals(date , found.get().getDate());
+            assertEquals(doctorOrder , found.get().getDoctorOrder());
+            assertEquals(typeBank , found.get().getTypeBank());
+            assertEquals(paymentOption , found.get().getDoctorOrder());
+            assertEquals("abcdef" , found.get().getNote());
+        } catch (NullPointerException e) {}
+
+    }
     
     @Test
     void B5907625_testDoctorOrderIsNotNull(){
@@ -151,7 +190,7 @@ public class PaymentTests {
     void B5907625_testPaymentNoteMustMoreThen240(){
         Payment payment = new Payment();
         DoctorOrder doctorOrder = new DoctorOrder();
-        PaymentOption paymentOption = new PaymentOption();
+        PaymentOption paymentOption = paymentOptionRepository.findById(1);
         TypeBank typeBank = new TypeBank();
         Date date = new Date();
 
@@ -177,54 +216,8 @@ public class PaymentTests {
         assertEquals("Note", v.getPropertyPath().toString());
     }
  
-    @Test
-    public void B5907625_testFullDataSuccess() {
-        Payment payment = new Payment();
-        DoctorOrder doctorOrder = new DoctorOrder();
-        PaymentOption paymentOption = new PaymentOption();
-        TypeBank typeBank = new TypeBank();
-        Date date = new Date();
-        try {
-                        payment.setDoctorOrder(doctorOrder);
-                        payment.setPaymentOption(paymentOption);
-                        payment.setTypeBank(typeBank);
-                        payment.setNote("abcdef");
-                        payment.setDate(date);                                                                                                                                                                                                                
-        }catch (ConstraintViolationException e) {
-
-            Optional<Payment> found = paymentRepository.findById(payment.getId());
-            assertEquals("abcdef", found.get().getNote());
-
-        } catch (NullPointerException e) {}
-        // ExaminationSystem e1 = new ExaminationSystem();
-        // DoctorOrder doctorOrder = new DoctorOrder();
-        // e1.setPressure("90 120");
-        // e1.setPulse(180);
-        // e1.setSymptom("Something");
-        // DoctorOrder doctorOrder = new DoctorOrder();
-        // doctorOrder.setId(1L);
-        // doctorOrder.setDate(new Date());            
-        // doctorOrder.setPrescriptionNumber("P1234567890");
-        // doctorOrder.setAllergies("Paracetamal");
-        // doctorOrder.setReaction("ไม่มีอาการ");
-        // doctorOrder.setEx(e1);
-        // doctorOrder = doctorOrderRepository.saveAndFlush(doctorOrder);
-        // try {
-        //     entityManager.persist(doctorOrder);
-        //     entityManager.flush();
-
-        // } catch(javax.validation.ConstraintViolationException e) {
-        //     fail("Should not pass to this line testSuccess");
-        // } catch(NullPointerException e){
-        //     System.out.println("Null Pointer Error."); 
-        // }catch(Exception e) {
-        //     System.out.println("Error Others.");               
-        // }
-            
-
-    }
 
 
-   
 }
 
+   
