@@ -237,8 +237,9 @@ export default {
             const options2 = { title: "Alert", size: "sm" };
              this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
 
-          }else if(this.Payment.paymentOptions==0){
+          }else if(this.Payment.paymentOptions==0 ){
             const options2 = { title: "Alert", size: "sm" };
+            console.log("PaymentOption");
              this.$dialogs.alert("บันทึกข้อมูลไม่สำเร็จ", options2);
           } else if(this.Payment.typeBank == 0){
                        const options1 = { title: "Alert", size: "sm" };
