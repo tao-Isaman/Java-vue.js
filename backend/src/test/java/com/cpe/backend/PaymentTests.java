@@ -67,7 +67,7 @@ public class PaymentTests {
     public void B5907625_testFullDataSuccess() {
         Payment payment = new Payment();
         DoctorOrder doctorOrder = doctorOrderRepository.findById(1);
-        PaymentOption paymentOption = paymentOptionRepository.findById(1);
+        PaymentOption paymentOption = paymentOptionRepository.findById(2);
         TypeBank typeBank = typeBankRepository.findById(1);
         Date date = new Date();
 
@@ -75,7 +75,7 @@ public class PaymentTests {
                         payment.setDoctorOrder(doctorOrder);
                         payment.setPaymentOption(paymentOption);
                         payment.setTypeBank(typeBank);
-                        payment.setNote("abcdef");
+                        payment.setNote("ไม่รับถุง");
                         payment.setDate(date);                                                                                                                                                                                                                
         }catch (ConstraintViolationException e) {
 
@@ -84,7 +84,7 @@ public class PaymentTests {
             assertEquals(doctorOrder , found.get().getDoctorOrder());
             assertEquals(typeBank , found.get().getTypeBank());
             assertEquals(paymentOption , found.get().getDoctorOrder());
-            assertEquals("abcdef" , found.get().getNote());
+            assertEquals("ไม่รับถุง" , found.get().getNote());
         } catch (NullPointerException e) {}
 
     }
