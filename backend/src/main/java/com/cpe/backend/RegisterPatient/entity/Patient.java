@@ -66,14 +66,17 @@ public class Patient { // ผู้ป่วย
   @Min(1)
   private int weigth ;
   
+  @NotNull
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = Benefit.class)
   @JoinColumn(name = "BENEFIT_ID", insertable = true)
   private Benefit benefit ;
 
+  @NotNull
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
   @JoinColumn(name = "PROVINCE_ID", insertable = true)
   private Province province ;
 
+  @NotNull
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
   @JoinColumn(name = "GENDER_ID", insertable = true)
   private Gender gender;
