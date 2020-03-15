@@ -1,19 +1,14 @@
 package com.cpe.backend;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.*;
 import java.util.Optional;
 import java.util.Set;
-import java.util.Date;
 import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import javax.validation.constraints.Size;
 import com.cpe.backend.Bed.entity.*;
 import com.cpe.backend.Appointment.entity.*;
 import com.cpe.backend.RegisterPatient.entity.*;
@@ -24,7 +19,6 @@ import com.cpe.backend.RegisterPatient.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 @DataJpaTest
 public class BedTests {
@@ -53,8 +47,10 @@ public class BedTests {
     @Test
     void B5915330_testNurseIsNotNull(){
         Reservation reservation = new Reservation();
-        Bed bed = new Bed();
-        Department department = new Department();
+        //Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(null);
@@ -62,7 +58,8 @@ public class BedTests {
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
-        reservation.setNote("abcedf");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
@@ -79,8 +76,10 @@ public class BedTests {
     @Test
     void B5915330_testBedIsNotNull(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        //Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -88,7 +87,8 @@ public class BedTests {
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
-        reservation.setNote("abcedf");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
@@ -106,8 +106,10 @@ public class BedTests {
     @Test
     void B5915330_testDepartmentIsNotNull(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        //Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -115,7 +117,8 @@ public class BedTests {
         reservation.setDepartment(null);
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
-        reservation.setNote("abcedf");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
@@ -133,9 +136,10 @@ public class BedTests {
     @Test
     void B5915330_testNotesMustNotLessThen5(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -144,6 +148,7 @@ public class BedTests {
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
         reservation.setNote("m");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
         assertEquals(1, result.size());
@@ -157,9 +162,10 @@ public class BedTests {
     @Test
     void B5915330_testNotesMustNotMoreThen240(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -168,6 +174,7 @@ public class BedTests {
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
         reservation.setNote("mlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeirmlolpokijuhygtfrdeskgitjglhop;slsl;dlkoiopoirytueirueiroeir");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
         assertEquals(1, result.size());
@@ -177,13 +184,14 @@ public class BedTests {
         assertEquals("note", v.getPropertyPath().toString());
     }
     
-//Note ห้าม Null
+//Note ห้าม Null หรือ String ว่างๆ
     @Test
     void B5915330_testNoteMustBeNotNull(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -192,12 +200,13 @@ public class BedTests {
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
         reservation.setNote(null);
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
         assertEquals(1, result.size());
 
         ConstraintViolation<Reservation> v = result.iterator().next();
-        assertEquals("must not be null", v.getMessage());
+        assertEquals("must not be blank", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
     
@@ -208,6 +217,7 @@ public class BedTests {
         Nurse nurse = nurseRepository.findById(1);
         Bed bed = bedRepository.findById(1);
         Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -216,6 +226,7 @@ public class BedTests {
         reservation.setReservDate(reservDate);
         reservation.setZone("A1");
         reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         reservation =  reservationRepository.save(reservation);
 
@@ -225,23 +236,26 @@ public class BedTests {
         assertEquals(department, check.get().getDepartment());
         assertEquals(reservation.getReservDate(), check.get().getReservDate());
         assertEquals("เตียงที่มีขนาดใหญ่พิเศษ", check.get().getNote());
+        assertEquals(patient,check.get().getPatient());
     }
    
     //Zone ต้องตรงตาม Pattern ของตัวอักษร
     @Test
     void B5915330_testZoneFirstCharacterMustNotBeX() {
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
-      
+
         reservation.setNurse(nurse);
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
         reservation.setZone("X1");
         reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
@@ -255,17 +269,19 @@ public class BedTests {
     @Test
     void B5915330_testZoneNumberMustBeOneDigit() {
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
-      
+
         reservation.setNurse(nurse);
         reservation.setBed(bed);
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
         reservation.setZone("A11");
         reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
 
@@ -279,9 +295,10 @@ public class BedTests {
     @Test
     void B5915330_testZoneMustBeNotNull(){
         Reservation reservation = new Reservation();
-        Nurse nurse = new Nurse();
-        Bed bed = new Bed();
-        Department department = new Department();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
         java.util.Date reservDate = new java.util.Date(2020-01-21);
 
         reservation.setNurse(nurse);
@@ -289,7 +306,8 @@ public class BedTests {
         reservation.setDepartment(department);
         reservation.setReservDate(reservDate);
         reservation.setZone(null);
-        reservation.setNote("เตียงขนาดพิเศษ");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
 
         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
         assertEquals(1, result.size());
@@ -298,5 +316,35 @@ public class BedTests {
         assertEquals("must not be null", v.getMessage());
         assertEquals("zone", v.getPropertyPath().toString());
     }
+    
+     //Date ต้องไม่เป็นค่า Null
+     @Test
+     void B5915330_testDateIsNotNull(){
+        Reservation reservation = new Reservation();
+        Nurse nurse = nurseRepository.findById(1);
+        Bed bed = bedRepository.findById(1);
+        Department department = departmentRepository.findById(1);
+        Patient patient = patientRepository.findById(1);
+        //java.util.Date reservDate = new java.util.Date(2020-01-21);
+
+        reservation.setNurse(nurse);
+        reservation.setBed(bed);
+        reservation.setDepartment(department);
+        reservation.setReservDate(null);
+        reservation.setZone("A1");
+        reservation.setNote("เตียงที่มีขนาดใหญ่พิเศษ");
+        reservation.setPatient(patient);
+ 
+         Set<ConstraintViolation<Reservation>> result = validator.validate(reservation);
+ 
+         // result ต้องมี error 1 ค่าเท่านั้น
+         assertEquals(1, result.size());
+ 
+         // error message ตรงชนิด และถูก field
+         ConstraintViolation<Reservation> v = result.iterator().next();
+         assertEquals("must not be null", v.getMessage());
+         assertEquals("reservDate", v.getPropertyPath().toString());
+     }
+
        
 }

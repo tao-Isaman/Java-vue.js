@@ -1,7 +1,7 @@
 package com.cpe.backend.Bed.entity;
 
 import lombok.*;
-
+//import lombok.NonNull;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +21,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;;
+import javax.persistence.FetchType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Data
 @Entity
@@ -35,9 +37,12 @@ public class Reservation {
    
     @Column(name = "RESERVATION_ID", unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull Date ReservDate;
 
+    @Temporal(TemporalType.DATE)
     @NotNull
+    private  Date reservDate ;
+
+    @NotBlank
     @Size(min=5,max=240)
     private String note = "";
 
@@ -60,7 +65,7 @@ public class Reservation {
     @Getter @Setter
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Bed.class)     
-    @JoinColumn(name = "Beds_ID", insertable = true)     
+    @JoinColumn(name = "Bed_ID", insertable = true)     
     private Bed bed; 
  
     @Getter @Setter
