@@ -1,5 +1,5 @@
 # ตั้งค่า H2 Database in memory 
-# Code ในการ Run H2 Database 
+# Code ในการ Run H2 Database bye SE
 # http://localhost:9000/h2-console ->  JDBC URL ใส่ค่าเป็น jdbc:h2:mem:testdb
 spring:
    jpa:
